@@ -1,0 +1,45 @@
+--- a/xupnpd.cfg
++++ b/xupnpd.cfg
+@@ -11,14 +11,14 @@ sleep=0
+ log_level=3
+ 
+ # log destination
+-#log_file=xupnpd.log
++#log_file=/opt/var/log/xupnpd.log
+ #log_file=udp://127.0.0.1:514/local0
+ 
+ # detach from terminal
+ daemon_mode=false
+ 
+ # media
+-media_root=media/
++media_root=/opt/share/xupnpd2/media/
+ 
+ # default multicast UDP/RTP interface
+ multicast_interface=eth1
+@@ -42,7 +42,7 @@ http_snd_timeout=0
+ http_keep_alive_timeout=15
+ http_keep_alive_max=10000
+ http_max_post_size=4096
+-http_www_root=www/
++http_www_root=/opt/share/xupnpd2/www/
+ http_templates=/index.html,/dev.xml
+ http_user_agent=Mozilla/5.0
+ 
+@@ -78,13 +78,13 @@ raw_urls_soap=false
+ #io_charset=auto
+ 
+ # db
+-db_file=xupnpd.db
++db_file=/opt/var/xupnpd.db
+ 
+ # script for handlers and extensions
+-lua_script=xupnpd.lua
++lua_script=/opt/etc/xupnpd2/xupnpd.lua
+ 
+ # file for uuid storage when upnp_device_uuid is not set
+-uuid_file=xupnpd.uid
++uuid_file=/opt/var/xupnpd.uid
+ 
+ # reset all dlna extras to '*'
+ disable_dlna_extras=false

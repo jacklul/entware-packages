@@ -1,0 +1,145 @@
+name: Build and upload
+
+on:
+  workflow_dispatch:
+
+env:
+  PACKAGES: xupnpd2-ssl xupnpd2-fork http-to-https-proxy watchyourlan
+  PACKAGES_NOHF: http-to-https-proxy watchyourlan
+
+jobs:
+  build:
+    concurrency: ci-build-${{ github.ref_name }}-${{ matrix.config }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config:
+          - armv7-3.2
+          #- armv7-2.6
+          #- armv5-3.2
+          #- aarch64-3.10
+          #- mips-3.4
+          #- mipsel-3.4
+          #- x64-3.2
+          #- x86-2.6
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        repository: Entware/Entware
+
+    - name: Setup dependencies
+      run: sudo apt-get install build-essential flex gawk gcc-multilib gettext git libncurses5-dev libssl-dev python2 python-is-python3 python3-distutils subversion unzip zlib1g-dev rsync
+
+    - name: Activate platform configuration
+      run: ln -s configs/${{ matrix.config }}.config .config
+
+    - uses: actions/cache/restore@v3
+      with:
+        path: |
+          bin
+          build_dir
+          staging_dir
+        key: cache-${{ matrix.config }}
+
+    - name: Build tools and toolchain
+      run: |
+        make tools/install -j$(nproc)
+        make toolchain/install -j$(nproc)
+        make target/compile -j$(nproc)
+
+    - uses: actions/cache/save@v3
+      with:
+        path: |
+          bin
+          build_dir
+          staging_dir
+        key: cache-${{ matrix.config }}
+
+    - name: Fetch feeds
+      run: |
+        echo "src-git jacklul https://github.com/jacklul/Entware-packages.git" >> feeds.conf
+        make package/symlinks
+
+    - name: Build packages
+      run: |
+        for PACKAGE in ${{ env.PACKAGES }}; do echo "CONFIG_PACKAGE_${PACKAGE}=m" >> .config ; done
+        for PACKAGE in ${{ env.PACKAGES }}; do make package/$PACKAGE/compile -j$(nproc) ; done
+
+    - name: Build packages ("nohf" variants)
+      run: |
+        for PACKAGE in ${{ env.PACKAGES_NOHF }}; do echo "CONFIG_PACKAGE_${PACKAGE}_nohf=m" >> .config ; done
+        for PACKAGE in ${{ env.PACKAGES_NOHF }}; do BUILD_VARIANT=nohf make package/$PACKAGE/compile -j$(nproc) ; done
+      continue-on-error: true
+
+    - uses: actions/cache/save@v3
+      with:
+        path: |
+          bin
+          build_dir
+          staging_dir
+        key: cache-${{ matrix.config }}
+
+    - uses: actions/checkout@v4
+      with:
+        repository: Entware/ipk-html-indexer
+        path: ipk-html-indexer
+
+    - name: Setup ipk-html-indexer
+      run: |
+        sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkindex.py" /usr/local/bin/mkindex.py
+        sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkhtml.py" /usr/local/bin/mkhtml.py
+
+    - name: Copy packages to artifact directory
+      run: |
+        mkdir -v artifact
+        for PACKAGE in ${{ env.PACKAGES }}; do cp -fv bin/targets/*/*/packages/$PACKAGE* artifact; done
+
+    - name: Run ipk-html-indexer
+      run: |
+        bash ipk-html-indexer/index_feed.sh -h -f artifact
+        sed 's#href="/css#href="css#' -i artifact/Packages.html
+        cp -rfv ipk-html-indexer/css artifact
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: ${{ matrix.config }}
+        path: artifact/*
+        retention-days: 1
+
+  upload:
+    concurrency: ci-build-upload
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          sparse-checkout: index.html
+          sparse-checkout-cone-mode: false
+
+      - name: Rename gh-pages branch
+        run: git branch -m gh-pages gh-pages.old
+        continue-on-error: true
+
+      - name: Disable sparse-checkout
+        run: git sparse-checkout disable
+
+      - uses: actions/download-artifact@v3
+
+      - name: Create index.html
+        run: |
+          rm -f index.html
+          find . -maxdepth 1 -type d -not -name ".git" -not -name "." -exec sh -c 'echo "<a href=\"$(basename {})/Packages.html\">$(basename {})</a><br>" >> index.html' \;
+
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: .
+          commit-message: Uploading build
+          single-commit: true
+          force: true

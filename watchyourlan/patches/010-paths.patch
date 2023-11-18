@@ -1,0 +1,33 @@
+--- a/cmd/WatchYourLAN/main.go
++++ b/cmd/WatchYourLAN/main.go
+@@ -7,7 +7,7 @@ import (
+ 	"github.com/aceberg/WatchYourLAN/internal/web"
+ )
+ 
+-const configPath = "/data/config.yaml"
++const configPath = "/opt/etc/watchyourlan/config.yaml"
+ const nodePath = ""
+ 
+ func main() {
+--- a/internal/conf/config.go
++++ b/internal/conf/config.go
+@@ -12,7 +12,7 @@ import (
+ func Get(path string) (config models.Conf, authConf auth.Conf) {
+ 
+ 	viper.SetDefault("IFACE", "enp1s0")
+-	viper.SetDefault("DBPATH", "/data/db.sqlite")
++	viper.SetDefault("DBPATH", "/opt/var/watchyourlan.sqlite")
+ 	viper.SetDefault("GUIIP", "0.0.0.0")
+ 	viper.SetDefault("GUIPORT", "8840")
+ 	viper.SetDefault("TIMEOUT", "60")
+--- a/internal/migrate/get-old.go
++++ b/internal/migrate/get-old.go
+@@ -9,7 +9,7 @@ import (
+ func getOldConfig(path string) (config models.Conf) {
+ 
+ 	viper.SetDefault("IFACE", "enp1s0")
+-	viper.SetDefault("DBPATH", "/data/db.sqlite")
++	viper.SetDefault("DBPATH", "/opt/var/watchyourlan.sqlite")
+ 	viper.SetDefault("GUIIP", "localhost")
+ 	viper.SetDefault("GUIPORT", "8840")
+ 	viper.SetDefault("TIMEOUT", "60")

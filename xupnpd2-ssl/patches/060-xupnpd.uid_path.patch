@@ -1,0 +1,11 @@
+--- a/common.cpp
++++ b/common.cpp
+@@ -216,7 +216,7 @@ void utils::rm_last_slash(std::string& s
+ 
+ std::string utils::uuid_gen(void)
+ {
+-    static const char uuid_dat[]="xupnpd.uid";
++    static const char uuid_dat[]="/opt/var/xupnpd2.uid";
+ 
+     FILE* fp=fopen(uuid_dat,"rb");
+ 

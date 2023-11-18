@@ -1,0 +1,11 @@
+--- a/plugin_lua.cpp
++++ b/plugin_lua.cpp
+@@ -241,7 +241,7 @@ void luas::sendurl(const std::string& url)
+ std::string luas::translate_url(const std::string& url_translator,const std::string& url,const std::string& method)
+ {
+     std::string real_url;
+-    std::string script=!cfg::lua_script.empty()?cfg::lua_script:"xupnpd.lua";
++    std::string script=!cfg::lua_script.empty()?cfg::lua_script:"/opt/etc/xupnpd2/xupnpd.lua";
+ 
+     lua_State* st=lua_open();
+ 

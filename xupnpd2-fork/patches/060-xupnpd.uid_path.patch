@@ -1,0 +1,11 @@
+--- a/common.cpp
++++ b/common.cpp
+@@ -242,7 +242,7 @@ void utils::rm_last_slash(std::string& s)
+ 
+ std::string utils::uuid_gen(void)
+ {
+-    std::string uuid_dat=!cfg::uuid_file.empty()?cfg::uuid_file:"xupnpd.uid";
++    std::string uuid_dat=!cfg::uuid_file.empty()?cfg::uuid_file:"/opt/var/xupnpd.uid";
+ 
+     FILE* fp=fopen(uuid_dat.c_str(),"rb");
+ 
