@@ -24,7 +24,7 @@ define Package/xupnpd2-ssl
 endef
 
 define Package/xupnpd2-ssl/description
- This program is a light DLNA Media Server which provides ContentDirectory:1
+ (github.com/jacklul/xupnpd2) This program is a light DLNA Media Server which provides ContentDirectory:1
  service for sharing IPTV unicast streams over local area network (with udpxy
  for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
  playlists with links over local area network as content of the directory.
