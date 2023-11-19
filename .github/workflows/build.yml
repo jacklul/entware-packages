@@ -34,6 +34,8 @@ jobs:
       run: ln -s configs/${{ matrix.config }}.config .config
 
     - uses: actions/cache/restore@v3
+      continue-on-error: true
+      id: restore-cache
       with:
         path: |
           bin
@@ -42,12 +44,15 @@ jobs:
         key: cache-${{ matrix.config }}
 
     - name: Build tools and toolchain
+      if: steps.restore-cache.outputs.cache-hit != 'true'
       run: |
         make tools/install -j$(nproc)
         make toolchain/install -j$(nproc)
         make target/compile -j$(nproc)
 
     - uses: actions/cache/save@v3
+      continue-on-error: true
+      if: steps.restore-cache.outputs.cache-hit != 'true'
       with:
         path: |
           bin
@@ -70,14 +75,6 @@ jobs:
         for PACKAGE in ${{ env.PACKAGES_NOHF }}; do echo "CONFIG_PACKAGE_${PACKAGE}_nohf=m" >> .config ; done
         for PACKAGE in ${{ env.PACKAGES_NOHF }}; do BUILD_VARIANT=nohf make package/$PACKAGE/compile -j$(nproc) ; done
       continue-on-error: true
-
-    - uses: actions/cache/save@v3
-      with:
-        path: |
-          bin
-          build_dir
-          staging_dir
-        key: cache-${{ matrix.config }}
 
     - uses: actions/checkout@v4
       with:
