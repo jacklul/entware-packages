@@ -66,11 +66,13 @@ jobs:
         make package/symlinks
 
     - name: Build packages
+      if: env.PACKAGES != ''
       run: |
         for PACKAGE in ${{ env.PACKAGES }}; do echo "CONFIG_PACKAGE_${PACKAGE}=m" >> .config ; done
         for PACKAGE in ${{ env.PACKAGES }}; do make package/$PACKAGE/compile -j$(nproc) ; done
 
     - name: Build packages ("nohf" variants)
+      if: env.PACKAGES_NOHF != ''
       run: |
         for PACKAGE in ${{ env.PACKAGES_NOHF }}; do echo "CONFIG_PACKAGE_${PACKAGE}_nohf=m" >> .config ; done
         for PACKAGE in ${{ env.PACKAGES_NOHF }}; do BUILD_VARIANT=nohf make package/$PACKAGE/compile -j$(nproc) ; done
