@@ -28,7 +28,9 @@ jobs:
         repository: Entware/Entware
 
     - name: Setup dependencies
-      run: sudo apt-get install build-essential flex gawk gcc-multilib gettext git libncurses5-dev libssl-dev python2 python-is-python3 python3-distutils subversion unzip zlib1g-dev rsync
+      run: |
+        sudo apt-get update
+        sudo apt-get install build-essential flex gawk gcc-multilib gettext git libncurses5-dev libssl-dev python2 python-is-python3 python3-distutils subversion unzip zlib1g-dev rsync
 
     - name: Activate platform configuration
       run: ln -s configs/${{ matrix.config }}.config .config
