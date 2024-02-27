@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  PACKAGES: xupnpd2-ssl xupnpd2-fork http-to-https-proxy watchyourlan
+  PACKAGES: xupnpd2-fork http-to-https-proxy watchyourlan
   PACKAGES_NOHF: http-to-https-proxy watchyourlan
 
 jobs:
