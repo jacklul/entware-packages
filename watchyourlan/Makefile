@@ -53,8 +53,10 @@ GO_TARGET:=./cmd/WatchYourLAN
 
 define Package/watchyourlan/install
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_DIR) $(1)/opt/etc/watchyourlan
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/WatchYourLAN $(1)/opt/sbin/watchyourlan
+	$(INSTALL_DIR) $(1)/opt/etc/init.d
+	$(INSTALL_BIN) ./files/S65watchyourlan $(1)/opt/etc/init.d
+	$(INSTALL_DIR) $(1)/opt/etc/watchyourlan
 endef
 
 Package/watchyourlan_nohf/install=$(Package/watchyourlan/install)
