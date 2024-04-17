@@ -6,12 +6,13 @@ Custom repository with extra packages.
 
 - **[armv7-3.2](https://jacklul.github.io/entware-packages/armv7-3.2/Packages.html)**
 
-### How to use
+## How to use
 
-Add to `/opt/etc/opkg.conf`:
+Add this repository to your `/opt/etc/opkg.conf`:
 
 ```bash
-src/gz jacklul https://jacklul.github.io/entware-packages/ARCHITECTURE
+src/gz jacklul https://jacklul.github.io/entware-packages/[architecture]
+# replace [architecture] with one of the supported architectures
 ```
 
-and then run `opkg update` and you can install the packages through `opkg install` command.
+Run `opkg update` and then you can install the packages through `opkg install` command.
