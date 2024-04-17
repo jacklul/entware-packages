@@ -1,4 +1,4 @@
-name: Build and upload
+name: Build and Upload
 
 on:
   workflow_dispatch:
@@ -9,19 +9,31 @@ env:
 
 jobs:
   build:
-    concurrency: ci-build-${{ github.ref_name }}-${{ matrix.config }}
+    concurrency: build-${{ github.ref_name }}-${{ matrix.config }}
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.allow-failure }}
+
     strategy:
+      fail-fast: false
       matrix:
-        config:
-          - armv7-3.2
-          #- armv7-2.6
-          #- armv5-3.2
-          #- aarch64-3.10
-          #- mips-3.4
-          #- mipsel-3.4
-          #- x64-3.2
-          #- x86-2.6
+        include:
+          - config: aarch64-3.10
+            allow-failure: false
+          #- config: armv5-3.2  # EOS
+          #  allow-failure: true
+          #- config: armv7-2.6  # EOS
+          #  allow-failure: true
+          - config: armv7-3.2
+            allow-failure: false
+          - config: mipsel-3.4
+            allow-failure: true
+          - config: mips-3.4
+            allow-failure: true
+          - config: x64-3.2
+            allow-failure: false
+          #- config: x86-2.6  # EOS
+          #  allow-failure: true
+
     steps:
     - uses: actions/checkout@v4
       with:
@@ -35,7 +47,11 @@ jobs:
     - name: Activate platform configuration
       run: ln -s configs/${{ matrix.config }}.config .config
 
-    - uses: actions/cache/restore@v3
+    - name: Get commit hash for cache key
+      id: hash
+      run: echo "RESULT=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache/restore@v4
       continue-on-error: true
       id: restore-cache
       with:
@@ -43,16 +59,16 @@ jobs:
           bin
           build_dir
           staging_dir
-        key: cache-${{ matrix.config }}
+        key: ${{ matrix.config }}-${{ steps.hash.outputs.RESULT }}
 
     - name: Build tools and toolchain
       if: steps.restore-cache.outputs.cache-hit != 'true'
       run: |
-        make tools/install -j$(nproc)
-        make toolchain/install -j$(nproc)
-        make target/compile -j$(nproc)
+        make tools/install -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
+        make toolchain/install -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
+        make target/compile -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
 
-    - uses: actions/cache/save@v3
+    - uses: actions/cache/save@v4
       continue-on-error: true
       if: steps.restore-cache.outputs.cache-hit != 'true'
       with:
@@ -60,25 +76,26 @@ jobs:
           bin
           build_dir
           staging_dir
-        key: cache-${{ matrix.config }}
+        key: ${{ matrix.config }}-${{ steps.hash.outputs.RESULT }}
 
     - name: Fetch feeds
       run: |
-        echo "src-git jacklul https://github.com/jacklul/Entware-packages.git" >> feeds.conf
+        echo "src-git jacklul https://github.com/jacklul/entware-packages.git" >> feeds.conf
         make package/symlinks
 
     - name: Build packages
       if: env.PACKAGES != ''
+      continue-on-error: ${{ matrix.allow-failure }}
       run: |
         for PACKAGE in ${{ env.PACKAGES }}; do echo "CONFIG_PACKAGE_${PACKAGE}=m" >> .config ; done
-        for PACKAGE in ${{ env.PACKAGES }}; do make package/$PACKAGE/compile -j$(nproc) ; done
+        for PACKAGE in ${{ env.PACKAGES }}; do make package/$PACKAGE/compile -j$(nproc) ${{ vars.PACKAGES_EXTRA_COMPILE_ARGUMENTS || '' }} ${{ matrix.allow-failure && '|| true' || '' }} ; done
 
     - name: Build packages ("nohf" variants)
-      if: env.PACKAGES_NOHF != ''
+      if: env.PACKAGES_NOHF != '' && (matrix.config == 'armv7-2.6' || matrix.config == 'armv7-3.2')
+      continue-on-error: ${{ matrix.allow-failure }}
       run: |
         for PACKAGE in ${{ env.PACKAGES_NOHF }}; do echo "CONFIG_PACKAGE_${PACKAGE}_nohf=m" >> .config ; done
-        for PACKAGE in ${{ env.PACKAGES_NOHF }}; do BUILD_VARIANT=nohf make package/$PACKAGE/compile -j$(nproc) ; done
-      continue-on-error: true
+        for PACKAGE in ${{ env.PACKAGES_NOHF }}; do BUILD_VARIANT=nohf make package/$PACKAGE/compile -j$(nproc) ${{ vars.PACKAGES_EXTRA_COMPILE_ARGUMENTS || '' }} ${{ matrix.allow-failure && '|| true' || '' }} ; done
 
     - uses: actions/checkout@v4
       with:
@@ -93,7 +110,7 @@ jobs:
     - name: Copy packages to artifact directory
       run: |
         mkdir -v artifact
-        for PACKAGE in ${{ env.PACKAGES }}; do cp -fv bin/targets/*/*/packages/$PACKAGE* artifact; done
+        for PACKAGE in ${{ env.PACKAGES }}; do cp -fv bin/targets/*/*/packages/$PACKAGE* artifact || true; done
 
     - name: Run ipk-html-indexer
       run: |
@@ -101,20 +118,20 @@ jobs:
         sed 's#href="/css#href="css#' -i artifact/Packages.html
         cp -rfv ipk-html-indexer/css artifact
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.config }}
         path: artifact/*
         retention-days: 1
 
   upload:
-    concurrency: ci-build-upload
+    concurrency: upload
     needs: build
-    permissions:
-      pages: write
-      id-token: write
-      contents: write
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
     steps:
       - uses: actions/checkout@v4
         continue-on-error: true
@@ -130,7 +147,7 @@ jobs:
       - name: Disable sparse-checkout
         run: git sparse-checkout disable
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
 
       - name: Create index.html
         run: |
@@ -141,6 +158,6 @@ jobs:
         with:
           branch: gh-pages
           folder: .
-          commit-message: Uploading build
+          commit-message: Uploading builds
           single-commit: true
           force: true
