@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=watchyourlan
-PKG_VERSION:=v1.0.4
-PKG_REV:=64a4b17a8fe4ceaf49fdf4420a317d7a20998e69
+PKG_VERSION:=v1.0.6
+PKG_REV:=d78937852e9e281fe0f9b1c70ee4d64cdaad0ba5
 PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/aceberg/WatchYourLAN
