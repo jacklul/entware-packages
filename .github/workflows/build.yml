@@ -9,7 +9,7 @@ env:
 
 jobs:
   build:
-    concurrency: build-${{ github.ref_name }}-${{ matrix.config }}
+    concurrency: build-${{ github.ref_name || github.run_id }}-${{ matrix.config }}
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.allow-failure }}
 
@@ -125,7 +125,7 @@ jobs:
         retention-days: 1
 
   upload:
-    concurrency: upload
+    concurrency: upload-${{ github.ref_name || github.run_id }}
     needs: build
     runs-on: ubuntu-latest
 
@@ -155,9 +155,16 @@ jobs:
           find . -maxdepth 1 -type d -not -name ".git" -not -name "." -exec sh -c 'echo "<a href=\"$(basename {})/Packages.html\">$(basename {})</a><br>" >> index.html' \;
 
       - uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.ref_name == 'master' }}
         with:
           branch: gh-pages
           folder: .
           commit-message: Uploading builds
           single-commit: true
           force: true
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ github.ref_name != 'master' }}
+        with:
+          name: upload
+          path: .
