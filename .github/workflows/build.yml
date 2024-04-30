@@ -141,8 +141,8 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: Rename gh-pages branch
-        run: git branch -m gh-pages gh-pages.old
         continue-on-error: true
+        run: git branch -m gh-pages gh-pages.old
 
       - name: Disable sparse-checkout
         run: git sparse-checkout disable
@@ -162,6 +162,9 @@ jobs:
           commit-message: Uploading builds
           single-commit: true
           force: true
+
+      - run: rm -fr .git
+        if: ${{ github.ref_name != 'master' }}
 
       - uses: actions/upload-artifact@v4
         if: ${{ github.ref_name != 'master' }}
