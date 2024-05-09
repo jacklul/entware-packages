@@ -134,24 +134,15 @@ jobs:
         continue-on-error: true
         with:
           ref: gh-pages
-          sparse-checkout: index.html
-          sparse-checkout-cone-mode: false
 
-      - name: Rename gh-pages branch
-        continue-on-error: true
-        run: git branch -m gh-pages gh-pages.old
-
-      - name: Disable sparse-checkout
-        run: git sparse-checkout disable
+      - name: Remove existing content
+        run: find . -mindepth 1 -maxdepth 1 \( ! -name ".git" -type d -exec rm -fr "{}" \; \) -o \( -type f -exec rm -f "{}" \; \)
 
       - uses: actions/download-artifact@v4
 
       - name: Move .git directory out
         shell: bash
         run: mv .git ../.git.bak
-
-      - name: Remove existing index.html files
-        run: find . -type f -name "index.html" -exec rm -f "{}" \;
 
       - name: Generate directory listings
         uses: jayanta525/github-pages-directory-listing@v4.0.0
@@ -165,12 +156,16 @@ jobs:
         shell: bash
         run: mv ../.git.bak .git
 
+      - name: Rename gh-pages branch
+        continue-on-error: true
+        run: git branch -m gh-pages gh-pages.old
+
       - uses: JamesIves/github-pages-deploy-action@v4
         if: ${{ github.ref_name == 'master' }}
         with:
           branch: gh-pages
           folder: .
-          commit-message: Uploading builds
+          commit-message: Upload
           single-commit: true
           force: true
 
