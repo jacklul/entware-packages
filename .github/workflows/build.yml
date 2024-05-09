@@ -97,23 +97,20 @@ jobs:
         for PACKAGE in ${{ env.PACKAGES_NOHF }}; do echo "CONFIG_PACKAGE_${PACKAGE}_nohf=m" >> .config ; done
         for PACKAGE in ${{ env.PACKAGES_NOHF }}; do BUILD_VARIANT=nohf make package/$PACKAGE/compile -j$(nproc) ${{ vars.PACKAGES_EXTRA_COMPILE_ARGUMENTS || '' }} ${{ matrix.allow-failure && '|| true' || '' }} ; done
 
-    - uses: actions/checkout@v4
-      with:
-        repository: Entware/ipk-html-indexer
-        path: ipk-html-indexer
-
-    - name: Setup ipk-html-indexer
-      run: |
-        sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkindex.py" /usr/local/bin/mkindex.py
-        sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkhtml.py" /usr/local/bin/mkhtml.py
-
     - name: Copy packages to artifact directory
       run: |
         mkdir -v artifact
         for PACKAGE in ${{ env.PACKAGES }}; do cp -fv bin/targets/*/*/packages/$PACKAGE* artifact || true; done
 
+    - uses: actions/checkout@v4
+      with:
+        repository: Entware/ipk-html-indexer
+        path: ipk-html-indexer
+
     - name: Run ipk-html-indexer
       run: |
+        sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkindex.py" /usr/local/bin/mkindex.py
+        sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkhtml.py" /usr/local/bin/mkhtml.py
         bash ipk-html-indexer/index_feed.sh -h -f artifact
         sed 's#href="/css#href="css#' -i artifact/Packages.html
         cp -rfv ipk-html-indexer/css artifact
@@ -149,10 +146,24 @@ jobs:
 
       - uses: actions/download-artifact@v4
 
-      - name: Create index.html
-        run: |
-          rm -f index.html
-          find . -maxdepth 1 -type d -not -name ".git" -not -name "." -exec sh -c 'echo "<a href=\"$(basename {})/Packages.html\">$(basename {})</a><br>" >> index.html' \;
+      - name: Move .git directory out
+        shell: bash
+        run: mv .git ../.git.bak
+
+      - name: Remove existing index.html files
+        run: find . -type f -name "index.html" -exec rm -f "{}" \;
+
+      - name: Generate directory listings
+        uses: jayanta525/github-pages-directory-listing@v4.0.0
+        with:
+          FOLDER: .
+
+      - name: Fix permissions of index.html files
+        run: find . -type f -name index.html -exec sudo chown $(id -u):$(id -g) {} \;
+
+      - name: Move .git directory back
+        shell: bash
+        run: mv ../.git.bak .git
 
       - uses: JamesIves/github-pages-deploy-action@v4
         if: ${{ github.ref_name == 'master' }}
