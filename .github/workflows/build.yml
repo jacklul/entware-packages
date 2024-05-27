@@ -112,8 +112,7 @@ jobs:
         sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkindex.py" /usr/local/bin/mkindex.py
         sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkhtml.py" /usr/local/bin/mkhtml.py
         bash ipk-html-indexer/index_feed.sh -h -f artifact
-        sed 's#href="/css#href="css#' -i artifact/Packages.html
-        cp -rfv ipk-html-indexer/css artifact
+        sed 's#href="/css#href="../css#' -i artifact/Packages.html
 
     - uses: actions/upload-artifact@v4
       with:
@@ -135,14 +134,26 @@ jobs:
         with:
           ref: gh-pages
 
+      - uses: actions/checkout@v4
+        with:
+          repository: Entware/ipk-html-indexer
+          path: ipk-html-indexer
+
+      - name: Copy ipk-html-indexer's css directory
+        run: |
+          rm -fr ./css
+          cp -rfv ipk-html-indexer/css .
+
       - name: Remove existing content
-        run: find . -mindepth 1 -maxdepth 1 \( ! -name ".git" -type d -exec rm -fr "{}" \; \) -o \( -type f -exec rm -f "{}" \; \)
+        run: find . -mindepth 1 -maxdepth 1 \( ! -name ".git" ! -name "css" -type d -exec rm -fr "{}" \; \) -o \( -type f -exec rm -f "{}" \; \)
 
       - uses: actions/download-artifact@v4
 
-      - name: Move .git directory out
+      - name: Move .git and css directories out
         shell: bash
-        run: mv .git ../.git.bak
+        run: |
+          mv .git ../.git.bak
+          mv css ../css.bak
 
       - name: Generate directory listings
         uses: jayanta525/github-pages-directory-listing@v4.0.0
@@ -152,9 +163,11 @@ jobs:
       - name: Fix permissions of index.html files
         run: find . -type f -name index.html -exec sudo chown $(id -u):$(id -g) {} \;
 
-      - name: Move .git directory back
+      - name: Move .git and css directories back
         shell: bash
-        run: mv ../.git.bak .git
+        run: |
+          mv ../.git.bak .git
+          mv ../css.bak css
 
       - name: Rename gh-pages branch
         continue-on-error: true
