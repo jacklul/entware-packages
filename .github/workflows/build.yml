@@ -18,20 +18,28 @@ jobs:
       matrix:
         include:
           - config: aarch64-3.10
+            dir: aarch64-k3.10
             allow-failure: false
           #- config: armv5-3.2  # EOS
+          #  dir: armv5sf-k3.2
           #  allow-failure: true
           #- config: armv7-2.6  # EOS
+          #  dir: armv7sf-k2.6
           #  allow-failure: true
           - config: armv7-3.2
+            dir: armv7sf-k3.2
             allow-failure: false
           - config: mipsel-3.4
+            dir: mipselsf-k3.4
             allow-failure: true
           - config: mips-3.4
+            dir: mipssf-k3.4
             allow-failure: true
           - config: x64-3.2
+            dir: x64-k3.2
             allow-failure: false
           #- config: x86-2.6  # EOS
+          #  dir: x86-k2.6
           #  allow-failure: true
 
     steps:
@@ -116,7 +124,7 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        name: ${{ matrix.config }}
+        name: ${{ matrix.dir }}
         path: artifact/*
         retention-days: 1
 
