@@ -189,6 +189,8 @@ jobs:
           commit-message: Upload
           single-commit: true
           force: true
+          git-config-name: 'github-actions[bot]'
+          git-config-email: '41898282+github-actions[bot]@users.noreply.github.com'
 
       - run: rm -fr .git
         if: ${{ github.ref_name != 'master' }}
