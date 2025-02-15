@@ -1,0 +1,41 @@
+Package: http-to-https-proxy
+Version: v0.3-1
+Depends: libc, libssp, librt, libpthread
+Section: net
+URL: https://github.com/yeokm1/http-to-https-proxy
+Architecture: x64-3.2
+Installed-Size: 5109760
+Filename: http-to-https-proxy_v0.3-1_x64-3.2.ipk
+Size: 2183350
+SHA256sum: 403bd00ec0b73fb8f393a93d5a036412daec29801bf75d8f346040574afc6ea7
+Description:  A proxy that upgrades HTTP connections to HTTPS for systems which cannot make HTTPS requests.
+
+Package: watchyourlan
+Version: v1.0.6-1
+Depends: libc, libssp, librt, libpthread, arp-scan
+Section: net
+URL: https://github.com/aceberg/WatchYourLAN
+Architecture: x64-3.2
+Installed-Size: 13690880
+Filename: watchyourlan_v1.0.6-1_x64-3.2.ipk
+Size: 5756262
+SHA256sum: 9c32a48011e85c705b7ee79bbde64d8adf804ffa9fd9a27db054636aaf18a238
+Description:  Lightweight network IP scanner with web GUI
+
+Package: xupnpd2-fork
+Version: 2025-02-15-1
+Depends: libc, libssp, librt, libpthread, libsqlite3, liblua5.3, libuuid, libstdcpp, libopenssl
+Section: multimedia
+URL: https://github.com/jacklul/xupnpd2
+Architecture: x64-3.2
+Installed-Size: 440320
+Filename: xupnpd2-fork_2025-02-15-1_x64-3.2.ipk
+Size: 183958
+SHA256sum: 9ea0e12ee516c3afb301dfe13a6ef7b64c34062492c8be17e235e9e8498bd9f9
+Description:  (github.com/jacklul/xupnpd2) This program is a light DLNA Media Server which provides ContentDirectory:1
+ service for sharing IPTV unicast streams over local area network (with udpxy
+ for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
+ playlists with links over local area network as content of the directory.
+ You can watch HDTV broadcasts (multicast or unicast) and listen Internet
+ Radio in IP network without transcoding and PC.
+
