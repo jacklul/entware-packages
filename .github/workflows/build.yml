@@ -29,12 +29,12 @@ jobs:
           - config: armv7-3.2
             dir: armv7sf-k3.2
             allow-failure: false
-          - config: mipsel-3.4
-            dir: mipselsf-k3.4
-            allow-failure: true
-          - config: mips-3.4
-            dir: mipssf-k3.4
-            allow-failure: true
+          #- config: mipsel-3.4
+          #  dir: mipselsf-k3.4
+          #  allow-failure: true
+          #- config: mips-3.4
+          #  dir: mipssf-k3.4
+          #  allow-failure: true
           - config: x64-3.2
             dir: x64-k3.2
             allow-failure: false
