@@ -1,0 +1,82 @@
+diff --git a/database.c b/database.c
+index 2f495827..56ff8075 100644
+--- a/database.c
++++ b/database.c
+@@ -88,7 +88,7 @@ load_database(cron_db *old_db) {
+ 	new_db.head = new_db.tail = NULL;
+ 
+ 	if (syscron_stat.st_mtime)
+-		process_crontab("root", NULL, SYSCRONTAB, &syscron_stat,
++		process_crontab(get_root_username(), NULL, SYSCRONTAB, &syscron_stat,
+ 				&new_db, old_db);
+ 
+ 	if (!(dir = opendir(CROND_DIR))) {
+@@ -126,7 +126,7 @@ load_database(cron_db *old_db) {
+ 		if (!glue_strings(tabname, sizeof tabname, CROND_DIR, fname, '/'))
+ 			continue;	/* XXX log? */
+ 
+-		process_crontab("root", NULL, tabname,
++		process_crontab(get_root_username(), NULL, tabname,
+ 				&crond_stat, &new_db, old_db);
+ 	}
+ 	closedir(dir);
+diff --git a/entry.c b/entry.c
+index 2147f1ec..f5ec5496 100644
+--- a/entry.c
++++ b/entry.c
+@@ -253,6 +253,14 @@ load_entry(FILE *file, void (*error_func)(), struct passwd *pw, char **envp) {
+ 			goto eof;
+ 		}
+ 
++		// Update the username to UID 0 username if it is not called 'root', otherwise
++		// getpwnam() in the next block will return NULL and entry will not be processed
++		const char* root_username = get_root_username();
++		if (strcmp(username, "root") == 0 && strcmp(root_username, "root") != 0) {
++			strcpy(username, root_username);
++			Debug(DPARS, ("load_entry()...updated username to %s\n", username));
++		}
++
+ 		pw = getpwnam(username);
+ 		if (pw == NULL) {
+ 			ecode = e_username;
+diff --git a/funcs.h b/funcs.h
+index 06392810..6775b1d8 100644
+--- a/funcs.h
++++ b/funcs.h
+@@ -74,6 +74,8 @@ FILE		*cron_popen(char *, char *, struct passwd *);
+ 
+ struct passwd	*pw_dup(const struct passwd *);
+ 
++const char *get_root_username();
++
+ #ifndef HAVE_TM_GMTOFF
+ long		get_gmtoff(time_t *, struct tm *);
+ #endif
+diff --git a/misc.c b/misc.c
+index f6f679d9..0285b107 100644
+--- a/misc.c
++++ b/misc.c
+@@ -450,7 +450,7 @@ allowed(const char *username, const char *allow_file, const char *deny_file) {
+ 	FILE	*fp;
+ 	int	isallowed;
+ 
+-	if (strcmp(username, ROOT_USER) == 0)
++	if (strcmp(username, get_root_username()) == 0)
+ 		return (TRUE);
+ 	isallowed = FALSE;
+ 	if ((fp = fopen(allow_file, "r")) != NULL) {
+@@ -463,6 +463,14 @@ allowed(const char *username, const char *allow_file, const char *deny_file) {
+ 	return (isallowed);
+ }
+ 
++const char* get_root_username() {
++	struct passwd *pw = getpwuid(0);
++	if (pw == NULL) {
++		return ROOT_USER;
++	}
++	return pw->pw_name;
++}
++
+ void
+ log_it(const char *username, PID_T xpid, const char *event, const char *detail) {
+ #if defined(LOG_FILE) || DEBUGGING
