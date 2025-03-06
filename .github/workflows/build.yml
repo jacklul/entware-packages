@@ -86,9 +86,9 @@ jobs:
           staging_dir
         key: ${{ matrix.config }}-${{ steps.hash.outputs.RESULT }}
 
-    - name: Fetch feeds
+    - name: Fetch feeds (${{ github.ref_name }})
       run: |
-        echo "src-git jacklul https://github.com/jacklul/entware-packages.git" >> feeds.conf
+        echo "src-git jacklul https://github.com/jacklul/entware-packages.git;${{ github.ref_name }}" >> feeds.conf
         make package/symlinks
 
     - name: Build packages
