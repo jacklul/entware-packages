@@ -1,14 +1,6 @@
-#
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
-# Not updated since 2004
-
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=cron-fork
+PKG_NAME:=cron-fixed
 PKG_VERSION:=4.1
 PKG_RELEASE:=1
 
@@ -20,26 +12,26 @@ include $(INCLUDE_DIR)/package.mk
 
 PKG_UNPACK=cd $(PKG_BUILD_DIR) && cat $(DL_DIR)/$(PKG_SOURCE) | sh -x
 
-define Package/cron-fork
+define Package/cron-fixed
 	SECTION:=utils
 	CATEGORY:=Utilities
 	TITLE:=Vixie cron
 	URL:=ftp://ftp.isc.org/isc/cron
-	MAINTAINER:=Entware team, https://entware.net
+	MAINTAINER:=Jack'lul, https://jacklul.github.io
 	ALTERNATIVES:= \
 		200:/opt/bin/crontab:/opt/bin/crontab-vixie \
 		200:/opt/bin/run-parts:/opt/bin/run-parts-vixie
 endef
 
-define Package/cron-fork/description
+define Package/cron-fixed/description
  Standart Vixie cron, with cron.d addition. This fork handles situations where UID 0 user is not called root.
 endef
 
-define Package/cron-fork/conffiles
+define Package/cron-fixed/conffiles
 /opt/etc/crontab
 endef
 
-define Package/cron-fork/install
+define Package/cron-fixed/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/crontab $(1)/opt/bin/crontab-vixie
 	$(INSTALL_BIN) ./files/run-parts $(1)/opt/bin/run-parts-vixie
@@ -54,4 +46,4 @@ define Package/cron-fork/install
 	$(INSTALL_BIN) ./files/S10cron $(1)/opt/etc/init.d/
 endef
 
-$(eval $(call BuildPackage,cron-fork))
+$(eval $(call BuildPackage,cron-fixed))
