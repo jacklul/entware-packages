@@ -53,7 +53,7 @@ define Package/http-to-https-proxy/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/http-to-https-proxy $(1)/opt/bin/http-to-https-proxy
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
-	$(INSTALL_BIN) ./files/S25http-to-https-proxy $(1)/opt/etc/init.d
+	$(INSTALL_BIN) ./files/S85http-to-https-proxy $(1)/opt/etc/init.d
 endef
 
 Package/http-to-https-proxy_nohf/install=$(Package/http-to-https-proxy/install)
