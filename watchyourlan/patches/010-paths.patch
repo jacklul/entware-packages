@@ -1,39 +1,13 @@
 diff --git a/cmd/WatchYourLAN/main.go b/cmd/WatchYourLAN/main.go
-index aeaf5c8..f3f0ed4 100644
+index 40acd6d..78120cb 100644
 --- a/cmd/WatchYourLAN/main.go
 +++ b/cmd/WatchYourLAN/main.go
-@@ -7,7 +7,7 @@ import (
+@@ -10,7 +10,7 @@ import (
  	"github.com/aceberg/WatchYourLAN/internal/web"
  )
  
--const configPath = "/data/config.yaml"
-+const configPath = "/opt/etc/watchyourlan/config.yaml"
+-const dirPath = "/data/WatchYourLAN"
++const dirPath = "/opt/etc/watchyourlan"
  const nodePath = ""
  
  func main() {
-diff --git a/internal/conf/config.go b/internal/conf/config.go
-index 8bafd2d..b779105 100644
---- a/internal/conf/config.go
-+++ b/internal/conf/config.go
-@@ -12,7 +12,7 @@ import (
- func Get(path string) (config models.Conf, authConf auth.Conf) {
- 
- 	viper.SetDefault("IFACE", "enp1s0")
--	viper.SetDefault("DBPATH", "/data/db.sqlite")
-+	viper.SetDefault("DBPATH", "/opt/var/watchyourlan.sqlite")
- 	viper.SetDefault("GUIIP", "0.0.0.0")
- 	viper.SetDefault("GUIPORT", "8840")
- 	viper.SetDefault("TIMEOUT", "60")
-diff --git a/internal/migrate/get-old.go b/internal/migrate/get-old.go
-index 8f70957..3bd4eaf 100644
---- a/internal/migrate/get-old.go
-+++ b/internal/migrate/get-old.go
-@@ -9,7 +9,7 @@ import (
- func getOldConfig(path string) (config models.Conf) {
- 
- 	viper.SetDefault("IFACE", "enp1s0")
--	viper.SetDefault("DBPATH", "/data/db.sqlite")
-+	viper.SetDefault("DBPATH", "/opt/var/watchyourlan.sqlite")
- 	viper.SetDefault("GUIIP", "localhost")
- 	viper.SetDefault("GUIPORT", "8840")
- 	viper.SetDefault("TIMEOUT", "60")

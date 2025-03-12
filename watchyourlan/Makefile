@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=watchyourlan
-PKG_VERSION:=v1.0.6
-PKG_REV:=d78937852e9e281fe0f9b1c70ee4d64cdaad0ba5
+PKG_VERSION:=v2.0.4
+PKG_REV:=638e57b10777774489b855e1546b833dc9c3a2ed
 PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/aceberg/WatchYourLAN
@@ -55,7 +55,7 @@ define Package/watchyourlan/install
 	$(INSTALL_DIR) $(1)/opt/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/WatchYourLAN $(1)/opt/sbin/watchyourlan
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
-	$(INSTALL_BIN) ./files/S65watchyourlan $(1)/opt/etc/init.d
+	$(INSTALL_BIN) ./files/S85watchyourlan $(1)/opt/etc/init.d
 	$(INSTALL_DIR) $(1)/opt/etc/watchyourlan
 endef
 
