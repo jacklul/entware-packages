@@ -2,6 +2,11 @@ name: Build and Upload
 
 on:
   workflow_dispatch:
+    inputs:
+      packages:
+        description: 'Packages to build (override)'
+        required: false
+        default: ''
 
 env:
   PACKAGES: xupnpd2-fork http-to-https-proxy watchyourlan cron-fixed msmtpd
@@ -95,8 +100,8 @@ jobs:
       if: env.PACKAGES != ''
       continue-on-error: ${{ matrix.allow-failure }}
       run: |
-        for PACKAGE in ${{ env.PACKAGES }}; do echo "CONFIG_PACKAGE_${PACKAGE}=m" >> .config ; done
-        for PACKAGE in ${{ env.PACKAGES }}; do make package/$PACKAGE/compile -j$(nproc) ${{ vars.PACKAGES_EXTRA_COMPILE_ARGUMENTS || '' }} ${{ matrix.allow-failure && '|| true' || '' }} ; done
+        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do echo "CONFIG_PACKAGE_${PACKAGE}=m" >> .config ; done
+        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do make package/$PACKAGE/compile -j$(nproc) ${{ vars.PACKAGES_EXTRA_COMPILE_ARGUMENTS || '' }} ${{ matrix.allow-failure && '|| true' || '' }} ; done
 
     - name: Build packages ("nohf" variants)
       if: env.PACKAGES_NOHF != '' && (matrix.config == 'armv7-2.6' || matrix.config == 'armv7-3.2')
@@ -108,7 +113,7 @@ jobs:
     - name: Copy packages to artifact directory
       run: |
         mkdir -v artifact
-        for PACKAGE in ${{ env.PACKAGES }}; do cp -fv bin/targets/*/*/packages/$PACKAGE* artifact || true; done
+        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do cp -fv bin/targets/*/*/packages/$PACKAGE* artifact || true; done
 
     - uses: actions/checkout@v4
       with:
@@ -182,7 +187,7 @@ jobs:
         run: git branch -m gh-pages gh-pages.old
 
       - uses: JamesIves/github-pages-deploy-action@v4
-        if: ${{ github.ref_name == 'master' }}
+        if: ${{ github.ref_name == 'master' && github.event.inputs.packages == '' }}
         with:
           branch: gh-pages
           folder: .
@@ -193,10 +198,10 @@ jobs:
           git-config-email: '41898282+github-actions[bot]@users.noreply.github.com'
 
       - run: rm -fr .git
-        if: ${{ github.ref_name != 'master' }}
+        if: ${{ github.ref_name != 'master' || github.event.inputs.packages != '' }}
 
       - uses: actions/upload-artifact@v4
-        if: ${{ github.ref_name != 'master' }}
+        if: ${{ github.ref_name != 'master' || github.event.inputs.packages != '' }}
         with:
           name: upload
           path: .
