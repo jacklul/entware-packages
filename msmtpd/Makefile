@@ -27,7 +27,7 @@ CONFIGURE_ARGS += \
 define Package/msmtpd
 	SECTION:=mail
 	CATEGORY:=Mail
-	DEPENDS:=$(INTL_DEPENDS)
+	DEPENDS:=$(INTL_DEPENDS) +daemonize
 	TITLE:=Minimal SMTP server
 	URL:=https://marlam.de/msmtp
 	MAINTAINER:=Jack'lul, https://jacklul.github.io
