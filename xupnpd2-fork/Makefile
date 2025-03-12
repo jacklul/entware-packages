@@ -30,7 +30,6 @@ define Package/xupnpd2-fork/description
  Radio in IP network without transcoding and PC.
 endef
 
-
 define Package/xupnpd2-fork/conffiles
 /opt/etc/xupnpd2/xupnpd.cfg
 /opt/etc/xupnpd2/xupnpd.lua
