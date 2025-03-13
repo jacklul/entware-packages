@@ -1,0 +1,122 @@
+Package: cron-fork
+Version: 4.1-1
+Depends: libc, libssp, librt, libpthread
+Provides: cron
+Alternatives: 200:/opt/bin/crontab:/opt/bin/crontab-vixie, 200:/opt/bin/run-parts:/opt/bin/run-parts-vixie
+Source: feeds/jacklul/cron-fork
+SourceName: cron-fork
+Section: utils
+SourceDateEpoch: 1741882371
+URL: ftp://ftp.isc.org/isc/cron
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: armv7-3.2
+Installed-Size: 81920
+Filename: cron-fork_4.1-1_armv7-3.2.ipk
+Size: 32216
+SHA256sum: 83f8b42e10a7cf1d422d12bd9c7b5c64e24cee7eb898ab88e35d074958e18257
+Description:  Standart Vixie cron, with cron.d addition. This fork handles situations where UID 0 user is not called root.
+
+Package: http-to-https-proxy_nohf
+Version: v0.3-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/jacklul/http-to-https-proxy
+SourceName: http-to-https-proxy
+Section: net
+SourceDateEpoch: 1741882371
+URL: https://github.com/yeokm1/http-to-https-proxy
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: armv7-3.2
+Installed-Size: 4986880
+Filename: http-to-https-proxy_nohf_v0.3-1_armv7-3.2.ipk
+Size: 2032683
+SHA256sum: de14b9ee3c64e9a6a3bf9ff2ed76f3db66128e3c42b688c342d5022a3d5e522a
+Description:  A proxy that upgrades HTTP connections to HTTPS for systems which cannot make HTTPS requests.
+
+Package: http-to-https-proxy
+Version: v0.3-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/jacklul/http-to-https-proxy
+SourceName: http-to-https-proxy
+Section: net
+SourceDateEpoch: 1741882371
+URL: https://github.com/yeokm1/http-to-https-proxy
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: armv7-3.2
+Installed-Size: 4986880
+Filename: http-to-https-proxy_v0.3-1_armv7-3.2.ipk
+Size: 2024366
+SHA256sum: a1026bc53f3eaa5ea63769054999b53639a4be47bd139f15d41726e7c5e3de3e
+Description:  A proxy that upgrades HTTP connections to HTTPS for systems which cannot make HTTPS requests.
+
+Package: msmtpd
+Version: 1.8.28-1
+Depends: libc, libssp, librt, libpthread, libintl-full
+Source: feeds/jacklul/msmtpd
+SourceName: msmtpd
+Section: mail
+SourceDateEpoch: 1741882371
+URL: https://marlam.de/msmtp
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: armv7-3.2
+Installed-Size: 40960
+Filename: msmtpd_1.8.28-1_armv7-3.2.ipk
+Size: 14793
+SHA256sum: fcda31f182bdf2fdae3e6c0328b63e2694aca80039351b169711a95e99b316ec
+Description:  Msmtpd is a minimal SMTP server that pipes mails to msmtp or some other
+ program for delivery. It can be used with system services that expect
+ an SMTP server on the local host.
+
+Package: watchyourlan_nohf
+Version: v2.0.4-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/jacklul/watchyourlan
+SourceName: watchyourlan
+Section: net
+SourceDateEpoch: 1741882371
+URL: https://github.com/aceberg/WatchYourLAN
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: armv7-3.2
+Installed-Size: 18298880
+Filename: watchyourlan_nohf_v2.0.4-1_armv7-3.2.ipk
+Size: 7012765
+SHA256sum: 2c949093de0924144349219d7b98d5f682c35ec77882b5ebfe7d2f53e0cdd3d8
+Description:  Lightweight network IP scanner with web GUI
+
+Package: watchyourlan
+Version: v2.0.4-1
+Depends: libc, libssp, librt, libpthread, arp-scan
+Source: feeds/jacklul/watchyourlan
+SourceName: watchyourlan
+Section: net
+SourceDateEpoch: 1741882371
+URL: https://github.com/aceberg/WatchYourLAN
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: armv7-3.2
+Installed-Size: 18227200
+Filename: watchyourlan_v2.0.4-1_armv7-3.2.ipk
+Size: 6992747
+SHA256sum: c3f4407de86d0dd17741234b1b472b1c73888a4564cd4985180358c4125a4f82
+Description:  Lightweight network IP scanner with web GUI
+
+Package: xupnpd2-fork
+Version: 2025-02-15-1
+Depends: libc, libssp, librt, libpthread, libsqlite3, liblua5.3, libuuid, libstdcpp, libopenssl
+Provides: xupnpd2
+Source: feeds/jacklul/xupnpd2-fork
+SourceName: xupnpd2-fork
+Section: multimedia
+SourceDateEpoch: 1741882371
+URL: https://github.com/jacklul/xupnpd2
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: armv7-3.2
+Installed-Size: 399360
+Filename: xupnpd2-fork_2025-02-15-1_armv7-3.2.ipk
+Size: 170075
+SHA256sum: 3217d6ecb6e077c8909b881b02707f36c5943e76656001263ba524a942c2333e
+Description:  (github.com/jacklul/xupnpd2) This program is a light DLNA Media Server which provides ContentDirectory:1
+ service for sharing IPTV unicast streams over local area network (with udpxy
+ for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
+ playlists with links over local area network as content of the directory.
+ You can watch HDTV broadcasts (multicast or unicast) and listen Internet
+ Radio in IP network without transcoding and PC.
+

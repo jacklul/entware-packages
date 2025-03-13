@@ -1,0 +1,90 @@
+Package: cron-fork
+Version: 4.1-1
+Depends: libc, libssp, librt, libpthread
+Provides: cron
+Alternatives: 200:/opt/bin/crontab:/opt/bin/crontab-vixie, 200:/opt/bin/run-parts:/opt/bin/run-parts-vixie
+Source: feeds/jacklul/cron-fork
+SourceName: cron-fork
+Section: utils
+SourceDateEpoch: 1741882371
+URL: ftp://ftp.isc.org/isc/cron
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: x64-3.2
+Installed-Size: 102400
+Filename: cron-fork_4.1-1_x64-3.2.ipk
+Size: 38414
+SHA256sum: cfa0ab96ccd59e3bc8408874c90c9db88be2a741292709d07f151052ec4c20f4
+Description:  Standart Vixie cron, with cron.d addition. This fork handles situations where UID 0 user is not called root.
+
+Package: http-to-https-proxy
+Version: v0.3-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/jacklul/http-to-https-proxy
+SourceName: http-to-https-proxy
+Section: net
+SourceDateEpoch: 1741882371
+URL: https://github.com/yeokm1/http-to-https-proxy
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: x64-3.2
+Installed-Size: 5109760
+Filename: http-to-https-proxy_v0.3-1_x64-3.2.ipk
+Size: 2183366
+SHA256sum: 8670d079a51f4c6e3bf876ae79bc1a012e19505276742b400ac43cee9194a541
+Description:  A proxy that upgrades HTTP connections to HTTPS for systems which cannot make HTTPS requests.
+
+Package: msmtpd
+Version: 1.8.28-1
+Depends: libc, libssp, librt, libpthread, libintl-full
+Source: feeds/jacklul/msmtpd
+SourceName: msmtpd
+Section: mail
+SourceDateEpoch: 1741882371
+URL: https://marlam.de/msmtp
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: x64-3.2
+Installed-Size: 51200
+Filename: msmtpd_1.8.28-1_x64-3.2.ipk
+Size: 17465
+SHA256sum: fce93e62a42bc3ec5ce9e7e28acf7cd4fbb133cbd1d0ccb4df55377cb30a81fb
+Description:  Msmtpd is a minimal SMTP server that pipes mails to msmtp or some other
+ program for delivery. It can be used with system services that expect
+ an SMTP server on the local host.
+
+Package: watchyourlan
+Version: v2.0.4-1
+Depends: libc, libssp, librt, libpthread, arp-scan
+Source: feeds/jacklul/watchyourlan
+SourceName: watchyourlan
+Section: net
+SourceDateEpoch: 1741882371
+URL: https://github.com/aceberg/WatchYourLAN
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: x64-3.2
+Installed-Size: 19261440
+Filename: watchyourlan_v2.0.4-1_x64-3.2.ipk
+Size: 7558976
+SHA256sum: 28cfada0bd07494247ff58ccf260bb94d634dacfce075f36c2661dcd3f3f5093
+Description:  Lightweight network IP scanner with web GUI
+
+Package: xupnpd2-fork
+Version: 2025-02-15-1
+Depends: libc, libssp, librt, libpthread, libsqlite3, liblua5.3, libuuid, libstdcpp, libopenssl
+Provides: xupnpd2
+Source: feeds/jacklul/xupnpd2-fork
+SourceName: xupnpd2-fork
+Section: multimedia
+SourceDateEpoch: 1741882371
+URL: https://github.com/jacklul/xupnpd2
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: x64-3.2
+Installed-Size: 440320
+Filename: xupnpd2-fork_2025-02-15-1_x64-3.2.ipk
+Size: 183948
+SHA256sum: 3c289c4a31a7c1de72439e1690452496f57398ec9535b05a72b6aa933cc105b4
+Description:  (github.com/jacklul/xupnpd2) This program is a light DLNA Media Server which provides ContentDirectory:1
+ service for sharing IPTV unicast streams over local area network (with udpxy
+ for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
+ playlists with links over local area network as content of the directory.
+ You can watch HDTV broadcasts (multicast or unicast) and listen Internet
+ Radio in IP network without transcoding and PC.
+

@@ -1,0 +1,70 @@
+Package: cron-fork
+Version: 4.1-1
+Depends: libc, libssp, librt, libpthread
+Provides: cron
+Alternatives: 200:/opt/bin/crontab:/opt/bin/crontab-vixie, 200:/opt/bin/run-parts:/opt/bin/run-parts-vixie
+Section: utils
+URL: ftp://ftp.isc.org/isc/cron
+Architecture: aarch64-3.10
+Installed-Size: 102400
+Filename: cron-fork_4.1-1_aarch64-3.10.ipk
+Size: 37830
+SHA256sum: c01fabc427e8cadf1b85ebfe9af7d3e25d2c977787d52a5aa2a8103c83582db2
+Description:  Standart Vixie cron, with cron.d addition. This fork handles situations where UID 0 user is not called root.
+
+Package: http-to-https-proxy
+Version: v0.3-1
+Depends: libc, libssp, librt, libpthread
+Section: net
+URL: https://github.com/yeokm1/http-to-https-proxy
+Architecture: aarch64-3.10
+Installed-Size: 4925440
+Filename: http-to-https-proxy_v0.3-1_aarch64-3.10.ipk
+Size: 2007916
+SHA256sum: 7934558ed8a1e3b676708c6e1ff7158418c57259731eb2f82ee1f925bfedebd9
+Description:  A proxy that upgrades HTTP connections to HTTPS for systems which cannot make HTTPS requests.
+
+Package: msmtpd
+Version: 1.8.28-1
+Depends: libc, libssp, librt, libpthread, libintl-full
+Section: mail
+URL: https://marlam.de/msmtp
+Architecture: aarch64-3.10
+Installed-Size: 51200
+Filename: msmtpd_1.8.28-1_aarch64-3.10.ipk
+Size: 16976
+SHA256sum: 7af3621a71e2cf588210cc46a90c75467e2f7f760099cbd4ecf5b1cac4380bbe
+Description:  Msmtpd is a minimal SMTP server that pipes mails to msmtp or some other
+ program for delivery. It can be used with system services that expect
+ an SMTP server on the local host.
+
+Package: watchyourlan
+Version: v2.0.4-1
+Depends: libc, libssp, librt, libpthread, arp-scan
+Section: net
+URL: https://github.com/aceberg/WatchYourLAN
+Architecture: aarch64-3.10
+Installed-Size: 18421760
+Filename: watchyourlan_v2.0.4-1_aarch64-3.10.ipk
+Size: 6909795
+SHA256sum: a172f383d253ee5ef915c466ee2ef55f762d1b27fe93ce0904a5988794b1f766
+Description:  Lightweight network IP scanner with web GUI
+
+Package: xupnpd2-fork
+Version: 2025-02-15-1
+Depends: libc, libssp, librt, libpthread, libsqlite3, liblua5.3, libuuid, libstdcpp, libopenssl
+Provides: xupnpd2
+Section: multimedia
+URL: https://github.com/jacklul/xupnpd2
+Architecture: aarch64-3.10
+Installed-Size: 430080
+Filename: xupnpd2-fork_2025-02-15-1_aarch64-3.10.ipk
+Size: 184728
+SHA256sum: 50fec6c9832d14cb001ebb938bebf566ccd1d60bf458de2c4d1b60c9349f247d
+Description:  (github.com/jacklul/xupnpd2) This program is a light DLNA Media Server which provides ContentDirectory:1
+ service for sharing IPTV unicast streams over local area network (with udpxy
+ for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
+ playlists with links over local area network as content of the directory.
+ You can watch HDTV broadcasts (multicast or unicast) and listen Internet
+ Radio in IP network without transcoding and PC.
+
