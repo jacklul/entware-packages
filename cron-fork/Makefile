@@ -1,11 +1,3 @@
-#
-# Copyright (C) 2011-2021 Entware
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
-# Not updated since 2004
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cron-fork
@@ -25,7 +17,8 @@ define Package/cron-fork
 	CATEGORY:=Utilities
 	TITLE:=Vixie cron
 	URL:=ftp://ftp.isc.org/isc/cron
-	MAINTAINER:=Entware team, https://entware.net
+	MAINTAINER:=Jack'lul, https://jacklul.github.io
+	PROVIDES:=cron
 	ALTERNATIVES:= \
 		200:/opt/bin/crontab:/opt/bin/crontab-vixie \
 		200:/opt/bin/run-parts:/opt/bin/run-parts-vixie

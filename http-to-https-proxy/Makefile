@@ -18,7 +18,7 @@ define Package/http-to-https-proxy/Default
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=Web Servers/Proxies
-	DEPENDS:=+daemonize
+	EXTRA_DEPEND:=daemonize
 	TITLE:=http-to-https-proxy
 	URL:=https://github.com/yeokm1/http-to-https-proxy
 	MAINTAINER:=Jack'lul, https://jacklul.github.io
@@ -32,7 +32,7 @@ endef
 define Package/http-to-https-proxy_nohf
 	$(call Package/http-to-https-proxy/Default)
 	VARIANT:=nohf
-	DEPENDS+= @(TARGET_armv7_2_6||TARGET_armv7_3_2)
+	DEPENDS:=@(TARGET_armv7_2_6||TARGET_armv7_3_2)
 endef
 
 define Package/http-to-https-proxy/description

@@ -19,6 +19,7 @@ define Package/xupnpd2-fork
 	TITLE:=eXtensible UPnP agent
 	URL:=https://github.com/jacklul/xupnpd2
 	MAINTAINER:=Jack'lul, https://jacklul.github.io
+	PROVIDES:=xupnpd2
 endef
 
 define Package/xupnpd2-fork/description
