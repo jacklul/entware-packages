@@ -1,0 +1,164 @@
+name: Build and Upload (alternative)
+
+on:
+  workflow_dispatch:
+    inputs:
+      packages:
+        description: 'Packages to build (override)'
+        required: false
+        default: ''
+
+env:
+  PACKAGES: xupnpd2-jacklul http-to-https-proxy watchyourlan msmtpd transmission-downgrade
+
+jobs:
+  build:
+    concurrency: build-${{ github.ref_name || github.run_id }}-${{ matrix.arch }}
+    runs-on: ubuntu-22.04
+    continue-on-error: ${{ matrix.allow-failure }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: aarch64-3.10
+            dir: aarch64-k3.10
+            allow-failure: false
+          #- arch: armv5-3.2  # EOS
+          #  dir: armv5sf-k3.2
+          #  allow-failure: true
+          #- arch: armv7-2.6  # EOS
+          #  dir: armv7sf-k2.6
+          #  allow-failure: true
+          - arch: armv7-3.2
+            dir: armv7sf-k3.2
+            allow-failure: false
+          #- arch: mipsel-3.4
+          #  dir: mipselsf-k3.4
+          #  allow-failure: true
+          #- arch: mips-3.4
+          #  dir: mipssf-k3.4
+          #  allow-failure: true
+          - arch: x64-3.2
+            dir: x64-k3.2
+            allow-failure: false
+          #- arch: x86-2.6  # EOS
+          #  dir: x86-k2.6
+          #  allow-failure: true
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Create directories
+      run: mkdir -v artifacts logs
+
+    - uses: ownik/gh-action-entware-sdk@v1
+      env:
+        ARCH: ${{ matrix.arch }}
+        PACKAGES: ${{ github.event.inputs.packages || env.PACKAGES }}
+        ARTIFACTS_DIR: ${{ github.workspace }}/artifacts
+        V: -j4 ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
+        BUILD_LOG: true
+        IGNORE_ERRORS: ${{ matrix.allow-failure }}
+
+    - uses: actions/checkout@v4
+      with:
+        repository: Entware/ipk-html-indexer
+        path: ipk-html-indexer
+
+    - name: Run ipk-html-indexer
+      run: |
+        sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkindex.py" /usr/local/bin/mkindex.py
+        sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkhtml.py" /usr/local/bin/mkhtml.py
+        bash ipk-html-indexer/index_feed.sh -h -f ${{ github.workspace }}/artifacts
+        sed 's#href="/css#href="../css#' -i ${{ github.workspace }}/artifacts/Packages.html
+
+    - name: List directory contents
+      shell: bash
+      run: ls -al . *
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.dir }}
+        path: artifacts/*
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: logs-${{ matrix.arch }}
+        path: logs/*
+
+  upload:
+    concurrency: upload-${{ github.ref_name || github.run_id }}
+    needs: build
+    runs-on: ubuntu-22.04
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: gh-pages
+
+      - uses: actions/checkout@v4
+        with:
+          repository: Entware/ipk-html-indexer
+          path: ipk-html-indexer
+
+      - name: Copy ipk-html-indexer's css directory
+        run: |
+          rm -fr ./css
+          cp -rfv ipk-html-indexer/css .
+
+      - name: Remove existing content
+        run: find . -mindepth 1 -maxdepth 1 \( ! -name ".git" ! -name "css" -type d -exec rm -fr "{}" \; \) -o \( -type f -exec rm -f "{}" \; \)
+
+      - uses: actions/download-artifact@v4
+
+      - name: Move .git and css directories out
+        shell: bash
+        run: |
+          mv .git ../.git.bak
+          mv css ../css.bak
+
+      - uses: jayanta525/github-pages-directory-listing@v4.0.0
+        with:
+          FOLDER: .
+
+      - name: Fix permissions of index.html files
+        run: find . -type f -name index.html -exec sudo chown $(id -u):$(id -g) {} \;
+
+      - name: Move .git and css directories back
+        shell: bash
+        run: |
+          mv ../.git.bak .git
+          mv ../css.bak css
+
+      - name: List directory contents
+        shell: bash
+        run: ls -al . *
+
+      - name: Rename gh-pages branch
+        continue-on-error: true
+        run: git branch -m gh-pages gh-pages.old
+
+      - uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.ref_name == 'master' && github.event.inputs.packages == '' }}
+        with:
+          branch: gh-pages
+          folder: .
+          commit-message: Upload
+          single-commit: true
+          force: true
+          git-config-name: 'github-actions[bot]'
+          git-config-email: '41898282+github-actions[bot]@users.noreply.github.com'
+
+      - run: rm -fr .git
+        if: ${{ github.ref_name != 'master' || github.event.inputs.packages != '' }}
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ github.ref_name != 'master' || github.event.inputs.packages != '' }}
+        with:
+          name: upload
+          path: .
