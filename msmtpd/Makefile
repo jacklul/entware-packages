@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=msmtpd
-PKG_VERSION:=1.8.28
+PKG_VERSION:=1.8.32
 PKG_RELEASE:=1
 
 PKG_SOURCE:=msmtp-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://marlam.de/msmtp/releases
-PKG_HASH:=3a57f155f54e4860f7dd42138d9bea1af615b99dfab5ab4cd728fc8c09a647a4
+PKG_HASH:=20cd58b58dd007acf7b937fa1a1e21f3afb3e9ef5bbcfb8b4f5650deadc64db4
 
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
