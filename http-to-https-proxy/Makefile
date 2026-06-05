@@ -18,7 +18,7 @@ define Package/http-to-https-proxy/Default
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=Web Servers/Proxies
-	EXTRA_DEPEND:=daemonize
+	DEPENDS:=daemonize
 	TITLE:=http-to-https-proxy
 	URL:=https://github.com/yeokm1/http-to-https-proxy
 	MAINTAINER:=Jack'lul, https://jacklul.github.io
