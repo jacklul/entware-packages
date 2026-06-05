@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=xupnpd2-fork
+PKG_NAME:=xupnpd2-jacklul
 PKG_VERSION:=2025-02-15
 PKG_REV:=9e8d1b7e87ce536f823de226c06a9e1b4cd1806c
 PKG_RELEASE:=1
@@ -12,7 +12,7 @@ PKG_MIRROR_HASH:=skip
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/xupnpd2-fork
+define Package/xupnpd2-jacklul
 	SECTION:=multimedia
 	CATEGORY:=Multimedia
 	DEPENDS:=+libsqlite3 +liblua5.3 +libuuid +libstdcpp +libopenssl
@@ -22,7 +22,7 @@ define Package/xupnpd2-fork
 	PROVIDES:=xupnpd2
 endef
 
-define Package/xupnpd2-fork/description
+define Package/xupnpd2-jacklul/description
  (github.com/jacklul/xupnpd2) This program is a light DLNA Media Server which provides ContentDirectory:1
  service for sharing IPTV unicast streams over local area network (with udpxy
  for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
@@ -31,7 +31,7 @@ define Package/xupnpd2-fork/description
  Radio in IP network without transcoding and PC.
 endef
 
-define Package/xupnpd2-fork/conffiles
+define Package/xupnpd2-jacklul/conffiles
 /opt/etc/xupnpd2/xupnpd.cfg
 /opt/etc/xupnpd2/xupnpd.lua
 endef
@@ -41,7 +41,7 @@ define Build/Configure
 	rm -fr $(PKG_BUILD_DIR)/uuid $(PKG_BUILD_DIR)/sqlite3 $(PKG_BUILD_DIR)/lua5.3 $(PKG_BUILD_DIR)/openssl
 endef
 
-define Package/xupnpd2-fork/install
+define Package/xupnpd2-jacklul/install
 	$(INSTALL_DIR) $(1)/opt/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/xupnpd $(1)/opt/sbin/xupnpd2
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
@@ -54,4 +54,4 @@ define Package/xupnpd2-fork/install
 	$(CP) $(PKG_BUILD_DIR)/www $(1)/opt/share/xupnpd2
 endef
 
-$(eval $(call BuildPackage,xupnpd2-fork))
+$(eval $(call BuildPackage,xupnpd2-jacklul))
