@@ -1,0 +1,52 @@
+name: Build (test)
+
+on:
+  workflow_dispatch:
+    inputs:
+      packages:
+        description: 'Packages to build'
+        required: false
+        default: ''
+      ignore-errors:
+        description: 'Ignore build errors'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: aarch64-3.10
+          - arch: armv7-3.2
+          #- arch: mipsel-3.4
+          #- arch: mips-3.4
+          - arch: x64-3.2
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - run: |
+        PACKAGES="$(grep -E '^  PACKAGES:' .github/workflows/build.yml | sed 's/.*PACKAGES: //' | sed 's/\b[^ ]*_nohf[^ ]*\b//g' | tr -s ' ')"
+        echo "PACKAGES=$PACKAGES" >> "$GITHUB_ENV"
+      if: github.event.inputs.packages == ''
+
+    - run: mkdir -v artifacts
+
+    - uses: ownik/gh-action-entware-sdk@v1
+      env:
+        ARCH: ${{ matrix.arch }}
+        PACKAGES: ${{ github.event.inputs.packages || env.PACKAGES }}
+        V: sc
+        BUILD_LOG: true
+        ARTIFACTS_DIR: ${{ github.workspace }}/artifacts
+        IGNORE_ERRORS: ${{ github.event.inputs.ignore-errors }}
+
+    - uses: actions/upload-artifact@v7
+      with:
+        name: ${{ matrix.arch }}
+        path: artifacts/*

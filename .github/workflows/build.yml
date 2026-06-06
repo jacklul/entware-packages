@@ -1,4 +1,4 @@
-name: Build and Upload
+name: Build
 
 on:
   workflow_dispatch:
@@ -9,12 +9,11 @@ on:
         default: ''
 
 env:
-  PACKAGES: xupnpd2-jacklul http-to-https-proxy msmtpd transmission-downgrade
-  PACKAGES_NOHF: http-to-https-proxy
+  PACKAGES: xupnpd2-jacklul http-to-https-proxy http-to-https-proxy_nohf msmtpd
 
 jobs:
   build:
-    concurrency: build-${{ github.ref_name || github.run_id }}-${{ matrix.config }}
+    concurrency: build-${{ github.ref_name || github.run_id }}-${{ matrix.arch }}
     runs-on: ubuntu-22.04
     continue-on-error: ${{ matrix.allow-failure }}
 
@@ -22,33 +21,24 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - config: aarch64-3.10
+          - arch: aarch64-3.10
             dir: aarch64-k3.10
             allow-failure: false
-          #- config: armv5-3.2  # EOS
-          #  dir: armv5sf-k3.2
-          #  allow-failure: true
-          #- config: armv7-2.6  # EOS
-          #  dir: armv7sf-k2.6
-          #  allow-failure: true
-          - config: armv7-3.2
+          - arch: armv7-3.2
             dir: armv7sf-k3.2
             allow-failure: false
-          #- config: mipsel-3.4
+          #- arch: mipsel-3.4
           #  dir: mipselsf-k3.4
           #  allow-failure: true
-          #- config: mips-3.4
+          #- arch: mips-3.4
           #  dir: mipssf-k3.4
           #  allow-failure: true
-          - config: x64-3.2
+          - arch: x64-3.2
             dir: x64-k3.2
             allow-failure: false
-          #- config: x86-2.6  # EOS
-          #  dir: x86-k2.6
-          #  allow-failure: true
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         repository: Entware/Entware
 
@@ -58,13 +48,13 @@ jobs:
         sudo apt-get install build-essential flex gawk gcc-multilib gettext git libncurses5-dev libssl-dev python2 python-is-python3 python3-distutils subversion unzip zlib1g-dev rsync
 
     - name: Activate platform configuration
-      run: ln -s configs/${{ matrix.config }}.config .config
+      run: ln -s configs/${{ matrix.arch }}.config .config
 
     - name: Get commit hash for cache key
       id: hash
       run: echo "RESULT=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-    - uses: actions/cache/restore@v4
+    - uses: actions/cache/restore@v5
       continue-on-error: true
       id: restore-cache
       with:
@@ -72,7 +62,7 @@ jobs:
           bin
           build_dir
           staging_dir
-        key: ${{ matrix.config }}-${{ steps.hash.outputs.RESULT }}
+        key: ${{ matrix.arch }}-${{ steps.hash.outputs.RESULT }}
 
     - name: Build tools and toolchain
       if: steps.restore-cache.outputs.cache-hit != 'true'
@@ -81,7 +71,7 @@ jobs:
         make toolchain/install -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
         make target/compile -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
 
-    - uses: actions/cache/save@v4
+    - uses: actions/cache/save@v5
       continue-on-error: true
       if: steps.restore-cache.outputs.cache-hit != 'true'
       with:
@@ -89,7 +79,7 @@ jobs:
           bin
           build_dir
           staging_dir
-        key: ${{ matrix.config }}-${{ steps.hash.outputs.RESULT }}
+        key: ${{ matrix.arch }}-${{ steps.hash.outputs.RESULT }}
 
     - name: Fetch feeds (${{ github.ref_name }})
       run: |
@@ -97,41 +87,37 @@ jobs:
         make package/symlinks
 
     - name: Build packages
-      if: env.PACKAGES != ''
+      if: env.PACKAGES != '' || github.event.inputs.packages != ''
       continue-on-error: ${{ matrix.allow-failure }}
       run: |
-        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do echo "CONFIG_PACKAGE_${PACKAGE}=m" >> .config ; done
-        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do make package/$PACKAGE/compile -j$(nproc) ${{ vars.PACKAGES_EXTRA_COMPILE_ARGUMENTS || '' }} ${{ matrix.allow-failure && '|| true' || '' }} ; done
+        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do
+          echo "CONFIG_PACKAGE_${PACKAGE}=m" >> .config
+        done
 
-    - name: Build packages ("nohf" variants)
-      if: env.PACKAGES_NOHF != '' && (matrix.config == 'armv7-2.6' || matrix.config == 'armv7-3.2')
-      continue-on-error: ${{ matrix.allow-failure }}
+        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do
+          export BUILD_VARIANT=
+
+          if [[ "$PACKAGE" == *_nohf ]]; then
+            if [ "${{ matrix.arch == 'armv7-2.6' || matrix.arch == 'armv7-3.2' }}" = "true" ]; then
+              export BUILD_VARIANT=nohf
+              PACKAGE="${PACKAGE%_nohf}"
+            else
+              continue
+            fi
+          fi
+
+          make package/$PACKAGE/compile -j$(nproc) ${{ vars.PACKAGES_EXTRA_COMPILE_ARGUMENTS || '' }} ${{ matrix.allow-failure && '|| true' || '' }} ; 
+        done
+
+    - name: Copy packages to artifacts directory
       run: |
-        for PACKAGE in ${{ env.PACKAGES_NOHF }}; do echo "CONFIG_PACKAGE_${PACKAGE}_nohf=m" >> .config ; done
-        for PACKAGE in ${{ env.PACKAGES_NOHF }}; do BUILD_VARIANT=nohf make package/$PACKAGE/compile -j$(nproc) ${{ vars.PACKAGES_EXTRA_COMPILE_ARGUMENTS || '' }} ${{ matrix.allow-failure && '|| true' || '' }} ; done
+        mkdir -v artifacts
+        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do cp -nv bin/targets/*/*/packages/$PACKAGE*.ipk artifacts || true; done
 
-    - name: Copy packages to artifact directory
-      run: |
-        mkdir -v artifact
-        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do cp -fv bin/targets/*/*/packages/$PACKAGE* artifact || true; done
-
-    - uses: actions/checkout@v4
-      with:
-        repository: Entware/ipk-html-indexer
-        path: ipk-html-indexer
-
-    - name: Run ipk-html-indexer
-      run: |
-        sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkindex.py" /usr/local/bin/mkindex.py
-        sudo ln -sv "$GITHUB_WORKSPACE/ipk-html-indexer/mkhtml.py" /usr/local/bin/mkhtml.py
-        bash ipk-html-indexer/index_feed.sh -h -f artifact
-        sed 's#href="/css#href="../css#' -i artifact/Packages.html
-
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v7
       with:
         name: ${{ matrix.dir }}
-        path: artifact/*
-        retention-days: 1
+        path: artifacts/*
 
   upload:
     concurrency: upload-${{ github.ref_name || github.run_id }}
@@ -142,49 +128,51 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         continue-on-error: true
         with:
           ref: gh-pages
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: Entware/ipk-html-indexer
           path: ipk-html-indexer
 
-      - name: Copy ipk-html-indexer's css directory
-        run: |
-          rm -fr ./css
-          cp -rfv ipk-html-indexer/css .
+      - run: mv ipk-html-indexer ../ipk-html-indexer
 
       - name: Remove existing content
-        run: find . -mindepth 1 -maxdepth 1 \( ! -name ".git" ! -name "css" -type d -exec rm -fr "{}" \; \) -o \( -type f -exec rm -f "{}" \; \)
+        run: find . -mindepth 1 -maxdepth 1 \( ! -name ".git" -type d -exec rm -fr "{}" \; \) -o \( -type f -exec rm -f "{}" \; \)
 
       - uses: actions/download-artifact@v4
 
-      - name: Move .git and css directories out
-        shell: bash
+      - name: Run ipk-html-indexer
         run: |
-          mv .git ../.git.bak
-          mv css ../css.bak
+          sudo ln -sv "$GITHUB_WORKSPACE/../ipk-html-indexer/mkindex.py" /usr/local/bin/mkindex.py
+          sudo ln -sv "$GITHUB_WORKSPACE/../ipk-html-indexer/mkhtml.py" /usr/local/bin/mkhtml.py
 
-      - name: Generate directory listings
-        uses: jayanta525/github-pages-directory-listing@v4.0.0
+          for dir in ${{ github.workspace }}/*/; do
+            if [ -d "$dir" ] && ls "$dir"/*.ipk > /dev/null 2>&1; then
+              bash ../ipk-html-indexer/index_feed.sh -h -f "$dir"
+              sed 's#href="/css#href="../css#' -i "$dir/Packages.html"
+            fi
+          done
+
+          cp -rfv ../ipk-html-indexer/css .
+
+      - run: mv .git ../.git.bak; mv css ../css.bak
+
+      - uses: jayanta525/github-pages-directory-listing@v4.0.0
         with:
           FOLDER: .
 
-      - name: Fix permissions of index.html files
-        run: find . -type f -name index.html -exec sudo chown $(id -u):$(id -g) {} \;
+      - run: find . -type f -name index.html -exec sudo chown $(id -u):$(id -g) {} \;
 
-      - name: Move .git and css directories back
-        shell: bash
-        run: |
-          mv ../.git.bak .git
-          mv ../css.bak css
+      - run: mv ../.git.bak .git; mv ../css.bak css
 
-      - name: Rename gh-pages branch
+      - run: ls -al . *
+
+      - run: git branch -m gh-pages gh-pages.old
         continue-on-error: true
-        run: git branch -m gh-pages gh-pages.old
 
       - uses: JamesIves/github-pages-deploy-action@v4
         if: ${{ github.ref_name == 'master' && github.event.inputs.packages == '' }}
@@ -200,7 +188,7 @@ jobs:
       - run: rm -fr .git
         if: ${{ github.ref_name != 'master' || github.event.inputs.packages != '' }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: ${{ github.ref_name != 'master' || github.event.inputs.packages != '' }}
         with:
           name: upload
