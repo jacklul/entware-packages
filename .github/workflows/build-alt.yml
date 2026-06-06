@@ -9,7 +9,7 @@ on:
         default: ''
 
 env:
-  PACKAGES: xupnpd2-jacklul http-to-https-proxy msmtpd
+  PACKAGES: xupnpd2-jacklul http-to-https-proxy msmtpd transmission-downgrade
 
 jobs:
   build:
