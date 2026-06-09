@@ -165,6 +165,8 @@ jobs:
         with:
           FOLDER: .
 
+      - run: find . -type f -name index.html -exec sed "s|Index of .|Index of ${GITHUB_REPOSITORY##*/}|g" -i {} \;
+
       - run: find . -type f -name index.html -exec sudo chown $(id -u):$(id -g) {} \;
 
       - run: mv ../.git.bak .git; mv ../css.bak css
