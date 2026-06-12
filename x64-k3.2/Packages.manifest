@@ -1,0 +1,97 @@
+Package: http-to-https-proxy
+Version: v0.3-1
+Depends: daemonize
+Provides: http-to-https-proxy-any
+Source: feeds/jacklul/http-to-https-proxy
+SourceName: http-to-https-proxy
+Section: net
+SourceDateEpoch: 1781277924
+URL: https://github.com/yeokm1/http-to-https-proxy
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: x64-3.2
+Installed-Size: 5806080
+Filename: http-to-https-proxy_v0.3-1_x64-3.2.ipk
+Size: 2427030
+SHA256sum: d1b6591372ebfb1bf3cbb56e1a734e7150a51471a1f6da8653929da92b4737cf
+Description:  A proxy that upgrades HTTP connections to HTTPS for systems which cannot make HTTPS requests.
+
+Package: http-to-https-proxy_nohf
+Version: v0.3-1
+Provides: http-to-https-proxy_nohf-any
+Source: feeds/jacklul/http-to-https-proxy
+SourceName: http-to-https-proxy
+Section: net
+SourceDateEpoch: 1781277924
+URL: https://github.com/yeokm1/http-to-https-proxy
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: x64-3.2
+Installed-Size: 5806080
+Filename: http-to-https-proxy_nohf_v0.3-1_x64-3.2.ipk
+Size: 2427020
+SHA256sum: 2171fbd8ab6b08243890a13d53e9d58ed3c7fb7b418cadae44651ae0f0cfb17c
+Description:  A proxy that upgrades HTTP connections to HTTPS for systems which cannot make HTTPS requests.
+
+Package: msmtpd
+Version: 1.8.32-1
+Depends: libc, libssp, librt, libpthread, libintl-full, daemonize
+Provides: msmtpd-any
+Source: feeds/jacklul/msmtpd
+SourceName: msmtpd
+Section: mail
+SourceDateEpoch: 1781277924
+URL: https://marlam.de/msmtp
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: x64-3.2
+Installed-Size: 51200
+Filename: msmtpd_1.8.32-1_x64-3.2.ipk
+Size: 17621
+SHA256sum: 77c1f910513a79fdd3100aa23ff5f5bc0b6c6f870cbec6b23ae0b22866b8de59
+Description:  Msmtpd is a minimal SMTP server that pipes mails to msmtp or some other
+ program for delivery. It can be used with system services that expect
+ an SMTP server on the local host.
+
+Package: transmission-old
+Version: 4.0.5-1
+Depends: libc, libssp, librt, libpthread, libatomic, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-old-any, transmission-daemon, transmission-cli, transmission-remote, transmission-web
+Source: feeds/jacklul/transmission-old
+SourceName: transmission-old
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+Require-User: transmission=224:transmission=224
+SourceDateEpoch: 1781277924
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: x64-3.2
+Installed-Size: 3891200
+Filename: transmission-old_4.0.5-1_x64-3.2.ipk
+Size: 1733875
+SHA256sum: 0f5b4321a69e3b52d952891e8329d8b201792c175f0f203ab5629ebb2be9cf29
+Description:  Transmission is a simple BitTorrent client.
+ It features a very simple, intuitive interface
+ on top on an efficient, cross-platform back-end.
+
+Package: xupnpd2-jacklul
+Version: 2026-06-12-1
+Depends: libc, libssp, librt, libpthread, libsqlite3, liblua5.3, libuuid, libstdcpp, libopenssl
+Provides: xupnpd2-jacklul-any, xupnpd2
+Source: feeds/jacklul/xupnpd2-jacklul
+SourceName: xupnpd2-jacklul
+Section: multimedia
+SourceDateEpoch: 1781277924
+URL: https://github.com/jacklul/xupnpd2
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: x64-3.2
+Installed-Size: 440320
+Filename: xupnpd2-jacklul_2026-06-12-1_x64-3.2.ipk
+Size: 184145
+SHA256sum: 5e7ce4b787a7b0cfbacfcb1cb7984dceac2c13505999b84cf644c5aad07559f1
+Description:  (github.com/jacklul/xupnpd2) This program is a light DLNA Media Server which provides ContentDirectory:1
+ service for sharing IPTV unicast streams over local area network (with udpxy
+ for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
+ playlists with links over local area network as content of the directory.
+ You can watch HDTV broadcasts (multicast or unicast) and listen Internet
+ Radio in IP network without transcoding and PC.
+

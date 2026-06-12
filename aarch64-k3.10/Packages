@@ -1,0 +1,76 @@
+Package: http-to-https-proxy
+Version: v0.3-1
+Depends: daemonize
+Provides: http-to-https-proxy-any
+Section: net
+URL: https://github.com/yeokm1/http-to-https-proxy
+Architecture: aarch64-3.10
+Installed-Size: 5386240
+Filename: http-to-https-proxy_v0.3-1_aarch64-3.10.ipk
+Size: 2182540
+SHA256sum: 0510d68784070448fc70a9e782c734e177c59c62bc2416d515816c408f44ea23
+Description:  A proxy that upgrades HTTP connections to HTTPS for systems which cannot make HTTPS requests.
+
+Package: http-to-https-proxy_nohf
+Version: v0.3-1
+Provides: http-to-https-proxy_nohf-any
+Section: net
+URL: https://github.com/yeokm1/http-to-https-proxy
+Architecture: aarch64-3.10
+Installed-Size: 5386240
+Filename: http-to-https-proxy_nohf_v0.3-1_aarch64-3.10.ipk
+Size: 2182531
+SHA256sum: c4130120d397c561569d1e280d98160fd054e22daeb5545196a77561d02f702a
+Description:  A proxy that upgrades HTTP connections to HTTPS for systems which cannot make HTTPS requests.
+
+Package: msmtpd
+Version: 1.8.32-1
+Depends: libc, libssp, librt, libpthread, libintl-full, daemonize
+Provides: msmtpd-any
+Section: mail
+URL: https://marlam.de/msmtp
+Architecture: aarch64-3.10
+Installed-Size: 51200
+Filename: msmtpd_1.8.32-1_aarch64-3.10.ipk
+Size: 17053
+SHA256sum: 86d90a04bf77b8a1987e76bb1e5fb53e1177232a2cc7e0bb4c0fe5a2e2ae57da
+Description:  Msmtpd is a minimal SMTP server that pipes mails to msmtp or some other
+ program for delivery. It can be used with system services that expect
+ an SMTP server on the local host.
+
+Package: transmission-old
+Version: 4.0.5-1
+Depends: libc, libssp, librt, libpthread, libatomic, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-old-any, transmission-daemon, transmission-cli, transmission-remote, transmission-web
+License: GPL-2.0-or-later
+Section: net
+Require-User: transmission=224:transmission=224
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: aarch64-3.10
+Installed-Size: 3461120
+Filename: transmission-old_4.0.5-1_aarch64-3.10.ipk
+Size: 1662975
+SHA256sum: fe9561ace577e918bb094e417977952c5fe59dc0c9e2f69de4d01b6a486ec296
+Description:  Transmission is a simple BitTorrent client.
+ It features a very simple, intuitive interface
+ on top on an efficient, cross-platform back-end.
+
+Package: xupnpd2-jacklul
+Version: 2026-06-12-1
+Depends: libc, libssp, librt, libpthread, libsqlite3, liblua5.3, libuuid, libstdcpp, libopenssl
+Provides: xupnpd2-jacklul-any, xupnpd2
+Section: multimedia
+URL: https://github.com/jacklul/xupnpd2
+Architecture: aarch64-3.10
+Installed-Size: 430080
+Filename: xupnpd2-jacklul_2026-06-12-1_aarch64-3.10.ipk
+Size: 184864
+SHA256sum: b15de0753d054bceaaeeb8aaff63979654e9b1064edc73bfe4f9c3f35439e007
+Description:  (github.com/jacklul/xupnpd2) This program is a light DLNA Media Server which provides ContentDirectory:1
+ service for sharing IPTV unicast streams over local area network (with udpxy
+ for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
+ playlists with links over local area network as content of the directory.
+ You can watch HDTV broadcasts (multicast or unicast) and listen Internet
+ Radio in IP network without transcoding and PC.
+
