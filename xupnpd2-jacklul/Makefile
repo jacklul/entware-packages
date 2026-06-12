@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xupnpd2-jacklul
-PKG_VERSION:=2025-02-15
-PKG_REV:=9e8d1b7e87ce536f823de226c06a9e1b4cd1806c
+PKG_VERSION:=2026-06-12
+PKG_REV:=d8d7378af04e8b3a0a242c66bbe4057c25a9f595
 PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/jacklul/xupnpd2.git
