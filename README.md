@@ -12,3 +12,5 @@ src/gz jacklul https://jacklul.github.io/entware-packages/[architecture]
 ```
 
 Run `opkg update` and then you can install the packages through `opkg install` command.
+
+If you encounter SSL/HTTPS error - [see here](https://github.com/Entware/Entware/wiki/Using-HTTPS-with-opkg) for the solution.
