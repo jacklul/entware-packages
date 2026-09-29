@@ -54,7 +54,9 @@ jobs:
 
       - name: Activate platform configuration
         working-directory: ./entware
-        run: ln -s configs/${{ matrix.arch }}.config .config
+        run: |
+          ln -s configs/${{ matrix.arch }}.config .config
+          [ -f ../entware.config ] && { cat ../entware.config >> .config; echo "Appended ../entware.config to .config"; } || true
 
       - name: Get commit hash
         id: hash
@@ -94,7 +96,6 @@ jobs:
         run: |
           echo "src-git jacklul https://github.com/jacklul/entware-packages.git;${{ github.ref_name }}" >> feeds.conf
           make package/symlinks
-          [ -f ../entware.config ] && cat ../entware.config >> .config || true
           [ -d ../.overrides ] && cp -rfv ../.overrides/. . || true
           [ -f ./overrides.sh ] && bash ./overrides.sh || true
 
