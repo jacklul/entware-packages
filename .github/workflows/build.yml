@@ -94,15 +94,14 @@ jobs:
         run: |
           echo "src-git jacklul https://github.com/jacklul/entware-packages.git;${{ github.ref_name }}" >> feeds.conf
           make package/symlinks
+          [ -f ../entware.config ] && cat ../entware.config >> .config
           [ -d ../.overrides ] && cp -rfv ../.overrides/. . || true
+          [ -f ./overrides.sh ] && bash ./overrides.sh || true
 
       - name: Build packages
         continue-on-error: ${{ matrix.allow-failure }}
         working-directory: ./entware
         run: |
-          for PACKAGE in ${{ github.event.inputs.build_packages }}; do
-            ! grep -q "CONFIG_PACKAGE_${PACKAGE}=m" .config && echo "CONFIG_PACKAGE_${PACKAGE}=m" >> .config || true
-          done
           for PACKAGE in ${{ github.event.inputs.build_packages }}; do
             export BUILD_VARIANT=
             if [[ "$PACKAGE" == *_nohf ]]; then
