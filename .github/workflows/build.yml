@@ -94,7 +94,7 @@ jobs:
         run: |
           echo "src-git jacklul https://github.com/jacklul/entware-packages.git;${{ github.ref_name }}" >> feeds.conf
           make package/symlinks
-          [ -f ../entware.config ] && cat ../entware.config >> .config
+          [ -f ../entware.config ] && cat ../entware.config >> .config || true
           [ -d ../.overrides ] && cp -rfv ../.overrides/. . || true
           [ -f ./overrides.sh ] && bash ./overrides.sh || true
 
