@@ -5,7 +5,7 @@ on:
     inputs:
       packages:
         description: 'Packages to build'
-        required: false
+        required: true
         default: ''
       ignore-errors:
         description: 'Ignore build errors'
@@ -30,17 +30,12 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
-    - run: |
-        PACKAGES="$(grep -E '^  PACKAGES:' .github/workflows/build.yml | sed 's/.*PACKAGES: //' | sed 's/\b[^ ]*_nohf[^ ]*\b//g' | tr -s ' ')"
-        echo "PACKAGES=$PACKAGES" >> "$GITHUB_ENV"
-      if: github.event.inputs.packages == ''
-
     - run: mkdir -v artifacts
 
     - uses: ownik/gh-action-entware-sdk@v1
       env:
         ARCH: ${{ matrix.arch }}
-        PACKAGES: ${{ github.event.inputs.packages || env.PACKAGES }}
+        PACKAGES: ${{ github.event.inputs.packages }}
         V: sc
         BUILD_LOG: true
         ARTIFACTS_DIR: ${{ github.workspace }}/artifacts

@@ -1,21 +1,23 @@
-name: Build
+name: Build and Upload
 
 on:
   workflow_dispatch:
     inputs:
-      packages:
-        description: 'Packages to build (override)'
+      build_packages:
+        description: 'Packages to build and add to the listing'
         required: false
         default: ''
-
-env:
-  PACKAGES: xupnpd2-jacklul http-to-https-proxy http-to-https-proxy_nohf msmtpd transmission-old
+      delete_packages:
+        description: 'Packages to remove from the listing'
+        required: false
+        default: ''
 
 jobs:
   build:
     concurrency: build-${{ github.ref_name || github.run_id }}-${{ matrix.arch }}
     runs-on: ubuntu-22.04
     continue-on-error: ${{ matrix.allow-failure }}
+    if: github.event.inputs.build_packages != ''
 
     strategy:
       fail-fast: false
@@ -27,101 +29,107 @@ jobs:
           - arch: armv7-3.2
             dir: armv7sf-k3.2
             allow-failure: false
+          - arch: x64-3.2
+            dir: x64-k3.2
+            allow-failure: false
           #- arch: mipsel-3.4
           #  dir: mipselsf-k3.4
           #  allow-failure: true
           #- arch: mips-3.4
           #  dir: mipssf-k3.4
           #  allow-failure: true
-          - arch: x64-3.2
-            dir: x64-k3.2
-            allow-failure: false
 
     steps:
-    - uses: actions/checkout@v6
-      with:
-        repository: Entware/Entware
+      - uses: actions/checkout@v6
 
-    - name: Setup dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install build-essential flex gawk gcc-multilib gettext git libncurses5-dev libssl-dev python2 python-is-python3 python3-distutils subversion unzip zlib1g-dev rsync
+      - uses: actions/checkout@v6
+        with:
+          repository: Entware/Entware
+          path: ./entware
 
-    - name: Activate platform configuration
-      run: ln -s configs/${{ matrix.arch }}.config .config
+      - name: Setup dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential flex gawk gcc-multilib gettext git libncurses5-dev libssl-dev python2 python-is-python3 python3-distutils subversion unzip zlib1g-dev rsync
 
-    - name: Get commit hash for cache key
-      id: hash
-      run: echo "RESULT=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+      - name: Activate platform configuration
+        working-directory: ./entware
+        run: ln -s configs/${{ matrix.arch }}.config .config
 
-    - uses: actions/cache/restore@v5
-      continue-on-error: true
-      id: restore-cache
-      with:
-        path: |
-          bin
-          build_dir
-          staging_dir
-        key: ${{ matrix.arch }}-${{ steps.hash.outputs.RESULT }}
+      - name: Get commit hash
+        id: hash
+        working-directory: ./entware
+        run: echo "RESULT=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-    - name: Build tools and toolchain
-      if: steps.restore-cache.outputs.cache-hit != 'true'
-      run: |
-        make tools/install -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
-        make toolchain/install -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
-        make target/compile -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
+      - uses: actions/cache/restore@v5
+        continue-on-error: true
+        id: restore-cache
+        with:
+          path: |
+            ./entware/bin
+            ./entware/build_dir
+            ./entware/staging_dir
+          key: ${{ matrix.arch }}-${{ steps.hash.outputs.RESULT }}
 
-    - uses: actions/cache/save@v5
-      continue-on-error: true
-      if: steps.restore-cache.outputs.cache-hit != 'true'
-      with:
-        path: |
-          bin
-          build_dir
-          staging_dir
-        key: ${{ matrix.arch }}-${{ steps.hash.outputs.RESULT }}
+      - name: Build tools and toolchain
+        if: steps.restore-cache.outputs.cache-hit != 'true'
+        working-directory: ./entware
+        run: |
+          make tools/install -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
+          make toolchain/install -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
+          make target/compile -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
 
-    - name: Fetch feeds (${{ github.ref_name }})
-      run: |
-        echo "src-git jacklul https://github.com/jacklul/entware-packages.git;${{ github.ref_name }}" >> feeds.conf
-        make package/symlinks
+      - uses: actions/cache/save@v5
+        continue-on-error: true
+        if: steps.restore-cache.outputs.cache-hit != 'true'
+        with:
+          path: |
+            ./entware/bin
+            ./entware/build_dir
+            ./entware/staging_dir
+          key: ${{ matrix.arch }}-${{ steps.hash.outputs.RESULT }}
 
-    - name: Build packages
-      if: env.PACKAGES != '' || github.event.inputs.packages != ''
-      continue-on-error: ${{ matrix.allow-failure }}
-      run: |
-        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do
-          echo "CONFIG_PACKAGE_${PACKAGE}=m" >> .config
-        done
+      - name: Fetch feeds (${{ github.ref_name }})
+        working-directory: ./entware
+        run: |
+          echo "src-git jacklul https://github.com/jacklul/entware-packages.git;${{ github.ref_name }}" >> feeds.conf
+          make package/symlinks
+          [ -d ../.overrides ] && cp -rfv ../.overrides/. . || true
 
-        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do
-          export BUILD_VARIANT=
-
-          if [[ "$PACKAGE" == *_nohf ]]; then
-            if [ "${{ matrix.arch == 'armv7-2.6' || matrix.arch == 'armv7-3.2' }}" = "true" ]; then
-              export BUILD_VARIANT=nohf
-              PACKAGE="${PACKAGE%_nohf}"
-            else
-              continue
+      - name: Build packages
+        continue-on-error: ${{ matrix.allow-failure }}
+        working-directory: ./entware
+        run: |
+          for PACKAGE in ${{ github.event.inputs.build_packages }}; do
+            ! grep -q "CONFIG_PACKAGE_${PACKAGE}=m" .config && echo "CONFIG_PACKAGE_${PACKAGE}=m" >> .config || true
+          done
+          for PACKAGE in ${{ github.event.inputs.build_packages }}; do
+            export BUILD_VARIANT=
+            if [[ "$PACKAGE" == *_nohf ]]; then
+              if [ "${{ matrix.arch == 'armv7-2.6' || matrix.arch == 'armv7-3.2' }}" = "true" ]; then
+                export BUILD_VARIANT=nohf
+                PACKAGE="${PACKAGE%_nohf}"
+              else
+                continue
+              fi
             fi
-          fi
+            make package/$PACKAGE/compile -j$(nproc) ${{ vars.PACKAGES_EXTRA_COMPILE_ARGUMENTS || '' }} ${{ matrix.allow-failure && '|| true' || '' }} ; 
+          done
 
-          make package/$PACKAGE/compile -j$(nproc) ${{ vars.PACKAGES_EXTRA_COMPILE_ARGUMENTS || '' }} ${{ matrix.allow-failure && '|| true' || '' }} ; 
-        done
+      - name: Copy packages to artifacts directory
+        run: |
+          mkdir -v ./artifacts
+          for PACKAGE in ${{ github.event.inputs.build_packages }}; do cp -nv ./entware/bin/targets/*/*/packages/${PACKAGE}*.ipk ./artifacts || true; done
 
-    - name: Copy packages to artifacts directory
-      run: |
-        mkdir -v artifacts
-        for PACKAGE in ${{ github.event.inputs.packages || env.PACKAGES }}; do cp -nv bin/targets/*/*/packages/$PACKAGE*.ipk artifacts || true; done
-
-    - uses: actions/upload-artifact@v7
-      with:
-        name: ${{ matrix.dir }}
-        path: artifacts/*
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ${{ matrix.dir }}
+          path: ./artifacts/*
 
   upload:
     concurrency: upload-${{ github.ref_name || github.run_id }}
     needs: build
+    if: always() && (needs.build.result == 'success' || github.event.inputs.build_packages == '')
     runs-on: ubuntu-22.04
 
     permissions:
@@ -140,23 +148,32 @@ jobs:
 
       - run: mv ipk-html-indexer ../ipk-html-indexer
 
-      - name: Remove existing content
-        run: find . -mindepth 1 -maxdepth 1 \( ! -name ".git" -type d -exec rm -fr "{}" \; \) -o \( -type f -exec rm -f "{}" \; \)
+      - name: Delete packages
+        if: github.event.inputs.build_packages != '' || github.event.inputs.delete_packages != ''
+        run: |
+          PACKAGES="${{ github.event.inputs.build_packages }} ${{ github.event.inputs.delete_packages }}"
+          for PACKAGE in $PACKAGES; do
+            find . -type f -name "${PACKAGE}*.ipk" -exec rm -fv "{}" \; || true
+          done
 
       - uses: actions/download-artifact@v4
+        if: github.event.inputs.build_packages != ''
+
+      - name: Cleanup directory
+        run: |
+          find . \( -type d -name "css" -prune -exec rm -frv "{}" \; \) -o \( -type f -name "index.html" -exec rm -fv "{}" \; \) || true
+          find . -type f -regextype posix-extended -iregex '.*/Packages(\.(gz|html|manifest))?$' -exec rm -fv "{}" \; || true
 
       - name: Run ipk-html-indexer
         run: |
           sudo ln -sv "$GITHUB_WORKSPACE/../ipk-html-indexer/mkindex.py" /usr/local/bin/mkindex.py
           sudo ln -sv "$GITHUB_WORKSPACE/../ipk-html-indexer/mkhtml.py" /usr/local/bin/mkhtml.py
-
           for dir in ${{ github.workspace }}/*/; do
             if [ -d "$dir" ] && ls "$dir"/*.ipk > /dev/null 2>&1; then
               bash ../ipk-html-indexer/index_feed.sh -h -f "$dir"
               sed 's#href="/css#href="../css#' -i "$dir/Packages.html"
             fi
           done
-
           cp -rfv ../ipk-html-indexer/css .
 
       - run: mv .git ../.git.bak; mv css ../css.bak
@@ -165,19 +182,20 @@ jobs:
         with:
           FOLDER: .
 
-      - run: find . -type f -name index.html -exec sed "s|Index of .|Index of ${GITHUB_REPOSITORY##*/}|g" -i {} \;
-
-      - run: find . -type f -name index.html -exec sudo chown $(id -u):$(id -g) {} \;
+      - name: Fix directory listing path in title and file permissions 
+        run: |
+          find . -type f -name index.html -exec sed "s|Index of .|Index of ${GITHUB_REPOSITORY##*/}|g" -i {} \; || true
+          find . -type f -name index.html -exec sudo chown -v $(id -u):$(id -g) {} \; || true
 
       - run: mv ../.git.bak .git; mv ../css.bak css
 
-      - run: ls -al . *
+      - run: ls -al ./ ./*/
 
       - run: git branch -m gh-pages gh-pages.old
         continue-on-error: true
 
       - uses: JamesIves/github-pages-deploy-action@v4
-        if: ${{ github.ref_name == 'master' && github.event.inputs.packages == '' }}
+        if: ${{ github.ref_name == 'master' }}
         with:
           branch: gh-pages
           folder: .
@@ -188,10 +206,10 @@ jobs:
           git-config-email: '41898282+github-actions[bot]@users.noreply.github.com'
 
       - run: rm -fr .git
-        if: ${{ github.ref_name != 'master' || github.event.inputs.packages != '' }}
+        if: ${{ github.ref_name != 'master' }}
 
       - uses: actions/upload-artifact@v7
-        if: ${{ github.ref_name != 'master' || github.event.inputs.packages != '' }}
+        if: ${{ github.ref_name != 'master' }}
         with:
           name: upload
           path: .

@@ -1,5 +1,7 @@
 include $(TOPDIR)/rules.mk
 
+# https://github.com/Entware/entware-packages/blob/master/mail/msmtp/Makefile
+
 PKG_NAME:=msmtpd
 PKG_VERSION:=1.8.32
 PKG_RELEASE:=1

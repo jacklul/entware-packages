@@ -1,5 +1,7 @@
 include $(TOPDIR)/rules.mk
 
+# https://github.com/Entware/rtndev/blob/master/xupnpd2/Makefile
+
 PKG_NAME:=xupnpd2-jacklul
 PKG_VERSION:=2026-06-12
 PKG_REV:=d8d7378af04e8b3a0a242c66bbe4057c25a9f595
