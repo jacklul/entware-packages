@@ -1,0 +1,151 @@
+diff --git a/configs/aarch64-3.10.config b/configs/aarch64-3.10.config
+index 0aa6de8a..aefedf5e 100644
+--- a/configs/aarch64-3.10.config
++++ b/configs/aarch64-3.10.config
+@@ -234,10 +235,10 @@ CONFIG_EXTRA_BINUTILS_CONFIG_OPTIONS=""
+ #
+ # Compiler
+ #
+-CONFIG_GCC_USE_VERSION_8=y
++# CONFIG_GCC_USE_VERSION_8 is not set
+ # CONFIG_GCC_USE_VERSION_12 is not set
+ # CONFIG_GCC_USE_VERSION_13 is not set
+-# CONFIG_GCC_USE_VERSION_14 is not set
++CONFIG_GCC_USE_VERSION_14=y
+ # CONFIG_GCC_USE_VERSION_15 is not set
+ # CONFIG_GCC_USE_GRAPHITE is not set
+ CONFIG_EXTRA_GCC_CONFIG_OPTIONS="--with-default-libstdcxx-abi=gcc4-compatible"
+@@ -5465,6 +5466,7 @@ CONFIG_PACKAGE_transmission-cfp-web=m
+ CONFIG_PACKAGE_transmission-cli=m
+ CONFIG_PACKAGE_transmission-daemon=m
+ CONFIG_PACKAGE_transmission-remote=m
++CONFIG_PACKAGE_transmission-runtime=m
+ CONFIG_PACKAGE_transmission-web=m
+ CONFIG_PACKAGE_transmission-web-control=m
+ # end of BitTorrent
+diff --git a/configs/armv7-3.2.config b/configs/armv7-3.2.config
+index e2608069..17bea70c 100644
+--- a/configs/armv7-3.2.config
++++ b/configs/armv7-3.2.config
+@@ -237,10 +238,10 @@ CONFIG_EXTRA_BINUTILS_CONFIG_OPTIONS=""
+ #
+ # Compiler
+ #
+-CONFIG_GCC_USE_VERSION_8=y
++# CONFIG_GCC_USE_VERSION_8 is not set
+ # CONFIG_GCC_USE_VERSION_12 is not set
+ # CONFIG_GCC_USE_VERSION_13 is not set
+-# CONFIG_GCC_USE_VERSION_14 is not set
++CONFIG_GCC_USE_VERSION_14=y
+ # CONFIG_GCC_USE_VERSION_15 is not set
+ # CONFIG_GCC_USE_GRAPHITE is not set
+ CONFIG_EXTRA_GCC_CONFIG_OPTIONS="--with-default-libstdcxx-abi=gcc4-compatible"
+@@ -5465,6 +5466,7 @@ CONFIG_PACKAGE_transmission-cfp-web=m
+ CONFIG_PACKAGE_transmission-cli=m
+ CONFIG_PACKAGE_transmission-daemon=m
+ CONFIG_PACKAGE_transmission-remote=m
++CONFIG_PACKAGE_transmission-runtime=m
+ CONFIG_PACKAGE_transmission-web=m
+ CONFIG_PACKAGE_transmission-web-control=m
+ # end of BitTorrent
+diff --git a/configs/mips-3.4.config b/configs/mips-3.4.config
+index 8cbe3a31..12a67618 100644
+--- a/configs/mips-3.4.config
++++ b/configs/mips-3.4.config
+@@ -234,10 +235,10 @@ CONFIG_EXTRA_BINUTILS_CONFIG_OPTIONS=""
+ #
+ # Compiler
+ #
+-CONFIG_GCC_USE_VERSION_8=y
++# CONFIG_GCC_USE_VERSION_8 is not set
+ # CONFIG_GCC_USE_VERSION_12 is not set
+ # CONFIG_GCC_USE_VERSION_13 is not set
+-# CONFIG_GCC_USE_VERSION_14 is not set
++CONFIG_GCC_USE_VERSION_14=y
+ # CONFIG_GCC_USE_VERSION_15 is not set
+ # CONFIG_GCC_USE_GRAPHITE is not set
+ CONFIG_EXTRA_GCC_CONFIG_OPTIONS="--with-default-libstdcxx-abi=gcc4-compatible"
+@@ -5453,6 +5454,7 @@ CONFIG_PACKAGE_transmission-cfp-web=m
+ CONFIG_PACKAGE_transmission-cli=m
+ CONFIG_PACKAGE_transmission-daemon=m
+ CONFIG_PACKAGE_transmission-remote=m
++CONFIG_PACKAGE_transmission-runtime=m
+ CONFIG_PACKAGE_transmission-web=m
+ CONFIG_PACKAGE_transmission-web-control=m
+ # end of BitTorrent
+diff --git a/configs/mipsel-3.4.config b/configs/mipsel-3.4.config
+index afd0aebd..f05b1ab2 100644
+--- a/configs/mipsel-3.4.config
++++ b/configs/mipsel-3.4.config
+@@ -233,10 +234,10 @@ CONFIG_EXTRA_BINUTILS_CONFIG_OPTIONS=""
+ #
+ # Compiler
+ #
+-CONFIG_GCC_USE_VERSION_8=y
++# CONFIG_GCC_USE_VERSION_8 is not set
+ # CONFIG_GCC_USE_VERSION_12 is not set
+ # CONFIG_GCC_USE_VERSION_13 is not set
+-# CONFIG_GCC_USE_VERSION_14 is not set
++CONFIG_GCC_USE_VERSION_14=y
+ # CONFIG_GCC_USE_VERSION_15 is not set
+ # CONFIG_GCC_USE_GRAPHITE is not set
+ CONFIG_EXTRA_GCC_CONFIG_OPTIONS="--with-default-libstdcxx-abi=gcc4-compatible"
+@@ -5451,6 +5452,7 @@ CONFIG_PACKAGE_transmission-cfp-web=m
+ CONFIG_PACKAGE_transmission-cli=m
+ CONFIG_PACKAGE_transmission-daemon=m
+ CONFIG_PACKAGE_transmission-remote=m
++CONFIG_PACKAGE_transmission-runtime=m
+ CONFIG_PACKAGE_transmission-web=m
+ CONFIG_PACKAGE_transmission-web-control=m
+ # end of BitTorrent
+diff --git a/configs/x64-3.2.config b/configs/x64-3.2.config
+index ec189382..83059817 100644
+--- a/configs/x64-3.2.config
++++ b/configs/x64-3.2.config
+@@ -235,10 +236,10 @@ CONFIG_EXTRA_BINUTILS_CONFIG_OPTIONS=""
+ #
+ # Compiler
+ #
+-CONFIG_GCC_USE_VERSION_8=y
++# CONFIG_GCC_USE_VERSION_8 is not set
+ # CONFIG_GCC_USE_VERSION_12 is not set
+ # CONFIG_GCC_USE_VERSION_13 is not set
+-# CONFIG_GCC_USE_VERSION_14 is not set
++CONFIG_GCC_USE_VERSION_14=y
+ # CONFIG_GCC_USE_VERSION_15 is not set
+ # CONFIG_GCC_USE_GRAPHITE is not set
+ CONFIG_EXTRA_GCC_CONFIG_OPTIONS="--with-default-libstdcxx-abi=gcc4-compatible"
+@@ -5469,6 +5470,7 @@ CONFIG_PACKAGE_transmission-cfp-web=m
+ CONFIG_PACKAGE_transmission-cli=m
+ CONFIG_PACKAGE_transmission-daemon=m
+ CONFIG_PACKAGE_transmission-remote=m
++CONFIG_PACKAGE_transmission-runtime=m
+ CONFIG_PACKAGE_transmission-web=m
+ CONFIG_PACKAGE_transmission-web-control=m
+ # end of BitTorrent
+diff --git a/package/libs/gettext-full/Makefile b/package/libs/gettext-full/Makefile
+index 410bad38..314a3465 100644
+--- a/package/libs/gettext-full/Makefile
++++ b/package/libs/gettext-full/Makefile
+@@ -73,7 +73,7 @@ export GNULIB_SRCDIR:=$(HOST_GNULIB_SRCDIR)
+ 
+ TARGET_CFLAGS += $(FPIC)
+ # Entware specifics: old toolchain
+-#TARGET_CFLAGS += -std=gnu23
++TARGET_CFLAGS += -std=gnu23
+ ifneq ($(HOST_OS),Linux)
+   TARGET_CFLAGS += -I$(STAGING_DIR_HOSTPKG)/include
+ endif
+diff --git a/toolchain/glibc/common.mk b/toolchain/glibc/common.mk
+index 263e7eb1..5311ff51 100644
+--- a/toolchain/glibc/common.mk
++++ b/toolchain/glibc/common.mk
+@@ -55,7 +55,7 @@ GLIBC_CONFIGURE:= \
+ 	unset LD_LIBRARY_PATH; \
+ 	BUILD_CC="$(HOSTCC)" \
+ 	$(TARGET_CONFIGURE_OPTS) \
+-	CFLAGS="-O2 $(filter-out -O%,$(call qstrip,$(TARGET_CFLAGS)))" \
++	CFLAGS="-O2 -fcommon $(filter-out -O%,$(call qstrip,$(TARGET_CFLAGS)))" \
+ 	libc_cv_slibdir="/lib" \
+ 	use_ldconfig=no \
+ 	$(HOST_BUILD_DIR)/$(GLIBC_PATH)configure \

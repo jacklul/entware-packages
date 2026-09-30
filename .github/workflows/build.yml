@@ -1,4 +1,4 @@
-name: Build (and upload)
+name: Build
 
 on:
   workflow_dispatch:
@@ -11,10 +11,15 @@ on:
         description: 'Packages to remove from the listing'
         required: false
         default: ''
+      debug:
+        type: boolean
+        required: false
+        default: false
+        description: Enable debug logging
 
 jobs:
   build:
-    concurrency: build-${{ github.ref_name || github.run_id }}-${{ matrix.arch }}
+    concurrency: build-${{ github.ref_name }}-${{ matrix.arch }}
     runs-on: ubuntu-22.04
     continue-on-error: ${{ matrix.allow-failure }}
     if: github.event.inputs.build_packages != ''
@@ -41,11 +46,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-
-      - uses: actions/checkout@v6
         with:
           repository: Entware/Entware
-          path: ./entware
 
       - name: Setup dependencies
         run: |
@@ -53,55 +55,61 @@ jobs:
           sudo apt-get install build-essential flex gawk gcc-multilib gettext git libncurses5-dev libssl-dev python2 python-is-python3 python3-distutils subversion unzip zlib1g-dev rsync
 
       - name: Activate platform configuration
-        working-directory: ./entware
         run: |
           ln -s configs/${{ matrix.arch }}.config .config
-          [ -f ../entware.config ] && { cat ../entware.config >> .config; echo "Appended ../entware.config to .config"; } || true
 
-      - name: Get commit hash
-        id: hash
-        working-directory: ./entware
-        run: echo "RESULT=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+      - name: Fetch feeds
+        run: |
+          echo "src-git self https://github.com/${GITHUB_REPOSITORY}.git;${{ github.ref_name }}" >> feeds.conf
+          cat feeds.conf
+          make package/symlinks
+
+      - name: Apply modifications
+        run: |
+          if [ -f feeds/self/.github/prepare.sh ]; then
+            bash feeds/self/.github/prepare.sh ${{ github.event.inputs.build_packages }}
+          fi
+
+      - name: Create cache key
+        id: cache-key
+        run: |
+          RESULT=$(git rev-parse HEAD)
+          if [ -f .cache_key ]; then
+            RESULT="$(cat .cache_key)-${RESULT}"
+          fi
+          echo "RESULT=$RESULT" >> $GITHUB_OUTPUT
+          echo "Cache key: $RESULT"
 
       - uses: actions/cache/restore@v5
         continue-on-error: true
         id: restore-cache
         with:
           path: |
-            ./entware/bin
-            ./entware/build_dir
-            ./entware/staging_dir
-          key: ${{ matrix.arch }}-${{ steps.hash.outputs.RESULT }}
+            ./bin
+            ./build_dir
+            ./staging_dir
+          key: ${{ matrix.arch }}-${{ steps.cache-key.outputs.RESULT }}
 
       - name: Build tools and toolchain
         if: steps.restore-cache.outputs.cache-hit != 'true'
-        working-directory: ./entware
         run: |
-          make tools/install -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
-          make toolchain/install -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
-          make target/compile -j$(nproc) ${{ vars.TOOLCHAIN_EXTRA_COMPILE_ARGUMENTS || '' }}
+          make tools/install ${{ github.event.inputs.debug == 'true' && '-j1 V=sc' || '-j$(nproc)' }}
+          make toolchain/install ${{ github.event.inputs.debug == 'true' && '-j1 V=sc' || '-j$(nproc)' }}
+          make target/compile ${{ github.event.inputs.debug == 'true' && '-j1 V=sc' || '-j$(nproc)' }}
 
       - uses: actions/cache/save@v5
         continue-on-error: true
         if: steps.restore-cache.outputs.cache-hit != 'true'
         with:
           path: |
-            ./entware/bin
-            ./entware/build_dir
-            ./entware/staging_dir
-          key: ${{ matrix.arch }}-${{ steps.hash.outputs.RESULT }}
-
-      - name: Fetch feeds (${{ github.ref_name }})
-        working-directory: ./entware
-        run: |
-          echo "src-git jacklul https://github.com/jacklul/entware-packages.git;${{ github.ref_name }}" >> feeds.conf
-          make package/symlinks
-          [ -d ../.overrides ] && cp -rfv ../.overrides/. . || true
-          [ -f ./overrides.sh ] && bash ./overrides.sh || true
+            ./bin
+            ./build_dir
+            ./staging_dir
+          key: ${{ matrix.arch }}-${{ steps.cache-key.outputs.RESULT }}
 
       - name: Build packages
+        id: build-packages
         continue-on-error: ${{ matrix.allow-failure }}
-        working-directory: ./entware
         run: |
           for PACKAGE in ${{ github.event.inputs.build_packages }}; do
             export BUILD_VARIANT=
@@ -113,13 +121,21 @@ jobs:
                 continue
               fi
             fi
-            make package/$PACKAGE/compile -j$(nproc) ${{ vars.PACKAGES_EXTRA_COMPILE_ARGUMENTS || '' }} ${{ matrix.allow-failure && '|| true' || '' }} ; 
+            make package/$PACKAGE/compile ${{ github.event.inputs.debug == 'true' && '-j1 V=sc' || '-j$(nproc)' }} ${{ matrix.allow-failure && '|| true' || '' }} ; 
           done
+
+      - uses: actions/upload-artifact@v7
+        if: ${{ always() && steps.build-packages.outcome == 'failure' }}
+        with:
+          name: logs-${{ matrix.arch }}
+          path: ./logs
 
       - name: Copy packages to artifacts directory
         run: |
           mkdir -v ./artifacts
-          for PACKAGE in ${{ github.event.inputs.build_packages }}; do cp -nv ./entware/bin/targets/*/*/packages/${PACKAGE}*.ipk ./artifacts || true; done
+          for PACKAGE in ${{ github.event.inputs.build_packages }}; do
+            cp -nv ./bin/targets/*/*/packages/${PACKAGE}*.ipk ./artifacts || true
+          done
 
       - uses: actions/upload-artifact@v7
         with:
@@ -127,7 +143,7 @@ jobs:
           path: ./artifacts/*
 
   upload:
-    concurrency: upload-${{ github.ref_name || github.run_id }}
+    concurrency: upload-${{ github.ref_name }}
     needs: build
     if: always() && (needs.build.result == 'success' || github.event.inputs.build_packages == '')
     runs-on: ubuntu-22.04
@@ -153,7 +169,7 @@ jobs:
         run: |
           PACKAGES="${{ github.event.inputs.build_packages }} ${{ github.event.inputs.delete_packages }}"
           for PACKAGE in $PACKAGES; do
-            find . -type f -name "${PACKAGE}*.ipk" -exec rm -fv "{}" \; || true
+            find . -type f -regextype posix-extended -regex ".*/${PACKAGE}(-[^_]*)?_[^_]*_[^_]*-[0-9]+\.[0-9]+\.ipk" -exec rm -fv "{}" \;
           done
 
       - uses: actions/download-artifact@v4
