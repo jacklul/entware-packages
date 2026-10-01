@@ -11,11 +11,16 @@ on:
         description: 'Packages to remove from the listing'
         required: false
         default: ''
-      debug:
+      debug_compile:
         type: boolean
         required: false
         default: false
-        description: Enable debug logging
+        description: Enable debug logging when compiling packages
+      debug_tools:
+        type: boolean
+        required: false
+        default: false
+        description: Enable debug logging when compiling tools and toolchain
 
 jobs:
   build:
@@ -93,9 +98,9 @@ jobs:
       - name: Build tools and toolchain
         if: steps.restore-cache.outputs.cache-hit != 'true'
         run: |
-          make tools/install ${{ github.event.inputs.debug == 'true' && '-j1 V=sc' || '-j$(nproc)' }}
-          make toolchain/install ${{ github.event.inputs.debug == 'true' && '-j1 V=sc' || '-j$(nproc)' }}
-          make target/compile ${{ github.event.inputs.debug == 'true' && '-j1 V=sc' || '-j$(nproc)' }}
+          make tools/install ${{ github.event.inputs.debug_tools == 'true' && '-j1 V=sc' || '-j$(nproc)' }}
+          make toolchain/install ${{ github.event.inputs.debug_tools == 'true' && '-j1 V=sc' || '-j$(nproc)' }}
+          make target/compile ${{ github.event.inputs.debug_tools == 'true' && '-j1 V=sc' || '-j$(nproc)' }}
 
       - uses: actions/cache/save@v5
         continue-on-error: true
@@ -121,7 +126,7 @@ jobs:
                 continue
               fi
             fi
-            make package/$PACKAGE/compile ${{ github.event.inputs.debug == 'true' && '-j1 V=sc' || '-j$(nproc)' }} ${{ matrix.allow-failure && '|| true' || '' }} ; 
+            make package/$PACKAGE/compile ${{ github.event.inputs.debug_compile == 'true' && '-j1 V=sc' || '-j$(nproc)' }} ${{ matrix.allow-failure && '|| true' || '' }} ; 
           done
 
       - uses: actions/upload-artifact@v7
