@@ -175,7 +175,7 @@ jobs:
       - uses: actions/download-artifact@v4
         if: github.event.inputs.build_packages != ''
 
-      - name: Cleanup directory
+      - name: Cleanup before indexing
         run: |
           find . \( -type d -name "css" -prune -exec rm -frv "{}" \; \) -o \( -type f -name "index.html" -exec rm -fv "{}" \; \) || true
           find . -type f -regextype posix-extended -iregex '.*/Packages(\.(gz|html|manifest))?$' -exec rm -fv "{}" \; || true
