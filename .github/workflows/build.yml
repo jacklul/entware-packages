@@ -7,7 +7,7 @@ on:
         description: 'Packages to build and add to the listing'
         required: false
         default: ''
-      delete_packages:
+      remove_packages:
         description: 'Packages to remove from the listing'
         required: false
         default: ''
@@ -165,9 +165,9 @@ jobs:
       - run: mv ipk-html-indexer ../ipk-html-indexer
 
       - name: Delete packages
-        if: github.event.inputs.delete_packages != ''
+        if: github.event.inputs.remove_packages != ''
         run: |
-          PACKAGES="${{ github.event.inputs.delete_packages }}"
+          PACKAGES="${{ github.event.inputs.remove_packages }}"
           for PACKAGE in $PACKAGES; do
             find . -type f -regextype posix-extended -iregex ".*/${PACKAGE}.*_[^_]*-[0-9]+\.[0-9]+\.ipk" -exec rm -fv "{}" \;
           done
