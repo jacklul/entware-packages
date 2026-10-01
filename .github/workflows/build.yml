@@ -165,11 +165,11 @@ jobs:
       - run: mv ipk-html-indexer ../ipk-html-indexer
 
       - name: Delete packages
-        if: github.event.inputs.build_packages != '' || github.event.inputs.delete_packages != ''
+        if: github.event.inputs.delete_packages != ''
         run: |
-          PACKAGES="${{ github.event.inputs.build_packages }} ${{ github.event.inputs.delete_packages }}"
+          PACKAGES="${{ github.event.inputs.delete_packages }}"
           for PACKAGE in $PACKAGES; do
-            find . -type f -regextype posix-extended -regex ".*/${PACKAGE}(-[^_]*)?_[^_]*_[^_]*-[0-9]+\.[0-9]+\.ipk" -exec rm -fv "{}" \;
+            find . -type f -regextype posix-extended -iregex ".*/${PACKAGE}.*_[^_]*-[0-9]+\.[0-9]+\.ipk" -exec rm -fv "{}" \;
           done
 
       - uses: actions/download-artifact@v4
