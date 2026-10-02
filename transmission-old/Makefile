@@ -42,7 +42,6 @@ define Package/transmission-old
 	   +librt +libutp +zlib +LIBCURL_NOSSL:libmbedtls \
 	   +LIBCURL_GNUTLS:libmbedtls +LIBCURL_MBEDTLS:libmbedtls
   USERID:=transmission=224:transmission=224
-  PROVIDES:=transmission-daemon transmission-cli transmission-remote transmission-web
   MAINTAINER:=Jack'lul, https://jacklul.github.io
 endef
 

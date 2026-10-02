@@ -11,16 +11,20 @@ on:
         description: 'Packages to remove from the listing'
         required: false
         default: ''
-      debug_compile:
+      prepare_args:
+        description: 'Extra arguments to pass to the prepare script'
+        required: false
+        default: ''
+      debug_packages:
         type: boolean
         required: false
         default: false
-        description: Enable debug logging when compiling packages
+        description: Enable debug logging when compiling packages (slower compile)
       debug_tools:
         type: boolean
         required: false
         default: false
-        description: Enable debug logging when compiling tools and toolchain
+        description: Enable debug logging when compiling tools (slower compile)
 
 jobs:
   build:
@@ -59,31 +63,21 @@ jobs:
           sudo apt-get update
           sudo apt-get install build-essential flex gawk gcc-multilib gettext git libncurses5-dev libssl-dev python2 python-is-python3 python3-distutils subversion unzip zlib1g-dev rsync
 
-      - name: Activate platform configuration
+      - name: Prepare configuration
         run: |
           ln -s configs/${{ matrix.arch }}.config .config
-
-      - name: Fetch feeds
-        run: |
           echo "src-git self https://github.com/${GITHUB_REPOSITORY}.git;${{ github.ref_name }}" >> feeds.conf
           cat feeds.conf
           make package/symlinks
-
-      - name: Apply modifications
-        run: |
           if [ -f feeds/self/.github/prepare.sh ]; then
-            bash feeds/self/.github/prepare.sh ${{ github.event.inputs.build_packages }}
+            bash feeds/self/.github/prepare.sh ${{ github.event.inputs.build_packages }} ${{ github.event.inputs.prepare_args }}
           fi
 
       - name: Create cache key
         id: cache-key
         run: |
-          RESULT=$(git rev-parse HEAD)
-          if [ -f .cache_key ]; then
-            RESULT="$(cat .cache_key)-${RESULT}"
-          fi
-          echo "RESULT=$RESULT" >> $GITHUB_OUTPUT
-          echo "Cache key: $RESULT"
+          [ -f .cache_key ] && RESULT="$(cat .cache_key)-$(git rev-parse HEAD)" || RESULT=$(git rev-parse HEAD)
+          echo "RESULT=$RESULT" | tee -a "$GITHUB_OUTPUT"
 
       - uses: actions/cache/restore@v5
         continue-on-error: true
@@ -126,14 +120,8 @@ jobs:
                 continue
               fi
             fi
-            make package/$PACKAGE/compile ${{ github.event.inputs.debug_compile == 'true' && '-j1 V=sc' || '-j$(nproc)' }} ${{ matrix.allow-failure && '|| true' || '' }} ; 
+            make package/$PACKAGE/compile ${{ github.event.inputs.debug_packages == 'true' && '-j1 V=sc' || '-j$(nproc)' }} ${{ matrix.allow-failure && '|| true' || '' }} ; 
           done
-
-      - uses: actions/upload-artifact@v7
-        if: ${{ always() && steps.build-packages.outcome == 'failure' }}
-        with:
-          name: logs-${{ matrix.arch }}
-          path: ./logs
 
       - name: Copy packages to artifacts directory
         run: |

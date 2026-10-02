@@ -23,15 +23,20 @@ for arg in "$@"; do
             git -C feeds/packages apply -v "$ROOT_DIR/.patches/unbound.patch"
         ;;
         transmission)
+            if [[ " $* " == *" transmission-4.0.5 "* ]]; then
+                git -C feeds/packages apply -v "$ROOT_DIR/.patches/transmission-4.0.5.patch"
+                break
+            fi
+
             if [[ $# -ne 1 ]]; then
                 echo "Transmission cannot be compiled together with other packages!" >&2
                 exit 1
             fi
 
             git apply -v "$ROOT_DIR/.patches/transmission-entware.patch"
-            git -C feeds/packages apply -v "$ROOT_DIR/.patches/transmission-package.patch"
+            git -C feeds/packages apply -v "$ROOT_DIR/.patches/transmission-packages.patch"
             make defconfig
-            echo "-transmission" > .cache_key
+            echo "-transmission" > .cache_key # different build of tools and toolchain!
         ;;
     esac
 done

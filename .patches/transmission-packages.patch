@@ -1,5 +1,21 @@
+diff --git a/libs/libdeflate/Makefile b/libs/libdeflate/Makefile
+index 7f37c858b..bced93f5d 100644
+--- a/libs/libdeflate/Makefile
++++ b/libs/libdeflate/Makefile
+@@ -16,6 +16,11 @@ PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
+ include $(INCLUDE_DIR)/package.mk
+ include $(INCLUDE_DIR)/cmake.mk
+ 
++ifeq ($(ARCH),aarch64)
++	TARGET_CFLAGS += -DLIBDEFLATE_ASSEMBLER_DOES_NOT_SUPPORT_DOTPROD \
++		-DLIBDEFLATE_ASSEMBLER_DOES_NOT_SUPPORT_SHA3
++endif
++
+ define Package/libdeflate
+   SECTION:=libs
+   CATEGORY:=Libraries
 diff --git a/net/transmission/Makefile b/net/transmission/Makefile
-index 976d44c..504614f 100644
+index 976d44c66..db88d12c7 100644
 --- a/net/transmission/Makefile
 +++ b/net/transmission/Makefile
 @@ -10,12 +10,12 @@
@@ -86,7 +102,7 @@ index 976d44c..504614f 100644
  $(eval $(call BuildPackage,transmission-remote))
 diff --git a/net/transmission/patches/010-temp-miniupnpc-2.2.8-compile.patch b/net/transmission/patches/010-temp-miniupnpc-2.2.8-compile.patch
 deleted file mode 100644
-index 984ad0e..0000000
+index 984ad0e5f..000000000
 --- a/net/transmission/patches/010-temp-miniupnpc-2.2.8-compile.patch
 +++ /dev/null
 @@ -1,28 +0,0 @@
@@ -120,7 +136,7 @@ index 984ad0e..0000000
 -             tr_logAddInfo(fmt::format(_("Local Address is '{address}'"), fmt::arg("address", lanaddr.data())));
 diff --git a/net/transmission/patches/020-glibc-2.27-fix-ipv6-6to4-constexpr.patch b/net/transmission/patches/020-glibc-2.27-fix-ipv6-6to4-constexpr.patch
 new file mode 100644
-index 0000000..da030c6
+index 000000000..da030c6c6
 --- /dev/null
 +++ b/net/transmission/patches/020-glibc-2.27-fix-ipv6-6to4-constexpr.patch
 @@ -0,0 +1,11 @@
