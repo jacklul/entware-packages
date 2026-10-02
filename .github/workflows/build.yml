@@ -110,6 +110,7 @@ jobs:
         id: build-packages
         continue-on-error: ${{ matrix.allow-failure }}
         run: |
+          PACKAGES=""
           for PACKAGE in ${{ github.event.inputs.build_packages }}; do
             export BUILD_VARIANT=
             if [[ "$PACKAGE" == *_nohf ]]; then
@@ -120,13 +121,23 @@ jobs:
                 continue
               fi
             fi
+            MAKEFILE="$(find . -path "*/$PACKAGE/Makefile" -print -quit)"
+            if [ -n "$MAKEFILE" ]; then
+              for SUBPACKAGE in $(sed -n 's/.*BuildPackage,\([^)]*\)).*/\1/p' "$MAKEFILE" | paste -sd ' ' -); do
+                case " $PACKAGES " in
+                  *" $SUBPACKAGE "*) ;;
+                  *) PACKAGES="${PACKAGES:+$PACKAGES }$SUBPACKAGE" ;;
+                esac
+              done
+            fi
             make package/$PACKAGE/compile ${{ github.event.inputs.debug_packages == 'true' && '-j1 V=sc' || '-j$(nproc)' }} ${{ matrix.allow-failure && '|| true' || '' }} ; 
           done
+          echo "PACKAGES=$PACKAGES" | tee -a "$GITHUB_OUTPUT"
 
       - name: Copy packages to artifacts directory
         run: |
           mkdir -v ./artifacts
-          for PACKAGE in ${{ github.event.inputs.build_packages }}; do
+          for PACKAGE in ${{ steps.build-packages.outputs.PACKAGES }}; do
             cp -nv ./bin/targets/*/*/packages/${PACKAGE}*.ipk ./artifacts || true
           done
 
