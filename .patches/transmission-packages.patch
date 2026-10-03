@@ -73,7 +73,7 @@ index 976d44c66..db88d12c7 100644
  TARGET_CXXFLAGS += -DHAVE_SIZE_T
 +
 +comma:=,
-+TARGET_LDFLAGS := $(subst -Wl$(comma)-rpath=/opt/lib,-Wl$(comma)-rpath=/opt/lib/transmission-4.1,$(TARGET_LDFLAGS))
++TARGET_LDFLAGS := $(subst -Wl$(comma)-rpath=/opt/lib,-Wl$(comma)-rpath=/opt/lib/transmission,$(TARGET_LDFLAGS))
  TARGET_LDFLAGS += -latomic -Wl,--as-needed
  
  CMAKE_OPTIONS += \
@@ -82,11 +82,11 @@ index 976d44c66..db88d12c7 100644
  	$(if $(CONFIG_LIBCURL_WOLFSSL),-DWITH_CRYPTO=wolfssl)
  
 +define Package/transmission-runtime/install
-+	$(INSTALL_DIR) $(1)/opt/lib/transmission-4.1
-+	$(CP) $(TOOLCHAIN_DIR)/lib/libstdc++.so.6* $(1)/opt/lib/transmission-4.1/
-+	$(RM) $(1)/opt/lib/transmission-4.1/*-gdb.py
-+	$(CP) $(TOOLCHAIN_DIR)/lib/libgcc_s.so.1 $(1)/opt/lib/transmission-4.1/
-+	$(CP) $(TOOLCHAIN_DIR)/lib/libatomic.so.1* $(1)/opt/lib/transmission-4.1/
++	$(INSTALL_DIR) $(1)/opt/lib/transmission
++	$(CP) $(TOOLCHAIN_DIR)/lib/libstdc++.so.6* $(1)/opt/lib/transmission/
++	$(RM) $(1)/opt/lib/transmission/*-gdb.py
++	$(CP) $(TOOLCHAIN_DIR)/lib/libgcc_s.so.1 $(1)/opt/lib/transmission/
++	$(CP) $(TOOLCHAIN_DIR)/lib/libatomic.so.1* $(1)/opt/lib/transmission/
 +endef
 +
  define Package/transmission-daemon/install
