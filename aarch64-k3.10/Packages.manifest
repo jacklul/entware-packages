@@ -1,0 +1,382 @@
+Package: libunbound
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, libmnl, libevent2, libpthread
+Provides: libunbound-any
+Source: feeds/packages/net/unbound
+SourceName: unbound
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Section: libs
+Require-User: unbound:unbound
+SourceDateEpoch: 1788030776
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Maintainer: Eric Luehrsen <ericluehrsen@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 1392640
+Filename: libunbound_1.26.1-0_aarch64-3.10.ipk
+Size: 563933
+SHA256sum: f7737cbe93b6a9fff5144bdb2ee6116a38b9b79da1a5286313881d61e6aa72f5
+Description:  This package contains the Unbound library including 'libevent', 'libmnl', and
+ 'libpthread' to better handle large networks with heavy query loads. Options
+ are available to custom trim Unbound for smaller targets.
+
+Package: msmtpd
+Version: 1.8.32-1
+Depends: libc, libssp, librt, libpthread, libintl-full, daemonize
+Provides: msmtpd-any
+Source: feeds/self/msmtpd
+SourceName: msmtpd
+Section: mail
+SourceDateEpoch: 1790958621
+URL: https://marlam.de/msmtp
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: aarch64-3.10
+Installed-Size: 51200
+Filename: msmtpd_1.8.32-1_aarch64-3.10.ipk
+Size: 17061
+SHA256sum: bf5ddef70da4c7f2e2ec94c3543cef8fa8ffcd6a97237e341f1d3e90da0a7114
+Description:  Msmtpd is a minimal SMTP server that pipes mails to msmtp or some other
+ program for delivery. It can be used with system services that expect
+ an SMTP server on the local host.
+
+Package: transmission-cli
+Version: 4.0.5-0
+Depends: libc, libssp, librt, libpthread, libatomic, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-cli-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1788030776
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: aarch64-3.10
+Installed-Size: 1781760
+Filename: transmission-cli_4.0.5-0_aarch64-3.10.ipk
+Size: 878154
+SHA256sum: b813efedd88b970a212bcd3016b3975fb3dbbf13f073cf1c17cd9a65ac74cb53
+Description:  CLI utilities for transmission.
+
+Package: transmission-cli
+Version: 4.1.3-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-cli-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1788030776
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: aarch64-3.10
+Installed-Size: 5273600
+Filename: transmission-cli_4.1.3-0_aarch64-3.10.ipk
+Size: 2502249
+SHA256sum: 43edecd1acc9e30b275931053d67e4a259d15e39e7da50f1a631ff31640748a7
+Description:  CLI utilities for transmission.
+
+Package: transmission-daemon
+Version: 4.0.5-0
+Depends: libc, libssp, librt, libpthread, libatomic, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-daemon-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+Require-User: transmission=224:transmission=224
+SourceDateEpoch: 1788030776
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: aarch64-3.10
+Installed-Size: 1177600
+Filename: transmission-daemon_4.0.5-0_aarch64-3.10.ipk
+Size: 573161
+SHA256sum: 5e33b5b6f799849c792a73ede0167287c1abc3d761c397a8eb0cde0d8fbf96e4
+Description:  Transmission is a simple BitTorrent client.
+ It features a very simple, intuitive interface
+ on top on an efficient, cross-platform back-end.
+ This package contains the daemon itself.
+
+Package: transmission-daemon
+Version: 4.1.3-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-daemon-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+Require-User: transmission=224:transmission=224
+SourceDateEpoch: 1788030776
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: aarch64-3.10
+Installed-Size: 1638400
+Filename: transmission-daemon_4.1.3-0_aarch64-3.10.ipk
+Size: 780637
+SHA256sum: 4c53fbb2435cb76c8eb4f9c08acafc5587a5c9b95adf048e7442fa470d0e1808
+Description:  Transmission is a simple BitTorrent client.
+ It features a very simple, intuitive interface
+ on top on an efficient, cross-platform back-end.
+ This package contains the daemon itself.
+
+Package: transmission-remote
+Version: 4.0.5-0
+Depends: libc, libssp, librt, libpthread, libatomic, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-remote-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1788030776
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: aarch64-3.10
+Installed-Size: 307200
+Filename: transmission-remote_4.0.5-0_aarch64-3.10.ipk
+Size: 149731
+SHA256sum: d0ba54fb228aaaca9938817596c2a8fed8410e40ca885448ccc275671c0e5f86
+Description:  CLI remote interface for transmission.
+
+Package: transmission-remote
+Version: 4.1.3-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-remote-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1788030776
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: aarch64-3.10
+Installed-Size: 1310720
+Filename: transmission-remote_4.1.3-0_aarch64-3.10.ipk
+Size: 615945
+SHA256sum: f9c329a696d5ca563392a04b004c6c620a3e3f64f464f47b646e2f304e43c867
+Description:  CLI remote interface for transmission.
+
+Package: transmission-runtime
+Version: 4.1.3-0
+Depends: libc, libssp, librt, libpthread
+Provides: transmission-runtime-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: libs
+SourceDateEpoch: 1788030776
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: aarch64-3.10
+Installed-Size: 2222080
+Filename: transmission-runtime_4.1.3-0_aarch64-3.10.ipk
+Size: 712630
+SHA256sum: 30dbd74e360877cc29453a575e4c7a54ff3b3cb68204da4e11c5f9745b202340
+Description:  Private GCC runtime libraries required by Transmission 4.1+.
+ These libraries are isolated from the system Entware GCC runtime.
+
+Package: transmission-web
+Version: 4.0.5-0
+Depends: libc, libssp, librt, libpthread, transmission-daemon
+Provides: transmission-web-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1788030776
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: all
+Installed-Size: 225280
+Filename: transmission-web_4.0.5-0_all.ipk
+Size: 64016
+SHA256sum: 044ce49302489968696dd4764cba9211daecb0b0c521c1c5ab5bca28f1083a8c
+Description:  Webinterface resources for transmission.
+
+Package: transmission-web
+Version: 4.1.3-0
+Depends: libc, libssp, librt, libpthread, transmission-daemon
+Provides: transmission-web-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1788030776
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: all
+Installed-Size: 256000
+Filename: transmission-web_4.1.3-0_all.ipk
+Size: 64477
+SHA256sum: 2b437e6d32f702ccc53861a5755b184ce1de07599bc341f691f8ece0ac42b48c
+Description:  Webinterface resources for transmission.
+
+Package: unbound-anchor
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, unbound-daemon, libexpat
+Provides: unbound-anchor-any
+Source: feeds/packages/net/unbound
+SourceName: unbound
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Section: net
+Require-User: unbound:unbound
+SourceDateEpoch: 1788030776
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Maintainer: Eric Luehrsen <ericluehrsen@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 71680
+Filename: unbound-anchor_1.26.1-0_aarch64-3.10.ipk
+Size: 30400
+SHA256sum: 61053538708aba233a45fc0b0fe0d288face9f4da5f0edeac6bfee389447f3b7
+Description:  This package contains the Unbound anchor utility.
+
+Package: unbound-checkconf
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, unbound-daemon
+Provides: unbound-checkconf-any
+Source: feeds/packages/net/unbound
+SourceName: unbound
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Section: net
+Require-User: unbound:unbound
+SourceDateEpoch: 1788030776
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Maintainer: Eric Luehrsen <ericluehrsen@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 174080
+Filename: unbound-checkconf_1.26.1-0_aarch64-3.10.ipk
+Size: 66361
+SHA256sum: 19cfceafdd9736fa3c4a796e69973efc49ad18ccf6127a38edd2f299d59e9296
+Description:  This package contains the Unbound DNS configuration checker utility.
+
+Package: unbound-control
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, unbound-daemon
+Provides: unbound-control-any
+Source: feeds/packages/net/unbound
+SourceName: unbound
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Section: net
+Require-User: unbound:unbound
+SourceDateEpoch: 1788030776
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Maintainer: Eric Luehrsen <ericluehrsen@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 174080
+Filename: unbound-control_1.26.1-0_aarch64-3.10.ipk
+Size: 66673
+SHA256sum: bb3c99b551956d14ba36c80e04adf72d6928375127f2991dd46f60a6e754a5df
+Description:  This package contains the Unbound control utility.
+
+Package: unbound-control-setup
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, unbound-control, openssl-util
+Provides: unbound-control-setup-any
+Source: feeds/packages/net/unbound
+SourceName: unbound
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Section: net
+Require-User: unbound:unbound
+SourceDateEpoch: 1788030776
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Maintainer: Eric Luehrsen <ericluehrsen@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 10240
+Filename: unbound-control-setup_1.26.1-0_aarch64-3.10.ipk
+Size: 3407
+SHA256sum: e208b655fe2eb6bd40fc18e7c5bda4eaed3687cf428365f05218b05a8688faf3
+Description:  This package contains the Unbound control setup utility.
+
+Package: unbound-daemon
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, libunbound
+Provides: unbound-daemon-any
+Source: feeds/packages/net/unbound
+SourceName: unbound
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Section: net
+Require-User: unbound:unbound
+SourceDateEpoch: 1788030776
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Maintainer: Eric Luehrsen <ericluehrsen@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 471040
+Filename: unbound-daemon_1.26.1-0_aarch64-3.10.ipk
+Size: 173430
+SHA256sum: 6c6a5c46843f3b589328389cc07a8ba47e270eb9befb2aae0d7b6b1be1660f01
+Description:  This package contains the Unbound daemon including 'libevent', 'libmnl', and
+ 'libpthread' to better handle large networks with heavy query loads. Options
+ are available under libraries/network/libunbound to custom trim Unbound for
+ smaller targets.
+
+Package: unbound-host
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, libunbound
+Provides: unbound-host-any
+Source: feeds/packages/net/unbound
+SourceName: unbound
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Section: net
+Require-User: unbound:unbound
+SourceDateEpoch: 1788030776
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Maintainer: Eric Luehrsen <ericluehrsen@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 143360
+Filename: unbound-host_1.26.1-0_aarch64-3.10.ipk
+Size: 55474
+SHA256sum: 367e852b5dee5535e6f0237925d5334683df432710a0e9b43864d2594946a9de
+Description:  This package contains the Unbound DNS lookup utility.
+
+Package: xupnpd2-jacklul
+Version: 2026-06-12-1
+Depends: libc, libssp, librt, libpthread, libsqlite3, liblua5.3, libuuid, libstdcpp, libopenssl
+Provides: xupnpd2-jacklul-any, xupnpd2
+Source: feeds/self/xupnpd2-jacklul
+SourceName: xupnpd2-jacklul
+Section: multimedia
+SourceDateEpoch: 1790958621
+URL: https://github.com/jacklul/xupnpd2
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: aarch64-3.10
+Installed-Size: 430080
+Filename: xupnpd2-jacklul_2026-06-12-1_aarch64-3.10.ipk
+Size: 184904
+SHA256sum: 0e90097ad2f605422ee8a5aabd07592c671b736db784eea7a26ec35243ecf01c
+Description:  This program is a light DLNA Media Server which provides ContentDirectory:1
+ service for sharing IPTV unicast streams over local area network (with udpxy
+ for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
+ playlists with links over local area network as content of the directory.
+ You can watch HDTV broadcasts (multicast or unicast) and listen Internet
+ Radio in IP network without transcoding and PC.
+

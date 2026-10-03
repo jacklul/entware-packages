@@ -1,0 +1,294 @@
+Package: libunbound
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, libmnl, libevent2, libpthread
+Provides: libunbound-any
+License: BSD-3-Clause
+Section: libs
+Require-User: unbound:unbound
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Architecture: x64-3.2
+Installed-Size: 1341440
+Filename: libunbound_1.26.1-0_x64-3.2.ipk
+Size: 574100
+SHA256sum: dc3d300af2e5bb91922c67e6598242640dd993e48cfc9cc7ac790f3c5efd376a
+Description:  This package contains the Unbound library including 'libevent', 'libmnl', and
+ 'libpthread' to better handle large networks with heavy query loads. Options
+ are available to custom trim Unbound for smaller targets.
+
+Package: msmtpd
+Version: 1.8.32-1
+Depends: libc, libssp, librt, libpthread, libintl-full, daemonize
+Provides: msmtpd-any
+Section: mail
+URL: https://marlam.de/msmtp
+Architecture: x64-3.2
+Installed-Size: 51200
+Filename: msmtpd_1.8.32-1_x64-3.2.ipk
+Size: 17627
+SHA256sum: e2a0ccdf80ab47f1c4e2d96ccc6267430eafcfabdf6491c343620c776e3aa19e
+Description:  Msmtpd is a minimal SMTP server that pipes mails to msmtp or some other
+ program for delivery. It can be used with system services that expect
+ an SMTP server on the local host.
+
+Package: transmission-cli
+Version: 4.0.5-0
+Depends: libc, libssp, librt, libpthread, libatomic, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-cli-any
+License: GPL-2.0-or-later
+Section: net
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: x64-3.2
+Installed-Size: 2017280
+Filename: transmission-cli_4.0.5-0_x64-3.2.ipk
+Size: 917525
+SHA256sum: caf98d6b09380aa7c633b1d815cd1f288ac71b0288392753f9e74783281b59bf
+Description:  CLI utilities for transmission.
+
+Package: transmission-cli
+Version: 4.1.3-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-cli-any
+License: GPL-2.0-or-later
+Section: net
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: x64-3.2
+Installed-Size: 5990400
+Filename: transmission-cli_4.1.3-0_x64-3.2.ipk
+Size: 2608608
+SHA256sum: bdcc24ce57975b63d5d5418d7f0270ef1ac6c6c99457fb5fe0b12e0eadb05247
+Description:  CLI utilities for transmission.
+
+Package: transmission-daemon
+Version: 4.1.3-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-daemon-any
+License: GPL-2.0-or-later
+Section: net
+Require-User: transmission=224:transmission=224
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: x64-3.2
+Installed-Size: 1853440
+Filename: transmission-daemon_4.1.3-0_x64-3.2.ipk
+Size: 815905
+SHA256sum: beb2cd946143785f0a846dc15cfdb973ee60d9cb6193f93e721ee1045b448f37
+Description:  Transmission is a simple BitTorrent client.
+ It features a very simple, intuitive interface
+ on top on an efficient, cross-platform back-end.
+ This package contains the daemon itself.
+
+Package: transmission-daemon
+Version: 4.0.5-0
+Depends: libc, libssp, librt, libpthread, libatomic, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-daemon-any
+License: GPL-2.0-or-later
+Section: net
+Require-User: transmission=224:transmission=224
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: x64-3.2
+Installed-Size: 1331200
+Filename: transmission-daemon_4.0.5-0_x64-3.2.ipk
+Size: 600561
+SHA256sum: 8287f07689f9c8e55bcefec674cdee90e6d5c8adad24d6914c12b127e8b1dbba
+Description:  Transmission is a simple BitTorrent client.
+ It features a very simple, intuitive interface
+ on top on an efficient, cross-platform back-end.
+ This package contains the daemon itself.
+
+Package: transmission-remote
+Version: 4.1.3-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-remote-any
+License: GPL-2.0-or-later
+Section: net
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: x64-3.2
+Installed-Size: 1495040
+Filename: transmission-remote_4.1.3-0_x64-3.2.ipk
+Size: 643815
+SHA256sum: b036297720b71295e1ca7b3e31e72c31bda73eb8f6c56ad410a8acf61b42a1fa
+Description:  CLI remote interface for transmission.
+
+Package: transmission-remote
+Version: 4.0.5-0
+Depends: libc, libssp, librt, libpthread, libatomic, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-remote-any
+License: GPL-2.0-or-later
+Section: net
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: x64-3.2
+Installed-Size: 337920
+Filename: transmission-remote_4.0.5-0_x64-3.2.ipk
+Size: 154063
+SHA256sum: 16638d255cd80ab440e6329f52685dbf0015274d2549708568f1ff80ab0851ee
+Description:  CLI remote interface for transmission.
+
+Package: transmission-runtime
+Version: 4.1.3-0
+Depends: libc, libssp, librt, libpthread
+Provides: transmission-runtime-any
+License: GPL-2.0-or-later
+Section: libs
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: x64-3.2
+Installed-Size: 2119680
+Filename: transmission-runtime_4.1.3-0_x64-3.2.ipk
+Size: 729732
+SHA256sum: 35c93171463c8c6f4b03e0c34ac15036c4e9fe27794ffd092a5cd927e871cac6
+Description:  Private GCC runtime libraries required by Transmission 4.1+.
+ These libraries are isolated from the system Entware GCC runtime.
+
+Package: transmission-web
+Version: 4.0.5-0
+Depends: libc, libssp, librt, libpthread, transmission-daemon
+Provides: transmission-web-any
+License: GPL-2.0-or-later
+Section: net
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: all
+Installed-Size: 225280
+Filename: transmission-web_4.0.5-0_all.ipk
+Size: 64016
+SHA256sum: 044ce49302489968696dd4764cba9211daecb0b0c521c1c5ab5bca28f1083a8c
+Description:  Webinterface resources for transmission.
+
+Package: transmission-web
+Version: 4.1.3-0
+Depends: libc, libssp, librt, libpthread, transmission-daemon
+Provides: transmission-web-any
+License: GPL-2.0-or-later
+Section: net
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: all
+Installed-Size: 256000
+Filename: transmission-web_4.1.3-0_all.ipk
+Size: 64477
+SHA256sum: 2b437e6d32f702ccc53861a5755b184ce1de07599bc341f691f8ece0ac42b48c
+Description:  Webinterface resources for transmission.
+
+Package: unbound-anchor
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, unbound-daemon, libexpat
+Provides: unbound-anchor-any
+License: BSD-3-Clause
+Section: net
+Require-User: unbound:unbound
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Architecture: x64-3.2
+Installed-Size: 81920
+Filename: unbound-anchor_1.26.1-0_x64-3.2.ipk
+Size: 31541
+SHA256sum: e15abbbb340696d8a01ee73acf4764093f9ce10c9e28514ffdb89e2e46154016
+Description:  This package contains the Unbound anchor utility.
+
+Package: unbound-checkconf
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, unbound-daemon
+Provides: unbound-checkconf-any
+License: BSD-3-Clause
+Section: net
+Require-User: unbound:unbound
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Architecture: x64-3.2
+Installed-Size: 163840
+Filename: unbound-checkconf_1.26.1-0_x64-3.2.ipk
+Size: 64639
+SHA256sum: 94ecd93722a2dee62de3bac830a491d416abdaae5466efb85627471379ed049c
+Description:  This package contains the Unbound DNS configuration checker utility.
+
+Package: unbound-control
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, unbound-daemon
+Provides: unbound-control-any
+License: BSD-3-Clause
+Section: net
+Require-User: unbound:unbound
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Architecture: x64-3.2
+Installed-Size: 163840
+Filename: unbound-control_1.26.1-0_x64-3.2.ipk
+Size: 65180
+SHA256sum: a3cf03c56d59d3ebc51428669821dc496f47a5d9b74128748ba7be8f830152d6
+Description:  This package contains the Unbound control utility.
+
+Package: unbound-control-setup
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, unbound-control, openssl-util
+Provides: unbound-control-setup-any
+License: BSD-3-Clause
+Section: net
+Require-User: unbound:unbound
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Architecture: x64-3.2
+Installed-Size: 10240
+Filename: unbound-control-setup_1.26.1-0_x64-3.2.ipk
+Size: 3401
+SHA256sum: 4bdf58de2569ac77d17262004ca817e85b04a85ae523b36332bdc35e1d5d4b0a
+Description:  This package contains the Unbound control setup utility.
+
+Package: unbound-daemon
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, libunbound
+Provides: unbound-daemon-any
+License: BSD-3-Clause
+Section: net
+Require-User: unbound:unbound
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Architecture: x64-3.2
+Installed-Size: 440320
+Filename: unbound-daemon_1.26.1-0_x64-3.2.ipk
+Size: 172340
+SHA256sum: 51790a1449115f6029e3d9baa7d707ebca2eed86395610042f34654a8b16d004
+Description:  This package contains the Unbound daemon including 'libevent', 'libmnl', and
+ 'libpthread' to better handle large networks with heavy query loads. Options
+ are available under libraries/network/libunbound to custom trim Unbound for
+ smaller targets.
+
+Package: unbound-host
+Version: 1.26.1-0
+Depends: libc, libssp, librt, libpthread, ca-bundle, libopenssl, libunbound
+Provides: unbound-host-any
+License: BSD-3-Clause
+Section: net
+Require-User: unbound:unbound
+URL: https://nlnetlabs.nl/projects/unbound/about
+CPE-ID: cpe:/a:nlnetlabs:unbound
+Architecture: x64-3.2
+Installed-Size: 133120
+Filename: unbound-host_1.26.1-0_x64-3.2.ipk
+Size: 53121
+SHA256sum: 114568e0ae615449d746a89b8ab7708eaff1f884849bb26f5701b8795d810572
+Description:  This package contains the Unbound DNS lookup utility.
+
+Package: xupnpd2-jacklul
+Version: 2026-06-12-1
+Depends: libc, libssp, librt, libpthread, libsqlite3, liblua5.3, libuuid, libstdcpp, libopenssl
+Provides: xupnpd2-jacklul-any, xupnpd2
+Section: multimedia
+URL: https://github.com/jacklul/xupnpd2
+Architecture: x64-3.2
+Installed-Size: 440320
+Filename: xupnpd2-jacklul_2026-06-12-1_x64-3.2.ipk
+Size: 184102
+SHA256sum: 38e9ae33d5cc777d307d04af1fa3212d85f903701daab296b18625c884029dfa
+Description:  This program is a light DLNA Media Server which provides ContentDirectory:1
+ service for sharing IPTV unicast streams over local area network (with udpxy
+ for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
+ playlists with links over local area network as content of the directory.
+ You can watch HDTV broadcasts (multicast or unicast) and listen Internet
+ Radio in IP network without transcoding and PC.
+
