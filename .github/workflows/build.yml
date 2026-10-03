@@ -173,7 +173,7 @@ jobs:
         run: |
           PACKAGES="${{ github.event.inputs.remove_packages }}"
           for PACKAGE in $PACKAGES; do
-            find . -type f -regextype posix-extended -iregex ".*/${PACKAGE}.*_[^_]*-[0-9]+\.[0-9]+\.ipk" -exec rm -fv "{}" \;
+            find . -type f -name "${PACKAGE}*.ipk" -exec rm -fv "{}" \;
           done
 
       - uses: actions/download-artifact@v4
