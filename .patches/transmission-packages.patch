@@ -47,8 +47,8 @@ index 976d44c66..db88d12c7 100644
  
 +define Package/transmission-runtime
 +  SUBMENU:=BitTorrent
-+  SECTION:=net
-+  CATEGORY:=Network
++  SECTION:=libs
++  CATEGORY:=Libraries
 +  TITLE:=Private GCC runtime for Transmission 4.1+
 +  URL:=https://www.transmissionbt.com
 +endef
