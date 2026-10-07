@@ -1,7 +1,5 @@
 # Entware packages
 
-Custom repository with extra packages.
-
 ## How to use
 
 Add this repository to your `/opt/etc/opkg.conf`:
