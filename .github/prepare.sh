@@ -29,7 +29,7 @@ for arg in "$@"; do
             fi
 
             if [[ $# -ne 1 ]]; then
-                echo "Transmission cannot be compiled together with other packages!" >&2
+                echo "Transmission 4.1+ cannot be compiled together with other packages!" >&2
                 exit 1
             fi
 
