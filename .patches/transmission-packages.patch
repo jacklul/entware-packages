@@ -30,7 +30,7 @@ index 976d44c66..db88d12c7 100644
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
  PKG_SOURCE_URL:=https://github.com/transmission/transmission/releases/download/$(PKG_VERSION)/
 -PKG_HASH:=2a38fe6d8a23991680b691c277a335f8875bdeca2b97c6b26b598bc9c7b0c45f
-+PKG_HASH:=8ed105c791f4bcf790158b6547f43a4c18269983eba4e3cdd411c71bd1bb2640
++PKG_HASH:=86e7aa020cdf64826447034bc85f4d3b7c848d8c0891d9dc9b9fddfb2c805d22
  
  PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
  PKG_LICENSE:=GPL-2.0-or-later
@@ -151,3 +151,31 @@ index 000000000..da030c6c6
 +     {
 +         return is_ipv6() && reinterpret_cast<uint16_t const*>(&addr.addr6)[0] == htons(0x2002U);
 +     }
+diff --git a/net/transmission/patches/030-gcc8-variant-move-assignment.patch b/net/transmission/patches/030-gcc8-variant-move-assignment.patch
+new file mode 100644
+index 000000000..000000000
+--- /dev/null
++++ b/net/transmission/patches/030-gcc8-variant-move-assignment.patch
+@@ -0,0 +1,19 @@
++--- a/libtransmission/variant.h
+++++ b/libtransmission/variant.h
++@@ -214,7 +214,18 @@ public:
++     constexpr tr_variant() noexcept = default;
++     ~tr_variant() = default;
++     tr_variant(tr_variant&& that) noexcept = default;
++-    tr_variant& operator=(tr_variant&& that) noexcept = default;
+++    tr_variant& operator=(tr_variant&& that) noexcept
+++    {
+++        if (this != &that)
+++        {
+++            std::visit([this](auto&& value)
+++            {
+++                using Value = std::decay_t<decltype(value)>;
+++                val_.template emplace<Value>(std::move(value));
+++            }, that.val_);
+++        }
+++        return *this;
+++    }
++ 
++     // Copying a variant is potentially expensive, so copy assignment
++     // and copy construct are deleted here to prevent accidental copies.
