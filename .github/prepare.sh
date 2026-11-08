@@ -17,11 +17,21 @@ if [ -d "$ROOT_DIR/.overrides" ]; then # better to use patches instead!
     cp -rfv "$ROOT_DIR/.overrides"/. .
 fi
 
+if [[ " $* " == *" openssl "* ]]; then # apply OpenSSL patch when needed by other packages
+	git apply -v "$ROOT_DIR/.patches/openssl.patch"
+fi
+
 for arg in "$@"; do
     case "$arg" in
-        unbound)
-            git -C feeds/packages apply -v "$ROOT_DIR/.patches/unbound.patch"
+        curl)
+            git -C feeds/packages apply -v "$ROOT_DIR/.patches/curl.patch"
         ;;
+		nginx)
+            git -C feeds/packages apply -v "$ROOT_DIR/.patches/nginx.patch"
+		;;
+		php8)
+            git -C feeds/packages apply -v "$ROOT_DIR/.patches/php8.patch"
+		;;
         transmission)
             if [[ " $* " == *" transmission-4.0.5 "* ]]; then
                 git -C feeds/packages apply -v "$ROOT_DIR/.patches/transmission-4.0.5.patch"
@@ -37,6 +47,9 @@ for arg in "$@"; do
             git -C feeds/packages apply -v "$ROOT_DIR/.patches/transmission-packages.patch"
             make defconfig
             echo "-transmission" > .cache_key # different build of tools and toolchain!
+        ;;
+        unbound)
+            git -C feeds/packages apply -v "$ROOT_DIR/.patches/unbound.patch"
         ;;
     esac
 done

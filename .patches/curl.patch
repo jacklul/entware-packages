@@ -1,0 +1,21 @@
+diff --git a/net/curl/Makefile b/net/curl/Makefile
+index e1a4e97c..7c83f7b8 100644
+--- a/net/curl/Makefile
++++ b/net/curl/Makefile
+@@ -9,13 +9,13 @@ include $(TOPDIR)/rules.mk
+ include $(INCLUDE_DIR)/nls.mk
+ 
+ PKG_NAME:=curl
+-PKG_VERSION:=8.23.0
+-PKG_RELEASE:=1
++PKG_VERSION:=8.23.0
++PKG_RELEASE:=0
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+ PKG_SOURCE_URL:=https://github.com/curl/curl/releases/download/curl-$(subst .,_,$(PKG_VERSION))/ \
+ 	https://curl.se/download/
+-PKG_HASH:=8dadd7d2536a314f982ad05a651b713f426bf7d02cc2c76cffb9796f2218e6c5
++PKG_HASH:=8dadd7d2536a314f982ad05a651b713f426bf7d02cc2c76cffb9796f2218e6c5
+ 
+ PKG_LICENSE:=MIT
+ PKG_LICENSE_FILES:=COPYING
