@@ -7,7 +7,7 @@ index 11e4de91b..9b49492bb 100644
  PKG_NAME:=monit
  PKG_VERSION:=6.0.0
 -PKG_RELEASE:=1
-+PKG_RELEASE:=2
++PKG_RELEASE:=1.1
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=https://mmonit.com/monit/dist/
