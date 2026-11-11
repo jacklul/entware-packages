@@ -1,0 +1,39 @@
+diff --git a/admin/monit/Makefile b/admin/monit/Makefile
+index 11e4de91b..9b49492bb 100644
+--- a/admin/monit/Makefile
++++ b/admin/monit/Makefile
+@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
+ 
+ PKG_NAME:=monit
+ PKG_VERSION:=6.0.0
+-PKG_RELEASE:=1
++PKG_RELEASE:=2
+ 
+ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+ PKG_SOURCE_URL:=https://mmonit.com/monit/dist/
+diff --git a/admin/monit/patches/010-skip-vmstat.patch b/admin/monit/patches/010-skip-vmstat.patch
+new file mode 100644
+index 000000000..aab966070
+--- /dev/null
++++ b/admin/monit/patches/010-skip-vmstat.patch
+@@ -0,0 +1,20 @@
++diff --git a/src/process/sysdep_LINUX.c b/src/process/sysdep_LINUX.c
++index 31333fe5..12c49966 100644
++--- a/src/process/sysdep_LINUX.c
+++++ b/src/process/sysdep_LINUX.c
++@@ -728,6 +728,7 @@ bool used_system_memory_sysdep(SystemInfo_T *si) {
++         si->swap.usage.bytes = (swap_total - swap_free) * 1024;
++ 
++         // Paging
+++        if (! getenv("MONIT_VMSTAT_SKIP_PAGING_STATS")) {
++         if (! file_readProc(buf, sizeof(buf), "vmstat", -1, NULL)) {
++                 Log_error("system statistic error -- cannot read /proc/vmstat\n");
++                 return false;
++@@ -740,6 +741,7 @@ bool used_system_memory_sysdep(SystemInfo_T *si) {
++                 Log_error("system statistic error -- cannot get pswpout amount\n");
++                 return false;
++         }
+++        }
++ 
++         return true;
++ }

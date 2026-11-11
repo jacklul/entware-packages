@@ -26,6 +26,9 @@ for arg in "$@"; do
         curl)
             git -C feeds/packages apply -v "$ROOT_DIR/.patches/curl.patch"
         ;;
+		monit)
+            git -C feeds/packages apply -v "$ROOT_DIR/.patches/monit.patch"
+		;;
 		nginx)
             git -C feeds/packages apply -v "$ROOT_DIR/.patches/nginx.patch"
 		;;
