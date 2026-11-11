@@ -20,24 +20,17 @@ fi
 for arg in "$@"; do
     if [ -f "$ROOT_DIR/.patches/$arg.patch" ]; then
         git -C feeds/packages apply -v "$ROOT_DIR/.patches/$arg.patch"
-        continue
     fi
 
     # Special cases
     case "$arg" in
         transmission)
-            if [[ " $* " == *" transmission-4.0.5 "* ]]; then
-                git -C feeds/packages apply -v "$ROOT_DIR/.patches/transmission-4.0.5.patch"
-                break
-            fi
-
             if [[ $# -ne 1 ]]; then
                 echo "Transmission 4.1+ cannot be compiled together with other packages!" >&2
                 exit 1
             fi
 
             git apply -v "$ROOT_DIR/.patches/transmission-entware.patch"
-            git -C feeds/packages apply -v "$ROOT_DIR/.patches/transmission-packages.patch"
             make defconfig
             echo "-transmission" > .cache_key # different build of tools and toolchain!
         ;;
