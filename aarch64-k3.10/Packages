@@ -1,0 +1,145 @@
+Package: monit
+Version: 6.0.0-1.1
+Depends: libc, libssp, librt, libpthread, libpthread, zlib, libopenssl
+Provides: monit-any
+License: AGPL-3.0
+Section: admin
+URL: https://mmonit.com/monit/
+CPE-ID: cpe:/a:tildeslash:monit
+Architecture: aarch64-3.10
+Installed-Size: 880640
+Filename: monit_6.0.0-1.1_aarch64-3.10.ipk
+Size: 342404
+SHA256sum: 16f359cb5cb0ed2329895852f01478d489f796d70cbdb0b6ba0d19677b6ea16a
+Description:  An utility for monitoring services on a Unix system
+ This package is built with SSL support.
+
+Package: monit-nossl
+Version: 6.0.0-1.1
+Depends: libc, libssp, librt, libpthread, libpthread, zlib
+Provides: monit-nossl-any
+License: AGPL-3.0
+Section: admin
+URL: https://mmonit.com/monit/
+CPE-ID: cpe:/a:tildeslash:monit
+Architecture: aarch64-3.10
+Installed-Size: 849920
+Filename: monit-nossl_6.0.0-1.1_aarch64-3.10.ipk
+Size: 329992
+SHA256sum: 51ff654a2e2b18558e1d77e536d1d53369e734d24228881cd009e93969048c0c
+Description:  An utility for monitoring services on a Unix system
+ This package is built without SSL support.
+
+Package: msmtpd
+Version: 1.8.32-1
+Depends: libc, libssp, librt, libpthread, libintl-full, daemonize
+Provides: msmtpd-any
+Section: mail
+URL: https://marlam.de/msmtp
+Architecture: aarch64-3.10
+Installed-Size: 51200
+Filename: msmtpd_1.8.32-1_aarch64-3.10.ipk
+Size: 17061
+SHA256sum: bf5ddef70da4c7f2e2ec94c3543cef8fa8ffcd6a97237e341f1d3e90da0a7114
+Description:  Msmtpd is a minimal SMTP server that pipes mails to msmtp or some other
+ program for delivery. It can be used with system services that expect
+ an SMTP server on the local host.
+
+Package: transmission-cli
+Version: 4.1.4-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-cli-any
+License: GPL-2.0-or-later
+Section: net
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: aarch64-3.10
+Installed-Size: 4874240
+Filename: transmission-cli_4.1.4-0_aarch64-3.10.ipk
+Size: 2320341
+SHA256sum: 2a20be9170c7366b8e128bc9c997aa9d625d1b83a25f9b8e263727c234fd79e1
+Description:  CLI utilities for transmission.
+
+Package: transmission-daemon
+Version: 4.1.4-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-daemon-any
+License: GPL-2.0-or-later
+Section: net
+Require-User: transmission=224:transmission=224
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: aarch64-3.10
+Installed-Size: 1525760
+Filename: transmission-daemon_4.1.4-0_aarch64-3.10.ipk
+Size: 731351
+SHA256sum: e19f97603dfafc59b51a4e5af2dc85e5fc6e67e9e91f48a7f296d06f842202d6
+Description:  Transmission is a simple BitTorrent client.
+ It features a very simple, intuitive interface
+ on top on an efficient, cross-platform back-end.
+ This package contains the daemon itself.
+
+Package: transmission-remote
+Version: 4.1.4-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-remote-any
+License: GPL-2.0-or-later
+Section: net
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: aarch64-3.10
+Installed-Size: 1208320
+Filename: transmission-remote_4.1.4-0_aarch64-3.10.ipk
+Size: 567822
+SHA256sum: cf796d3e5b516b502681597d6185c7f7ab63047aae038c428cf7b76957f1b3a7
+Description:  CLI remote interface for transmission.
+
+Package: transmission-runtime
+Version: 4.1.4-0
+Depends: libc, libssp, librt, libpthread
+Provides: transmission-runtime-any
+License: GPL-2.0-or-later
+Section: libs
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: aarch64-3.10
+Installed-Size: 1525760
+Filename: transmission-runtime_4.1.4-0_aarch64-3.10.ipk
+Size: 435354
+SHA256sum: 6eead8e52c26f07725c914bf25c740abe08cb505bb8ef0e2ab132f0c0555d20e
+Description:  Private GCC runtime libraries required by Transmission 4.1+.
+ These libraries are isolated from the system Entware GCC runtime.
+
+Package: transmission-web
+Version: 4.1.4-0
+Depends: libc, libssp, librt, libpthread, transmission-daemon
+Provides: transmission-web-any
+License: GPL-2.0-or-later
+Section: net
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Architecture: all
+Installed-Size: 256000
+Filename: transmission-web_4.1.4-0_all.ipk
+Size: 64626
+SHA256sum: 714169f3eade3ff7830cda5d52f227646856ee6406e935409d6dda3c1ab5f5fd
+Description:  Webinterface resources for transmission.
+
+Package: xupnpd2-jacklul
+Version: 2026-06-12-1
+Depends: libc, libssp, librt, libpthread, libsqlite3, liblua5.3, libuuid, libstdcpp, libopenssl
+Provides: xupnpd2-jacklul-any, xupnpd2
+Section: multimedia
+URL: https://github.com/jacklul/xupnpd2
+Architecture: aarch64-3.10
+Installed-Size: 430080
+Filename: xupnpd2-jacklul_2026-06-12-1_aarch64-3.10.ipk
+Size: 184904
+SHA256sum: 0e90097ad2f605422ee8a5aabd07592c671b736db784eea7a26ec35243ecf01c
+Description:  This program is a light DLNA Media Server which provides ContentDirectory:1
+ service for sharing IPTV unicast streams over local area network (with udpxy
+ for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
+ playlists with links over local area network as content of the directory.
+ You can watch HDTV broadcasts (multicast or unicast) and listen Internet
+ Radio in IP network without transcoding and PC.
+
