@@ -8,13 +8,13 @@ index 52be229c..bbeff9d0 100755
  PKG_NAME:=nginx
 -PKG_VERSION:=1.30.5
 -PKG_RELEASE:=2
-+PKG_VERSION:=1.30.5
++PKG_VERSION:=1.30.9
 +PKG_RELEASE:=0
  
  PKG_SOURCE:=nginx-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=https://nginx.org/download/
 -PKG_HASH:=6c20565aa2325cb82216ae804f4a4ff1875179014759a381c42ddc8e11c4906d
-+PKG_HASH:=6c20565aa2325cb82216ae804f4a4ff1875179014759a381c42ddc8e11c4906d
++PKG_HASH:=a11c5eeee2e257f4478f0e649f84b0040787d277d2d3e5233952aa6b6dcb80ad
  
  PKG_MAINTAINER:=Thomas Heil <heil@terminal-consulting.de> \
  				Christian Marangi <ansuelsmth@gmail.com>
