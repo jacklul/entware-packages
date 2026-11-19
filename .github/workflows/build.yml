@@ -122,8 +122,10 @@ jobs:
               fi
             fi
             MAKEFILE="$(find . -path "*/$PACKAGE/Makefile" -print -quit)"
+            PACKAGES="$PACKAGES $PACKAGE"
             if [ -n "$MAKEFILE" ]; then
               for SUBPACKAGE in $(sed -n 's/.*BuildPackage,\([^)]*\)).*/\1/p' "$MAKEFILE" | paste -sd ' ' -); do
+                SUBPACKAGE=$(echo "$SUBPACKAGE" | sed 's/\$(.*)\?//g')
                 case " $PACKAGES " in
                   *" $SUBPACKAGE "*) ;;
                   *) PACKAGES="${PACKAGES:+$PACKAGES }$SUBPACKAGE" ;;
@@ -176,7 +178,7 @@ jobs:
             find . -type f -name "${PACKAGE}*.ipk" -exec rm -fv "{}" \;
           done
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         if: github.event.inputs.build_packages != ''
 
       - name: Cleanup before indexing
