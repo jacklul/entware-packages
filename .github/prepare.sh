@@ -32,7 +32,7 @@ for arg in "$@"; do
 
             git apply -v "$ROOT_DIR/.patches/transmission-entware.patch"
             make defconfig
-            echo "-transmission" > .cache_key # different build of tools and toolchain!
+            echo "transmission" > .cache_key # different build of tools and toolchain!
         ;;
     esac
 done
