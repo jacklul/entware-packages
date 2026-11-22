@@ -5,48 +5,10 @@ index 11e4de91b..9b49492bb 100644
 @@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
  
  PKG_NAME:=monit
- PKG_VERSION:=6.0.0
--PKG_RELEASE:=1
-+PKG_RELEASE:=1.2
+-PKG_VERSION:=6.0.0
+-PKG_RELEASE:=1a
++PKG_VERSION:=6.0.0
++PKG_RELEASE:=0
  
  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
  PKG_SOURCE_URL:=https://mmonit.com/monit/dist/
-diff --git a/admin/monit/files/S99monit b/admin/monit/files/S99monit
-index d996b40d..88d02945 100755
---- a/admin/monit/files/S99monit
-+++ b/admin/monit/files/S99monit
-@@ -7,4 +7,8 @@ PREARGS=""
- DESC=$PROCS
- PATH=/opt/sbin:/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
- 
-+if ! grep -q "pswpin" /proc/vmstat || ! grep -q "pswpout" /proc/vmstat; then
-+    export MONIT_VMSTAT_SKIP_PAGING_STATS=1
-+fi
-+
- . /opt/etc/init.d/rc.func
-diff --git a/admin/monit/patches/010-skippable-vmstat-paging-stats.patch b/admin/monit/patches/010-skippable-vmstat-paging-stats.patch
-new file mode 100644
-index 000000000..aab966070
---- /dev/null
-+++ b/admin/monit/patches/010-skippable-vmstat-paging-stats.patch
-@@ -0,0 +1,20 @@
-+diff --git a/src/process/sysdep_LINUX.c b/src/process/sysdep_LINUX.c
-+index 31333fe5..12c49966 100644
-+--- a/src/process/sysdep_LINUX.c
-++++ b/src/process/sysdep_LINUX.c
-+@@ -728,6 +728,7 @@ bool used_system_memory_sysdep(SystemInfo_T *si) {
-+         si->swap.usage.bytes = (swap_total - swap_free) * 1024;
-+ 
-+         // Paging
-++        if (! getenv("MONIT_VMSTAT_SKIP_PAGING_STATS")) {
-+         if (! file_readProc(buf, sizeof(buf), "vmstat", -1, NULL)) {
-+                 Log_error("system statistic error -- cannot read /proc/vmstat\n");
-+                 return false;
-+@@ -740,6 +741,7 @@ bool used_system_memory_sysdep(SystemInfo_T *si) {
-+                 Log_error("system statistic error -- cannot get pswpout amount\n");
-+                 return false;
-+         }
-++        }
-+ 
-+         return true;
-+ }
