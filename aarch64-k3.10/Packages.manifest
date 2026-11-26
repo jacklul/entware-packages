@@ -1,0 +1,1405 @@
+Package: apache-mod-php8
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, apache, libstdcpp, libpcre2, zlib
+Provides: apache-mod-php8-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 5570560
+Filename: apache-mod-php8_8.4.28-0_aarch64-3.10.ipk
+Size: 2024478
+SHA256sum: ca62d929fda0fa4d1d8ab7601bdb329543587cd1870fd4b123dbd79925cfc37e
+Description:  PHP is a widely-used general-purpose scripting language that is especially
+ suited for Web development and can be embedded into HTML.
+ This package contains the PHP module for the Apache Web Server.
+
+Package: msmtpd
+Version: 1.8.34-1
+Depends: libc, libssp, librt, libpthread, libintl-full, daemonize
+Provides: msmtpd-any
+Source: feeds/self/msmtpd
+SourceName: msmtpd
+Section: mail
+SourceDateEpoch: 1785530633
+URL: https://marlam.de/msmtp
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: aarch64-3.10
+Installed-Size: 51200
+Filename: msmtpd_1.8.34-1_aarch64-3.10.ipk
+Size: 17489
+SHA256sum: 4c442282158b31b88dea7d45bafebf3104fcead4b7ee341c8d718c1d92dd7527
+Description:  Msmtpd is a minimal SMTP server that pipes mails to msmtp or some other
+ program for delivery. It can be used with system services that expect
+ an SMTP server on the local host.
+
+Package: nginx-mod-brotli
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, nginx
+Provides: nginx-mod-brotli-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 675840
+Filename: nginx-mod-brotli_1.31.10-0_aarch64-3.10.ipk
+Size: 322258
+SHA256sum: a5f785d0cae41cd17e3bfab16e5c6bbcf383195f1b896ad836dbfcf2595bb37c
+Description:  Add support for brotli compression module.
+
+Package: nginx-mod-dav-ext
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, nginx, libxml2
+Provides: nginx-mod-dav-ext-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 40960
+Filename: nginx-mod-dav-ext_1.31.10-0_aarch64-3.10.ipk
+Size: 13053
+SHA256sum: 9e1dfde4350ea6673f70ac75b937f9e0bd8208153ad2c653079e583c21a99d70
+Description:  Enable the WebDAV methods PROPFIND OPTIONS LOCK UNLOCK.
+
+Package: nginx-mod-geoip2
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, nginx, nginx-mod-stream, libmaxminddb
+Provides: nginx-mod-geoip2-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 40960
+Filename: nginx-mod-geoip2_1.31.10-0_aarch64-3.10.ipk
+Size: 9167
+SHA256sum: 010da6d945b00a59ce1e060fa715ec4b2c14449190295c757696ff814794f17d
+Description:  Enable MaxMind GeoIP2 module.
+
+Package: nginx-mod-headers-more
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, nginx
+Provides: nginx-mod-headers-more-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 40960
+Filename: nginx-mod-headers-more_1.31.10-0_aarch64-3.10.ipk
+Size: 11722
+SHA256sum: 78c3135b0b97536d6b6b8bbe9c175ae90df103994ead0f6a07523368de04acdd
+Description:  Set and clear input and output headers...more than "add"!
+
+Package: nginx-mod-lua
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, nginx, nginx-mod-lua-resty-core
+Provides: nginx-mod-lua-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 419840
+Filename: nginx-mod-lua_1.31.10-0_aarch64-3.10.ipk
+Size: 163804
+SHA256sum: e42f24321f5e34978bbca0b9ed8e80d77728820119193b2762a3e10c6810669d
+Description:  Enable Lua module (luajit2 based, OpenResty patches)
+
+Package: nginx-mod-lua-resty-core
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, nginx-mod-lua-resty-lrucache
+Provides: nginx-mod-lua-resty-core-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 245760
+Filename: nginx-mod-lua-resty-core_1.31.10-0_aarch64-3.10.ipk
+Size: 35761
+SHA256sum: 1502f54d8cc2f81ca4d6c43e10039cc2132b7af9407f07d38ae29b7923ff48c2
+Description:  Nginx Lua OpenResty core module
+
+Package: nginx-mod-lua-resty-lrucache
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, luajit2
+Provides: nginx-mod-lua-resty-lrucache-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 40960
+Filename: nginx-mod-lua-resty-lrucache_1.31.10-0_aarch64-3.10.ipk
+Size: 8485
+SHA256sum: 4f0f09a646ade740fd27aec190c21b1d1755bb741d9a3267225a715836175c00
+Description:  Nginx Lua OpenResty lrucache module
+
+Package: nginx-mod-naxsi
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, nginx
+Provides: nginx-mod-naxsi-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 614400
+Filename: nginx-mod-naxsi_1.31.10-0_aarch64-3.10.ipk
+Size: 86349
+SHA256sum: 53ec92c7656a4e6aac75a78026f595f079fc72c035e96ae4ac93569ff9a16660
+Description:  Enable NAXSI module.
+
+Package: nginx-mod-njs
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, nginx, zlib, libxml2, libxslt, libpcre2
+Provides: nginx-mod-njs-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 993280
+Filename: nginx-mod-njs_1.31.10-0_aarch64-3.10.ipk
+Size: 378411
+SHA256sum: b81a2163ba0179330dd5107382b5179270e4ce1f5d92e97cfd54691ee1cc4125
+Description:  Enable NJS module.
+
+Package: nginx-mod-rtmp
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, nginx
+Provides: nginx-mod-rtmp-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 348160
+Filename: nginx-mod-rtmp_1.31.10-0_aarch64-3.10.ipk
+Size: 142176
+SHA256sum: d8f0d6767a2cbe63491cdc8bc30ed60202b797667bc254f17e9415fbc8041769
+Description:  Add support for NGINX-based Media Streaming Server module. DASH enhanced
+
+Package: nginx-mod-stream
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, nginx
+Provides: nginx-mod-stream-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 225280
+Filename: nginx-mod-stream_1.31.10-0_aarch64-3.10.ipk
+Size: 88279
+SHA256sum: 97cea3700cc700a590c86b07aec6b179fb1a81b024f4771a5250f9fbcbffc1db
+Description:  Add support for NGINX request streaming.
+
+Package: nginx-mod-ts
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, nginx
+Provides: nginx-mod-ts-any
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 71680
+Filename: nginx-mod-ts_1.31.10-0_aarch64-3.10.ipk
+Size: 27007
+SHA256sum: cd10f15a4c12f0a067aba19e89091517d9955cabc1e0ea218fb56f7ed41923ed
+Description:  Add support for MPEG-TS Live Module module.
+
+Package: nginx-ssl
+Version: 1.31.10-0
+Depends: libc, libssp, librt, libpthread, libopenssl, libpcre2, libpthread, libxml2, zlib
+Conflicts: nginx-full
+Provides: nginx-ssl-any, nginx
+Source: feeds/packages/net/nginx
+SourceName: nginx
+License: BSD-2-Clause
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1795346658
+URL: https://nginx.org/
+CPE-ID: cpe:/a:f5:nginx_open_source
+Maintainer: Thomas Heil <heil@terminal-consulting.de> Christian Marangi <ansuelsmth@gmail.com>
+Architecture: aarch64-3.10
+Installed-Size: 1310720
+Filename: nginx-ssl_1.31.10-0_aarch64-3.10.ipk
+Size: 582470
+SHA256sum: bfe46f8550e4354de4147409de2d33ebd90a1fef54df7989efaf582c4e067a5c
+Description:  nginx is an HTTP and reverse proxy server, as well as a mail proxy server, written by Igor Sysoev. This variant is compiled with SSL support enabled. To enable additional module select them in the nginx default configuration menu.
+
+Package: php8
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, libpcre2, zlib, libxml2, zoneinfo-core
+Provides: php8-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 10240
+Filename: php8_8.4.28-0_aarch64-3.10.ipk
+Size: 2492
+SHA256sum: fc3c3d6a65a5ffc0c9ebc62bb6b3482d05d405f2362bdd04a9634119a06fa109
+Description:  PHP is a widely-used general-purpose scripting language that is especially
+ suited for Web development and can be embedded into HTML.
+ This package contains only the PHP config file. You must actually choose
+ your PHP flavour (cli, cgi or fastcgi).
+
+Package: php8-cgi
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libstdcpp
+Provides: php8-cgi-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 4884480
+Filename: php8-cgi_8.4.28-0_aarch64-3.10.ipk
+Size: 1937958
+SHA256sum: 78ec6abd14f2e674e2a6e6d0c23d47c1f312bdd2f903d48217b19e5e3af48c7a
+Description:  PHP is a widely-used general-purpose scripting language that is especially
+ suited for Web development and can be embedded into HTML.
+ This package contains the CGI version of the PHP8 interpreter.
+
+Package: php8-cli
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libstdcpp
+Provides: php8-cli-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 4956160
+Filename: php8-cli_8.4.28-0_aarch64-3.10.ipk
+Size: 1963749
+SHA256sum: 2c4d3da6a073690a9e55798171e7a64992a01ead0bed1e32bc6434047c9f751f
+Description:  PHP is a widely-used general-purpose scripting language that is especially
+ suited for Web development and can be embedded into HTML.
+ This package contains the CLI version of the PHP8 interpreter.
+
+Package: php8-fastcgi
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, php8-cgi
+Provides: php8-fastcgi-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 10240
+Filename: php8-fastcgi_8.4.28-0_aarch64-3.10.ipk
+Size: 1343
+SHA256sum: 690986d3648c656888112e7ec1654e9c0122354a3ff8cdce65bc9944fa617201
+Description:  As FastCGI support is now a core feature the php8-fastcgi package now depends
+ on the php8-cgi package, containing just the startup script.
+
+Package: php8-fpm
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libstdcpp
+Provides: php8-fpm-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 5048320
+Filename: php8-fpm_8.4.28-0_aarch64-3.10.ipk
+Size: 2006204
+SHA256sum: bbe5b9aaada137907481bd48e548330f7812cbc0789cfb5f36e9b2bf0bcbd8db
+Description:  PHP is a widely-used general-purpose scripting language that is especially
+ suited for Web development and can be embedded into HTML.
+ This package contains the FastCGI Process Manager of the PHP8 interpreter.
+
+Package: php8-mod-bcmath
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-bcmath-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 81920
+Filename: php8-mod-bcmath_8.4.28-0_aarch64-3.10.ipk
+Size: 27540
+SHA256sum: bca19c6d5cdaa272120abaa32e0472158ab5149b1ef0e72af63aeecea919f12e
+Description:  Bcmath shared module
+
+Package: php8-mod-calendar
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-calendar-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 40960
+Filename: php8-mod-calendar_8.4.28-0_aarch64-3.10.ipk
+Size: 13414
+SHA256sum: a087c2699ddafc71a92d22df0af21b13be5e164650ac5314946990ceff3e640c
+Description:  Calendar shared module
+
+Package: php8-mod-ctype
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-ctype-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 20480
+Filename: php8-mod-ctype_8.4.28-0_aarch64-3.10.ipk
+Size: 4077
+SHA256sum: f8a24a485fcee08ad6b38f1ccf91013c8696e815d7a99804245bfb18aa4a78f5
+Description:  Ctype shared module
+
+Package: php8-mod-curl
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libcurl
+Provides: php8-mod-curl-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 143360
+Filename: php8-mod-curl_8.4.28-0_aarch64-3.10.ipk
+Size: 44586
+SHA256sum: 4745555ae53f6c7f89fb93a66f7b4d0687a8696ba2b90f8d44c067bb02c2322b
+Description:  cURL shared module
+
+Package: php8-mod-dom
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libxml2
+Provides: php8-mod-dom-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 2355200
+Filename: php8-mod-dom_8.4.28-0_aarch64-3.10.ipk
+Size: 689138
+SHA256sum: 0beaac71513638c90c0bef0c39d3c1f2447fe91ff22c11e55e1a3b9e98978f71
+Description:  DOM shared module
+
+Package: php8-mod-exif
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-exif-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 102400
+Filename: php8-mod-exif_8.4.28-0_aarch64-3.10.ipk
+Size: 33560
+SHA256sum: e346fbfa1cc29c603b6f0dacd311440afd4cebbad581b91416bd817d182bc620
+Description:  EXIF shared module
+
+Package: php8-mod-fileinfo
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-fileinfo-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 8673280
+Filename: php8-mod-fileinfo_8.4.28-0_aarch64-3.10.ipk
+Size: 497927
+SHA256sum: 7de5f07025b1727ecdcbd2fbdc5710ac87bb356894ec487bd5bfb57eb4e6c4cc
+Description:  Fileinfo shared module
+
+Package: php8-mod-filter
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-filter-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 61440
+Filename: php8-mod-filter_8.4.28-0_aarch64-3.10.ipk
+Size: 20259
+SHA256sum: 42f8e9bf286f136c5e11a4e3acf7b1842da71ba6901bb3ae978ddf76ef8614b9
+Description:  Filter shared module
+
+Package: php8-mod-ftp
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libopenssl
+Provides: php8-mod-ftp-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 81920
+Filename: php8-mod-ftp_8.4.28-0_aarch64-3.10.ipk
+Size: 24359
+SHA256sum: 8639f949b253b41474bdf43ad7ec1891969d1543d3a2cce9749889cc4aa3f9d1
+Description:  FTP shared module
+
+Package: php8-mod-gd
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libgd-full
+Provides: php8-mod-gd-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 153600
+Filename: php8-mod-gd_8.4.28-0_aarch64-3.10.ipk
+Size: 38516
+SHA256sum: 1dc8899eaaaee1b202273b2bee2782249caf9e3b701bbc228be2aa893edcf203
+Description:  GD graphics shared module
+
+Package: php8-mod-gettext
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libintl-full
+Provides: php8-mod-gettext-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 30720
+Filename: php8-mod-gettext_8.4.28-0_aarch64-3.10.ipk
+Size: 5832
+SHA256sum: 578e44965933803a70b2f3dfbf620d6e2ff5d117874cc5881c76c021843ff0dc
+Description:  Note that this package works best in combination with the intl module, so
+ please consider also selecting/installing php8-mod-intl.
+
+Package: php8-mod-gmp
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libgmp
+Provides: php8-mod-gmp-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 92160
+Filename: php8-mod-gmp_8.4.28-0_aarch64-3.10.ipk
+Size: 24718
+SHA256sum: 5a321006edb59d3bf87a6e5063ad912a3159d0a9dbeb281c2f8f4247e48ca222
+Description:  GMP shared module
+
+Package: php8-mod-iconv
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libiconv-full
+Provides: php8-mod-iconv-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 61440
+Filename: php8-mod-iconv_8.4.28-0_aarch64-3.10.ipk
+Size: 19005
+SHA256sum: d1c66d27c5b440d8adc30925ad7ddc5a84635762aa6cda545cf2fc6698b0fcba
+Description:  iConv shared module
+
+Package: php8-mod-intl
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, icu, icu-full-data
+Provides: php8-mod-intl-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 665600
+Filename: php8-mod-intl_8.4.28-0_aarch64-3.10.ipk
+Size: 182431
+SHA256sum: c4f84c0274d35f3b662a1723b8703c4fc888ceb8baa053ed1fea98652722f20c
+Description:  Note that this package depends in ICU library which is built without data
+ by default. This is to satisfy programs build and run dependencies but to
+ keep the installed footprint small on the target system(s).
+ However, the data is required to make the ICU library useful - and thus
+ directly affects PHPs ICU extension, too - so consider to also
+ select/install package 'icu-full-data'.
+
+Package: php8-mod-ldap
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libopenldap, libsasl2
+Provides: php8-mod-ldap-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 102400
+Filename: php8-mod-ldap_8.4.28-0_aarch64-3.10.ipk
+Size: 34583
+SHA256sum: e485ebae20ea461b0111b22232d7783ab64e5733f96403b057dccaf33d498ece
+Description:  LDAP shared module
+
+Package: php8-mod-mbstring
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, oniguruma
+Provides: php8-mod-mbstring-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 1218560
+Filename: php8-mod-mbstring_8.4.28-0_aarch64-3.10.ipk
+Size: 664828
+SHA256sum: 6e8a3e3a3fbf81d99f9ddb48af84372580e5f8c565d6799ee3a0cfe8f99d3688
+Description:  MBString shared module
+
+Package: php8-mod-mysqli
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, php8-mod-mysqlnd
+Provides: php8-mod-mysqli-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 174080
+Filename: php8-mod-mysqli_8.4.28-0_aarch64-3.10.ipk
+Size: 46709
+SHA256sum: 2f13a0a72b51b2e587db484b67f596138d9cb2ab41085978dc8c00173b96b038
+Description:  MySQL Improved Extension shared module
+
+Package: php8-mod-mysqlnd
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, php8-mod-openssl
+Provides: php8-mod-mysqlnd-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 235520
+Filename: php8-mod-mysqlnd_8.4.28-0_aarch64-3.10.ipk
+Size: 83034
+SHA256sum: 323ae091c32289cbacf8acce14d913ce462774fba6da87e0125efcefa0f0444b
+Description:  MySQL Native Driver shared module
+
+Package: php8-mod-opcache
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-opcache-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 983040
+Filename: php8-mod-opcache_8.4.28-0_aarch64-3.10.ipk
+Size: 450263
+SHA256sum: d7ec3ae90f88f7eeee4503673ef77d9bcce16e68c6bcb8f5d82e8db194dc755a
+Description:  OPcache shared module
+
+Package: php8-mod-openssl
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libopenssl
+Provides: php8-mod-openssl-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 225280
+Filename: php8-mod-openssl_8.4.28-0_aarch64-3.10.ipk
+Size: 77992
+SHA256sum: bb5dbc08e2931243ec866118cb16fe67671caa832f9bf026f0170284bb489cb0
+Description:  OpenSSL shared module
+
+Package: php8-mod-pcntl
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-pcntl-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 61440
+Filename: php8-mod-pcntl_8.4.28-0_aarch64-3.10.ipk
+Size: 17944
+SHA256sum: 626baae36c78613b79d482611ecf9f2751967226198ee9a61a349b9e231838ab
+Description:  PCNTL shared module
+
+Package: php8-mod-pdo
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-pdo-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 143360
+Filename: php8-mod-pdo_8.4.28-0_aarch64-3.10.ipk
+Size: 50797
+SHA256sum: dda21ab92ea7392a90269a4b7203d4b7cbaf4e27c3cef1ca5cc8111291ae5977
+Description:  PHP Data Objects shared module
+
+Package: php8-mod-pdo-mysql
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, php8-mod-pdo, php8-mod-mysqlnd
+Provides: php8-mod-pdo-mysql-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 51200
+Filename: php8-mod-pdo-mysql_8.4.28-0_aarch64-3.10.ipk
+Size: 15229
+SHA256sum: 15ef64de6b653d524cb923477b2a34eebb20cee14dd26cf1b5d98388c6345187
+Description:  PDO driver for MySQL shared module
+
+Package: php8-mod-pdo-pgsql
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, php8-mod-pdo, libpq
+Provides: php8-mod-pdo-pgsql-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 71680
+Filename: php8-mod-pdo-pgsql_8.4.28-0_aarch64-3.10.ipk
+Size: 23537
+SHA256sum: 2362e3e330dca09655144c5088fdf200d7a87d56d8adff4a906d3a9c4537dbbe
+Description:  PDO driver for PostgreSQL shared module
+
+Package: php8-mod-pdo-sqlite
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, php8-mod-pdo, libsqlite3, librt
+Provides: php8-mod-pdo-sqlite-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 61440
+Filename: php8-mod-pdo-sqlite_8.4.28-0_aarch64-3.10.ipk
+Size: 17291
+SHA256sum: c40a665df2919ab0756232090537935c3b55d98c2d668032f414a665aaac5e8f
+Description:  PDO driver for SQLite 3.x shared module
+
+Package: php8-mod-pgsql
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libpq
+Provides: php8-mod-pgsql-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 194560
+Filename: php8-mod-pgsql_8.4.28-0_aarch64-3.10.ipk
+Size: 60382
+SHA256sum: 27f7ae08252af10efea9614ebb1d6a9b1b937dcc08a5203af57169b9176b1387
+Description:  PostgreSQL shared module
+
+Package: php8-mod-phar
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-phar-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 296960
+Filename: php8-mod-phar_8.4.28-0_aarch64-3.10.ipk
+Size: 110526
+SHA256sum: f270296fcb5f3f1503d1890edb96c30c36acbf9270615fbb201c417830b0c1c6
+Description:  Phar Archives shared module
+
+Package: php8-mod-session
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-session-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 122880
+Filename: php8-mod-session_8.4.28-0_aarch64-3.10.ipk
+Size: 41191
+SHA256sum: cac38686141a197203771222ad786460d2964443862ff99c6450edae4e1e4711
+Description:  Session shared module
+
+Package: php8-mod-shmop
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-shmop-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 20480
+Filename: php8-mod-shmop_8.4.28-0_aarch64-3.10.ipk
+Size: 5728
+SHA256sum: cdd9f0c2288a01dfd92625ce120d5dff55f815948e0f68b1c6032a4e35e0aa4c
+Description:  Shared Memory shared module
+
+Package: php8-mod-simplexml
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libxml2
+Provides: php8-mod-simplexml-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 71680
+Filename: php8-mod-simplexml_8.4.28-0_aarch64-3.10.ipk
+Size: 23766
+SHA256sum: 42f207e80705e40ab938a5931146666c26d3c04f406d0534a7770fc1fddaf8c8
+Description:  SimpleXML shared module
+
+Package: php8-mod-snmp
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libnetsnmp, libopenssl
+Provides: php8-mod-snmp-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 71680
+Filename: php8-mod-snmp_8.4.28-0_aarch64-3.10.ipk
+Size: 22144
+SHA256sum: 5eaa24150bd8373f2e58857f6e47e95d83574851c6c12bb27c61b83867555b63
+Description:  SNMP shared module
+
+Package: php8-mod-soap
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libxml2, php8-mod-session
+Provides: php8-mod-soap-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 358400
+Filename: php8-mod-soap_8.4.28-0_aarch64-3.10.ipk
+Size: 142389
+SHA256sum: 7654b488bd9f9d8c6147de9c3d73efd2d85cf754158d04521e7c243bd8167d02
+Description:  SOAP shared module
+
+Package: php8-mod-sockets
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-sockets-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 122880
+Filename: php8-mod-sockets_8.4.28-0_aarch64-3.10.ipk
+Size: 40945
+SHA256sum: d7a8f84672661ae3bd1abc3d48e94c2c02d195ed37d9cce3bb0f232d78fb5638
+Description:  Sockets shared module
+
+Package: php8-mod-sodium
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libsodium
+Provides: php8-mod-sodium-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 122880
+Filename: php8-mod-sodium_8.4.28-0_aarch64-3.10.ipk
+Size: 28639
+SHA256sum: 820063b3d3474e4d5e9a1c3956edc4ece5f9068d70cb280480a75d00152a339b
+Description:  Sodium shared module
+
+Package: php8-mod-sqlite3
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libsqlite3
+Provides: php8-mod-sqlite3-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 81920
+Filename: php8-mod-sqlite3_8.4.28-0_aarch64-3.10.ipk
+Size: 25338
+SHA256sum: 2dfd4088364b4a6b61c452e4ec150b01639b158b63a5fa3785eb68558edccbb9
+Description:  SQLite3 shared module
+
+Package: php8-mod-sysvmsg
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-sysvmsg-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 30720
+Filename: php8-mod-sysvmsg_8.4.28-0_aarch64-3.10.ipk
+Size: 7373
+SHA256sum: 111f6b2dd9f1b7c42739ead662e4f640ea4faae10a99995172f385563270139a
+Description:  System V messages shared module
+
+Package: php8-mod-sysvsem
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-sysvsem-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 20480
+Filename: php8-mod-sysvsem_8.4.28-0_aarch64-3.10.ipk
+Size: 5156
+SHA256sum: b506d0f2096ca64dd01479862a45d9186135d9201fc23c3aeb4721f1575aa690
+Description:  System V shared memory shared module
+
+Package: php8-mod-sysvshm
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-sysvshm-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 20480
+Filename: php8-mod-sysvshm_8.4.28-0_aarch64-3.10.ipk
+Size: 6382
+SHA256sum: ee3317f72932a25aaed1f8e4997cb706b2aa3057c68ea76372fad5357eaf84d5
+Description:  System V semaphore shared module
+
+Package: php8-mod-tokenizer
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8
+Provides: php8-mod-tokenizer-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 40960
+Filename: php8-mod-tokenizer_8.4.28-0_aarch64-3.10.ipk
+Size: 11372
+SHA256sum: 3eced7922e332dc68c4d25c7433c91b86965c09b3c6cc337872b3455dadef9d9
+Description:  Tokenizer shared module
+
+Package: php8-mod-xml
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libxml2
+Provides: php8-mod-xml-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 81920
+Filename: php8-mod-xml_8.4.28-0_aarch64-3.10.ipk
+Size: 24454
+SHA256sum: c320177d93a226b69039d9db6376bb47abdf95cd6ccc3c91e28d7ad492925690
+Description:  XML shared module
+
+Package: php8-mod-xmlreader
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, php8-mod-dom, libxml2
+Provides: php8-mod-xmlreader-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 61440
+Filename: php8-mod-xmlreader_8.4.28-0_aarch64-3.10.ipk
+Size: 15961
+SHA256sum: e8abfe909f1f566a38256ac0217d4da1e3e931aa2561e6434cf5817be6b62827
+Description:  XMLReader shared module
+
+Package: php8-mod-xmlwriter
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libxml2
+Provides: php8-mod-xmlwriter-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 61440
+Filename: php8-mod-xmlwriter_8.4.28-0_aarch64-3.10.ipk
+Size: 12796
+SHA256sum: 1129be011b3f751c0fa96c975964df285c7134407aebb1ad1bec20438b4d2762
+Description:  XMLWriter shared module
+
+Package: php8-mod-zip
+Version: 8.4.28-0
+Depends: libc, libssp, librt, libpthread, php8, libzip
+Provides: php8-mod-zip-any
+Source: feeds/packages/lang/php8
+SourceName: php
+License: PHP-3.01
+LicenseFiles: LICENSE
+Section: lang
+SourceDateEpoch: 1794947372
+URL: https://www.php.net/
+CPE-ID: cpe:/a:php:php
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Architecture: aarch64-3.10
+Installed-Size: 112640
+Filename: php8-mod-zip_8.4.28-0_aarch64-3.10.ipk
+Size: 31848
+SHA256sum: 207279c474cc13422788e9824f3e993df0d5df6822d4433e5dca3bd78b4c60c4
+Description:  ZIP shared module
+
+Package: transmission-cli
+Version: 4.1.4-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-cli-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1792714821
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: aarch64-3.10
+Installed-Size: 4874240
+Filename: transmission-cli_4.1.4-0_aarch64-3.10.ipk
+Size: 2320448
+SHA256sum: 1eb40a755deaa1c2ffdc9b54e23fd4d52fb7c8c43e94da4bdb6e689fcad18e0d
+Description:  CLI utilities for transmission.
+
+Package: transmission-daemon
+Version: 4.1.4-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-daemon-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+Require-User: transmission=224:transmission=224
+SourceDateEpoch: 1792714821
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: aarch64-3.10
+Installed-Size: 1525760
+Filename: transmission-daemon_4.1.4-0_aarch64-3.10.ipk
+Size: 731361
+SHA256sum: d6be09b2c65981fa75973f88bbc1a7d9b6e186e4b5583f386e7a760c604e8323
+Description:  Transmission is a simple BitTorrent client.
+ It features a very simple, intuitive interface
+ on top on an efficient, cross-platform back-end.
+ This package contains the daemon itself.
+
+Package: transmission-remote
+Version: 4.1.4-0
+Depends: libc, libssp, librt, libpthread, transmission-runtime, libcurl, libdeflate, libevent2, libevent2-pthreads, libminiupnpc, libnatpmp, libpthread, libpsl, librt, libutp, zlib
+Provides: transmission-remote-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1792714821
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: aarch64-3.10
+Installed-Size: 1208320
+Filename: transmission-remote_4.1.4-0_aarch64-3.10.ipk
+Size: 567715
+SHA256sum: 431ca797e733929a481a72b3f26b9c35c8369aa9caa5f1c1a691a1921adae571
+Description:  CLI remote interface for transmission.
+
+Package: transmission-runtime
+Version: 4.1.4-0
+Depends: libc, libssp, librt, libpthread
+Provides: transmission-runtime-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: libs
+SourceDateEpoch: 1792714821
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: aarch64-3.10
+Installed-Size: 1525760
+Filename: transmission-runtime_4.1.4-0_aarch64-3.10.ipk
+Size: 435354
+SHA256sum: 6eead8e52c26f07725c914bf25c740abe08cb505bb8ef0e2ab132f0c0555d20e
+Description:  Private GCC runtime libraries required by Transmission 4.1+.
+ These libraries are isolated from the system Entware GCC runtime.
+
+Package: transmission-web
+Version: 4.1.4-0
+Depends: libc, libssp, librt, libpthread, transmission-daemon
+Provides: transmission-web-any
+Source: feeds/packages/net/transmission
+SourceName: transmission
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1792714821
+URL: https://www.transmissionbt.com
+CPE-ID: cpe:/a:transmissionbt:transmission
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Architecture: all
+Installed-Size: 256000
+Filename: transmission-web_4.1.4-0_all.ipk
+Size: 64626
+SHA256sum: 714169f3eade3ff7830cda5d52f227646856ee6406e935409d6dda3c1ab5f5fd
+Description:  Webinterface resources for transmission.
+
+Package: xupnpd2-jacklul
+Version: 2026-06-12-1
+Depends: libc, libssp, librt, libpthread, libsqlite3, liblua5.3, libuuid, libstdcpp, libopenssl
+Provides: xupnpd2-jacklul-any, xupnpd2
+Source: feeds/self/xupnpd2-jacklul
+SourceName: xupnpd2-jacklul
+Section: multimedia
+SourceDateEpoch: 1781277525
+URL: https://github.com/jacklul/xupnpd2
+Maintainer: Jack'lul, https://jacklul.github.io
+Architecture: aarch64-3.10
+Installed-Size: 430080
+Filename: xupnpd2-jacklul_2026-06-12-1_aarch64-3.10.ipk
+Size: 185052
+SHA256sum: fa25fa2d711e08a0054f383de08fb7255a4f923dcb4d6524c9b968aa8f4ca09e
+Description:  This program is a light DLNA Media Server which provides ContentDirectory:1
+ service for sharing IPTV unicast streams over local area network (with udpxy
+ for multicast to HTTP unicast conversion). The program shares UTF8-encoded M3U
+ playlists with links over local area network as content of the directory.
+ You can watch HDTV broadcasts (multicast or unicast) and listen Internet
+ Radio in IP network without transcoding and PC.
+
