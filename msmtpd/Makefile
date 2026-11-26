@@ -3,12 +3,12 @@ include $(TOPDIR)/rules.mk
 # https://github.com/Entware/entware-packages/blob/master/mail/msmtp/Makefile
 
 PKG_NAME:=msmtpd
-PKG_VERSION:=1.8.32
+PKG_VERSION:=1.8.34
 PKG_RELEASE:=1
 
 PKG_SOURCE:=msmtp-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://marlam.de/msmtp/releases
-PKG_HASH:=20cd58b58dd007acf7b937fa1a1e21f3afb3e9ef5bbcfb8b4f5650deadc64db4
+PKG_HASH:=84e8fe2a5a80a1ee7802013b3fbdb846a3f27a4163cf37a1c6d7c7f888873ead
 
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
